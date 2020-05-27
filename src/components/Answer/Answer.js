@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "./Answer.css";
 
 export class Answer extends Component {
   render() {
-    return <div></div>;
+    return <div>answer page</div>;
   }
 }
 

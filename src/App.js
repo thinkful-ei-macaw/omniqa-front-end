@@ -6,7 +6,9 @@ import PrivateRoute from "./Routes/PrivateRoute";
 import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import Question from "./components/Question/Question";
+import Answer from "./components/Answer/Answer";
 
 function App() {
   return (
@@ -15,7 +17,12 @@ function App() {
         <PublicOnlyRoute exact path="/" component={LandingPage} />
         <PublicOnlyRoute exact path="/registration" component={Registration} />
         <PublicOnlyRoute exact path="/login" component={Login} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        {/* add back private route after authentication is complete, for now its just route for 
+editing purposes */}
+        {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/question" component={Question} />
+        <Route exact path="/answer" component={Answer} />
       </BrowserRouter>
     </div>
   );
