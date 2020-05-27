@@ -1,10 +1,24 @@
-body {
-  margin: 0;
-  box-sizing: border-box;
+form {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding: 0em;
+  height: 15%;
+}
+#logo {
+  width: 10em;
+}
+
+img {
+  max-height: 20%;
+  width: auto;
+}
+
+input {
+  height: 2em;
 }
 
 ul {
-  display: flex;
   list-style: none;
   margin-top: 0;
 }
@@ -14,8 +28,10 @@ li {
   font-size: 1.2em;
 }
 
-nav.nav {
-  background-color: grey;
+nav {
+  background-color: white;
+  height: 5em;
+  box-shadow: 8px 1px 30px 10px #cecece;
 }
 
 #question-btn {
