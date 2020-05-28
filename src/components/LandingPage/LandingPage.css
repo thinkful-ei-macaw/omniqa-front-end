@@ -29,3 +29,32 @@
   border-radius: 10px;
   background-color: #785380;
 }
+
+@media only screen and (max-width: 500px) {
+  .logo {
+    width: 300px;
+    height: auto;
+  }
+  .hero-text {
+    margin-top: 40%;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  .start-button {
+    width: 150px;
+    height: auto;
+    font-size: 16px;
+  }
+}
+
+/* @media only screen and (max-width: 1100px) {
+  .logo {
+    width: 500px;
+    height: auto;
+  }
+  .hero-text {
+    margin-top: 20%;
+    font-size: 32px;
+  }
+} */
