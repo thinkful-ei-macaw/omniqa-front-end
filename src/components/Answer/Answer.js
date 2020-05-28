@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import "./Answer.css";
+import NavBar from "../NavBar/NavBar";
 
 export class Answer extends Component {
   render() {
-    return <div>answer page</div>;
+    return (
+      <div className="Answer">
+        <NavBar />
+        answer page
+      </div>
+    );
   }
 }
 
