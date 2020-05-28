@@ -18,3 +18,30 @@ li {
   margin-left: auto;
   margin-right: 15em;
 }
+
+section {
+  display: flex;
+}
+
+img {
+  height: 5em;
+  background-color: grey;
+  border-radius: 60%;
+}
+
+.image-info {
+  display: flex;
+  margin-left: auto;
+}
+
+.image-stats {
+  padding-top: 2.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.questions {
+  padding-left: 2em;
+  max-width: 85%;
+  margin-right: 20em;
+}
