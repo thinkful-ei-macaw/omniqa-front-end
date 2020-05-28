@@ -15,14 +15,14 @@ export class Login extends Component {
   handleSubmitJwtAuth = (ev) => {
     ev.preventDefault();
     this.setState({ error: null });
-    const { user_name, password } = ev.target;
+    const { username, password } = ev.target;
 
     AuthApiService.postLogin({
-      user_name: user_name.value,
+      username: username.value,
       password: password.value,
     })
       .then((res) => {
-        user_name.value = "";
+        username.value = "";
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
         this.props.onLoginSuccess();
@@ -71,36 +71,29 @@ export class Login extends Component {
     return (
       <div>
         <section id="log-in">
-          <form className="LoginForm" onSubmit={this.handleSubmit}>
+          <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
             <fieldset>
-              <form>
-                <label for="username">Username</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="james.bond"
-                  required
-                />
-                <label for="password">Password</label>
-                <input
-                  class="form-control"
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="********"
-                  required
-                />
-                <Link to="Dashboard">
-                  {/* <button
-                  type="button"
-                  onClick="window.location.href='dashboard.html'"
-                > */}
-                  Log In
-                </Link>
-                {/* </button> */}
-              </form>
+              <label for="username">Username</label>
+              <input
+                class="form-control"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="james.bond"
+                required
+              />
+              <label for="password">Password</label>
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="********"
+                required
+              />
+              <Link to="Dashboard">
+                <button type="submit">Log In</button>
+              </Link>
             </fieldset>
           </form>
         </section>
