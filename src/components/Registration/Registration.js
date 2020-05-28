@@ -10,22 +10,19 @@ export class Registration extends Component {
   state = { error: null };
   handleSubmit = (ev) => {
     ev.preventDefault();
-    const full_name = ev.target[0];
-    const user_name = ev.target[1];
-    const password = ev.target[3];
-    const nick_name = ev.target[4];
+    const name = ev.target[0];
+    const username = ev.target[1];
+    const password = ev.target[2];
 
     this.setState({ error: null });
     AuthApiService.postUser({
-      user_name: user_name.value,
+      username: username.value,
       password: password.value,
-      full_name: full_name.value,
-      nickname: nick_name.value,
+      name: name.value,
     })
       .then((user) => {
-        full_name.value = "";
-        nick_name.value = "";
-        user_name.value = "";
+        name.value = "";
+        username.value = "";
         password.value = "";
         this.props.onRegistrationSuccess(user);
       })
@@ -36,9 +33,9 @@ export class Registration extends Component {
   render() {
     return (
       <div className="Registration">
-        <form id="signup">
+        <form id="signup" onSubmit={this.handleSubmit}>
           <fieldset>
-            <legend>sign up to save progress</legend>
+            <legend>sign up here</legend>
             <div class="form-group">
               <label for="username">Username</label>
               <input
@@ -51,13 +48,13 @@ export class Registration extends Component {
               />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="name">Your name</label>
               <input
                 class="form-control"
                 type="text"
-                name="email"
-                id="email"
-                placeholder="james.bond@spectre.com"
+                name="name"
+                id="name"
+                placeholder="James Bond"
                 required
               />
             </div>
@@ -72,29 +69,16 @@ export class Registration extends Component {
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="passwordRepeat">Repeat Password</label>
-              <input
-                class="form-control"
-                type="password"
-                name="passwordRepeat"
-                id="passwordRepeat"
-                placeholder="********"
-                required
-              />
-            </div>
-            <div class="m-t-lg">
-              <ul class="list-inline">
-                <li>
-                  <input class="btn btn--form" type="submit" value="Register" />
-                </li>
-                <li>
-                  <Link to="/login">
-                    {" "}
-                    <button type="button">I am already a member</button>
-                  </Link>
-                </li>
-              </ul>
+
+            <div class="submit--reg">
+              <button class="submit-form" type="submit">
+                Register
+              </button>
+
+              <Link to="/login">
+                {" "}
+                <button type="button">I am already a member</button>
+              </Link>
             </div>
           </fieldset>
         </form>

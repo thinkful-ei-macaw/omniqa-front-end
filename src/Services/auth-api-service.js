@@ -3,7 +3,7 @@ import TokenService from "../Services/TokenService";
 
 const AuthApiService = {
   postUser(user) {
-    return fetch(`${config.API_ENDPOINT}/api/user`, {
+    return fetch(`${config.API_ENDPOINT}/api/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -14,7 +14,7 @@ const AuthApiService = {
     );
   },
   postLogin({ username, password }) {
-    return fetch(`${config.API_ENDPOINT}/api/auth/token`, {
+    return fetch(`${config.API_ENDPOINT}/api/auth`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -25,7 +25,7 @@ const AuthApiService = {
     );
   },
   refreshToken() {
-    return fetch(`${config.API_ENDPOINT}/api/auth/token`, {
+    return fetch(`${config.API_ENDPOINT}/api/auth`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${TokenService.getAuthToken()}`,
