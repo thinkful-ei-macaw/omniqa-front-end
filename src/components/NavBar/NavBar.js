@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import img from './search.png';
 
 export class NavBar extends Component {
   render() {
@@ -11,9 +12,9 @@ export class NavBar extends Component {
             <img src={require('./logo.png')} alt='omni logo' />
           </li>
           <li>
-            <form>
-              <input type='text' placeholder='Search for questions...' />
-              <button type='submit'>Find</button>
+            <form className='search-bar'>
+              <input type='text' placeholder='Search for questions...' id='search-text-input' />
+              <input type='image' name='submit' id='magn' src={img} />
             </form>
           </li>
           <li>
