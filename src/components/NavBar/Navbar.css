@@ -6,11 +6,11 @@ form {
   height: 15%;
 }
 #logo {
-  width: 10em;
+  width: 5em;
 }
 
 img {
-  max-height: 20%;
+  max-height: 40%;
   width: auto;
 }
 
@@ -37,4 +37,41 @@ nav {
 #question-btn {
   margin-left: auto;
   margin-right: 15em;
+}
+
+#search-text-input {
+  border-top: thin solid #e5e5e5;
+  border-right: thin solid #e5e5e5;
+  border-bottom: 0;
+  border-left: thin solid #e5e5e5;
+  box-shadow: 0px 1px 1px 1px #e5e5e5;
+  float: left;
+  height: 17px;
+  outline: 0;
+  padding: .4em 0 .4em .6em;
+  width: 183px;
+}
+
+#button-holder {
+  background-color: #f1f1f1;
+  border-top: thin solid #e5e5e5;
+  box-shadow: 1px 1px 1px 1px #e5e5e5;
+  cursor: pointer;
+  float: left;
+  height: 27px;
+  margin: 11px 0 0 0;
+  text-align: center;
+  width: 50px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+#magn {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  right: auto;
+  left: 170px;
 }
