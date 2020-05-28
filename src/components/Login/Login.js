@@ -3,9 +3,36 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import AuthApiService from "../../Services/auth-api-service";
 import UserContext from "../../Context/UserContext";
+import TokenService from "../../Services/TokenService";
 
 export class Login extends Component {
-  //===================uncomment this out once login is ready!!==========
+  static defaultProps = {
+    onLoginSuccess: () => {},
+  };
+
+  state = { error: null };
+
+  handleSubmitJwtAuth = (ev) => {
+    ev.preventDefault();
+    this.setState({ error: null });
+    const { user_name, password } = ev.target;
+
+    AuthApiService.postLogin({
+      user_name: user_name.value,
+      password: password.value,
+    })
+      .then((res) => {
+        user_name.value = "";
+        password.value = "";
+        TokenService.saveAuthToken(res.authToken);
+        this.props.onLoginSuccess();
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
+  };
+
+  //===================uncomment this out once login is ready!!if needed????==========
 
   //  static defaultProps = {
   //     onLoginSuccess: () => {},
