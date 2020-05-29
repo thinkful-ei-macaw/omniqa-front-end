@@ -11,7 +11,7 @@ export class Question extends Component {
     const newQuestion = {
       title: e.target.title.value,
     };
-    fetch(`${config.API_ENDPOINT}/questions`, {
+    fetch(`${config.API_ENDPOINT}/api/questions`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

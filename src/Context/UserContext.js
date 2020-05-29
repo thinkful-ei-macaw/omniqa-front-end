@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import AuthApiService from "../Services/auth-api-service";
 import TokenService from "../Services/TokenService";
-import IdleService from "../Services/idle-service";
 
 const UserContext = React.createContext({
   user: {},
@@ -20,7 +18,7 @@ export class UserProvider extends Component {
     super(props);
     const state = { user: {}, error: null };
 
-    const jwtPayload = TokenService.parseAuthToken();
+    const jwtPayload = TokenService.getInfoFromToken();
 
     if (jwtPayload)
       state.user = {
@@ -30,22 +28,8 @@ export class UserProvider extends Component {
       };
 
     this.state = state;
-    IdleService.setIdleCallback(this.logoutBecauseIdle);
   }
 
-  componentDidMount() {
-    if (TokenService.hasAuthToken()) {
-      IdleService.regiserIdleTimerResets();
-      TokenService.queueCallbackBeforeExpiry(() => {
-        this.fetchRefreshToken();
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    IdleService.unRegisterIdleResets();
-    TokenService.clearCallbackBeforeExpiry();
-  }
   setError = (error) => {
     console.error(error);
     this.setState({ error });
@@ -56,6 +40,7 @@ export class UserProvider extends Component {
   };
 
   setUser = (user) => {
+    console.log("running");
     this.setState({ user });
   };
 
@@ -67,37 +52,12 @@ export class UserProvider extends Component {
       name: jwtPayload.name,
       username: jwtPayload.sub,
     });
-    IdleService.regiserIdleTimerResets();
-    TokenService.queueCallbackBeforeExpiry(() => {
-      this.fetchRefreshToken();
-    });
   };
 
   processLogout = () => {
     TokenService.clearAuthToken();
-    TokenService.clearCallbackBeforeExpiry();
-    IdleService.unRegisterIdleResets();
+
     this.setUser({});
-  };
-
-  logoutBecauseIdle = () => {
-    TokenService.clearAuthToken();
-    TokenService.clearCallbackBeforeExpiry();
-    IdleService.unRegisterIdleResets();
-    this.setUser({ idle: true });
-  };
-
-  fetchRefreshToken = () => {
-    AuthApiService.refreshToken()
-      .then((res) => {
-        TokenService.saveAuthToken(res.authToken);
-        TokenService.queueCallbackBeforeExpiry(() => {
-          this.fetchRefreshToken();
-        });
-      })
-      .catch((err) => {
-        this.setError(err);
-      });
   };
 
   render() {

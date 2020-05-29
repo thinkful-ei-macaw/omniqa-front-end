@@ -9,21 +9,28 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { BrowserRouter, Route } from "react-router-dom";
 import Question from "./components/Question/Question";
 import Answer from "./components/Answer/Answer";
+import { UserProvider } from "./Context/UserContext";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <PublicOnlyRoute exact path="/" component={LandingPage} />
-        <PublicOnlyRoute exact path="/registration" component={Registration} />
-        <PublicOnlyRoute exact path="/login" component={Login} />
-        {/* add back private route after authentication is complete, for now its just route for 
+      <UserProvider>
+        <BrowserRouter>
+          <PublicOnlyRoute exact path="/" component={LandingPage} />
+          <PublicOnlyRoute
+            exact
+            path="/registration"
+            component={Registration}
+          />
+          <PublicOnlyRoute exact path="/login" component={Login} />
+          {/* add back private route after authentication is complete, for now its just route for 
 editing purposes */}
-        {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/question" component={Question} />
-        <Route exact path="/answer" component={Answer} />
-      </BrowserRouter>
+          {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/question" component={Question} />
+          <Route exact path="/answer" component={Answer} />
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }
