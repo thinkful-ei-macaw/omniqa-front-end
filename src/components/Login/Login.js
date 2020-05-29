@@ -27,11 +27,16 @@ export class Login extends Component {
         username.value = "";
         password.value = "";
         TokenService.saveAuthToken(res.authToken);
-        this.props.onLoginSuccess();
+        this.onLoginSuccess();
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
+  };
+
+  onLoginSuccess = () => {
+    const { history } = this.props;
+    history.push("/Dashboard");
   };
 
   //===================uncomment this out once login is ready!!if needed????==========
@@ -96,9 +101,9 @@ export class Login extends Component {
                 placeholder="********"
                 required
               />
-              <Link to="/Dashboard">
-                <button type="submit">Log In</button>
-              </Link>
+              {/* <Link to="/Dashboard"> */}
+              <button type="submit">Log In</button>
+              {/* </Link> */}
             </fieldset>
           </form>
         </section>

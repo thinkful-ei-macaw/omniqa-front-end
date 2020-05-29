@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import "./Registration.css";
 import { Link } from "react-router-dom";
 import AuthApiService from "../../Services/auth-api-service";
+import UserContext from "../../Context/UserContext";
 
 export class Registration extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {},
   };
+
+  static contextType = UserContext;
+
   state = { error: null };
   handleSubmit = (ev) => {
     ev.preventDefault();
@@ -22,19 +26,27 @@ export class Registration extends Component {
         name.value = "";
         username.value = "";
         password.value = "";
-        this.props.onRegistrationSuccess(user);
+        this.onRegistrationSuccess(user);
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
   };
+
+  onRegistrationSuccess = () => {
+    const { history } = this.props;
+    history.push("/Dashboard");
+  };
   render() {
+    const { error } = this.state;
     return (
       <div className="Registration">
+        <div role="alert">{error && <p>{error}</p>}</div>
+
         <form id="signup" onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>sign up here</legend>
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="username">Username</label>
               <input
                 className="form-control"
@@ -45,10 +57,10 @@ export class Registration extends Component {
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="name">Your name</label>
+            <div className="form-group">
+              <label htmlFor="name">Your name</label>
               <input
-                class="form-control"
+                className="form-control"
                 type="text"
                 name="name"
                 id="name"
@@ -56,10 +68,10 @@ export class Registration extends Component {
                 required
               />
             </div>
-            <div class="form-group">
-              <label for="password">Password</label>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
               <input
-                class="form-control"
+                className="form-control"
                 type="password"
                 name="password"
                 id="password"
@@ -68,8 +80,8 @@ export class Registration extends Component {
               />
             </div>
 
-            <div class="submit--reg">
-              <button class="submit-form" type="submit">
+            <div className="submit--reg">
+              <button className="submit-form" type="submit">
                 Register
               </button>
 
