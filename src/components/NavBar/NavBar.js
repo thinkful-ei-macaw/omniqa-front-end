@@ -1,20 +1,37 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import img from './search.png';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import img from "./search.png";
+import UserContext from "../../Context/UserContext";
 
 export class NavBar extends Component {
+  static contextType = UserContext;
+
+  handleLogoutClick = () => {
+    this.context.processLogout();
+  };
+
   render() {
     return (
-      <nav className='nav'>
+      <nav className="nav">
+        <span id="user-name">hello {this.context.user.name}</span>
+
+        <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">
+          Logout
+        </Link>
+
         <ul>
-          <li id='logo'>
-            <img src={require('./logo.png')} alt='omni logo' />
+          <li id="logo">
+            <img src={require("./logo.png")} alt="omni logo" />
           </li>
           <li>
-            <form className='search-bar'>
-              <input type='text' placeholder='Search for questions...' id='search-text-input' />
-              <input type='image' name='submit' id='magn' src={img} />
+            <form className="search-bar">
+              <input
+                type="text"
+                placeholder="Search for questions..."
+                id="search-text-input"
+              />
+              <input type="image" name="submit" id="magn" src={img} />
             </form>
           </li>
           <li>
@@ -23,9 +40,8 @@ export class NavBar extends Component {
           <li>
             <span>Answer Q's</span>
           </li>
-          <li id='question-btn'>
-            <Link to='/Question'>Ask a question</Link>
-            {/* <button onClick="window.location.href='question.html'">Ask a question</button> */}
+          <li id="question-btn">
+            <Link to="/Question">Ask a question</Link>
           </li>
         </ul>
       </nav>
