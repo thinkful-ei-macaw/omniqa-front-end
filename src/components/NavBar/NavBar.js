@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import img from "./search.png";
 import UserContext from "../../Context/UserContext";
+import TokenService from "../../Services/TokenService";
 
 export class NavBar extends Component {
   static contextType = UserContext;
@@ -11,10 +12,17 @@ export class NavBar extends Component {
     this.context.processLogout();
   };
 
+  componentDidMount = () => {
+    // console.log(TokenService.getInfoFromToken);
+    const user = TokenService.getInfoFromToken().sub;
+    this.context.setUser(user);
+  };
+
   render() {
+    console.log(this.user);
     return (
       <nav className="nav">
-        <span id="user-name">hello {this.context.user.name}</span>
+        <span id="user-name">hello {this.context.user}</span>
 
         <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">
           Logout
