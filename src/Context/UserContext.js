@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import TokenService from "../Services/TokenService";
+import React, { Component } from 'react';
+import TokenService from '../Services/TokenService';
 
 const UserContext = React.createContext({
   user: {},
@@ -8,7 +8,7 @@ const UserContext = React.createContext({
   clearError: () => {},
   setUser: () => {},
   processLogin: () => {},
-  processLogout: () => {},
+  processLogout: () => {}
 });
 
 export default UserContext;
@@ -18,14 +18,15 @@ export class UserProvider extends Component {
     super(props);
     const state = { user: {}, error: null };
 
-    const jwtPayload = TokenService.getInfoFromToken();
-
-    if (jwtPayload)
-      state.user = {
-        id: jwtPayload.user_id,
-        name: jwtPayload.name,
-        username: jwtPayload.sub,
-      };
+    if (TokenService.hasAuthToken()) {
+      const jwtPayload = TokenService.getInfoFromToken();
+      if (jwtPayload)
+        state.user = {
+          id: jwtPayload.user_id,
+          name: jwtPayload.name,
+          username: jwtPayload.sub
+        };
+    }
 
     this.state = state;
   }
@@ -40,7 +41,7 @@ export class UserProvider extends Component {
   };
 
   setUser = (user) => {
-    console.log("running");
+    console.log('running');
     this.setState({ user });
   };
 
@@ -50,7 +51,7 @@ export class UserProvider extends Component {
     this.setUser({
       id: jwtPayload.user_id,
       name: jwtPayload.name,
-      username: jwtPayload.sub,
+      username: jwtPayload.sub
     });
   };
 
@@ -68,12 +69,8 @@ export class UserProvider extends Component {
       clearError: this.clearError,
       setUser: this.setUser,
       processLogin: this.processLogin,
-      processLogout: this.processLogout,
+      processLogout: this.processLogout
     };
-    return (
-      <UserContext.Provider value={value}>
-        {this.props.children}
-      </UserContext.Provider>
-    );
+    return <UserContext.Provider value={value}>{this.props.children}</UserContext.Provider>;
   }
 }
