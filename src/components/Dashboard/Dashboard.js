@@ -9,32 +9,32 @@ export class Dashboard extends Component {
         <NavBar />
         <section>
           <div>
-            <p class="questions">What is the phone number for 911?</p>
+            <p className="questions">What is the phone number for 911?</p>
           </div>
-          <div class="image-info">
+          <div className="image-info">
             <div>
               <p>Asked By</p>
               <img src="Spongebob_squarepants.png" />
             </div>
           </div>
-          <div class="image-stats">
+          <div className="image-stats">
             <p>Spongebob Squarepants</p>
             <p>Lord of the Sea</p>
           </div>
         </section>
         <section>
           <div>
-            <p class="questions">
+            <p className="questions">
               If you can buy a dozen donuts for 12 cents, how many donuts can
               you buy for $1.00?
             </p>
           </div>
-          <div class="image-info">
+          <div className="image-info">
             <div>
               <p>Asked By</p>
               <img src="Spongebob_squarepants.png" />
             </div>
-            <div class="image-stats">
+            <div className="image-stats">
               <p>Spongebob Squarepants</p>
               <p>Lord of the Sea</p>
             </div>
@@ -43,14 +43,14 @@ export class Dashboard extends Component {
 
         <section>
           <div>
-            <p class="questions">Durrrrrr can't think of anything</p>
+            <p className="questions">Durrrrrr can't think of anything</p>
           </div>
-          <div class="image-info">
+          <div className="image-info">
             <div>
               <p>Asked By</p>
               <img src="Spongebob_squarepants.png" />
             </div>
-            <div class="image-stats">
+            <div className="image-stats">
               <p>Spongebob Squarepants</p>
               <p>Lord of the Sea</p>
             </div>

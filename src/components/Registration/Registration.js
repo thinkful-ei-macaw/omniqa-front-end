@@ -35,9 +35,9 @@ export class Registration extends Component {
           <fieldset>
             <legend>sign up here</legend>
             <div class="form-group">
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input
-                class="form-control"
+                className="form-control"
                 type="text"
                 name="username"
                 id="username"

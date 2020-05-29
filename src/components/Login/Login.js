@@ -10,6 +10,8 @@ export class Login extends Component {
     onLoginSuccess: () => {},
   };
 
+  static contextType = UserContext;
+
   state = { error: null };
 
   handleSubmitJwtAuth = (ev) => {
@@ -68,30 +70,33 @@ export class Login extends Component {
   //     this.firstInput.current.focus();
   //   }
   render() {
+    const { error } = this.state;
     return (
-      <div>
+      <div className="Login">
+        <div role="alert">{error && <p>{error}</p>}</div>
+
         <section id="log-in">
           <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
             <fieldset>
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input
-                class="form-control"
+                className="form-control"
                 type="text"
                 name="username"
                 id="username"
                 placeholder="james.bond"
                 required
               />
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
-                class="form-control"
+                className="form-control"
                 type="password"
                 name="password"
                 id="password"
                 placeholder="********"
                 required
               />
-              <Link to="Dashboard">
+              <Link to="/Dashboard">
                 <button type="submit">Log In</button>
               </Link>
             </fieldset>
