@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./Login.css";
-import AuthApiService from "../../Services/auth-api-service";
-import UserContext from "../../Context/UserContext";
-import TokenService from "../../Services/TokenService";
+import React, { Component } from 'react';
+import './Login.css';
+import AuthApiService from '../../Services/auth-api-service';
+import UserContext from '../../Context/UserContext';
+import TokenService from '../../Services/TokenService';
 
 export class Login extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {},
+    onLoginSuccess: () => {}
   };
 
   static contextType = UserContext;
@@ -20,11 +20,11 @@ export class Login extends Component {
 
     AuthApiService.postLogin({
       username: username.value,
-      password: password.value,
+      password: password.value
     })
       .then((res) => {
-        username.value = "";
-        password.value = "";
+        username.value = '';
+        password.value = '';
         TokenService.saveAuthToken(res.authToken);
         this.onLoginSuccess();
       })
@@ -35,7 +35,7 @@ export class Login extends Component {
 
   onLoginSuccess = () => {
     const { history } = this.props;
-    history.push("/Dashboard");
+    history.push('/Dashboard');
   };
 
   //===================uncomment this out once login is ready!!if needed????==========
@@ -76,32 +76,33 @@ export class Login extends Component {
   render() {
     const { error } = this.state;
     return (
-      <div className="Login">
-        <div role="alert">{error && <p>{error}</p>}</div>
+      <div className='Login'>
+        <div role='alert'>{error && <p>{error}</p>}</div>
 
-        <section id="log-in">
-          <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
+        <section id='log-in'>
+          <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
             <fieldset>
-              <label htmlFor="username">Username</label>
+              <legend>Log In</legend>
+              <label htmlFor='username'>Username</label>
               <input
-                className="form-control"
-                type="text"
-                name="username"
-                id="username"
-                placeholder="james.bond"
+                className='form-control'
+                type='text'
+                name='username'
+                id='username'
+                placeholder='james.bond'
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor='password'>Password</label>
               <input
-                className="form-control"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="********"
+                className='form-control'
+                type='password'
+                name='password'
+                id='password'
+                placeholder='********'
                 required
               />
               {/* <Link to="/Dashboard"> */}
-              <button type="submit">Log In</button>
+              <button type='submit'>Log In</button>
               {/* </Link> */}
             </fieldset>
           </form>

@@ -27,6 +27,16 @@ form {
   align-items: center;
 }
 
+label {
+  float: left;
+  width: 90px;
+  text-align: left;
+}
+
+input {
+  float: left;
+}
+
 legend {
   text-align: center;
   font-size: 24px;
