@@ -4,9 +4,12 @@ import "./Question.css";
 import NavBar from "../NavBar/NavBar";
 import config from "..//../config";
 import TokenService from "../../Services/TokenService";
+import QuestionContext from "../../Context/QuestionContext";
 
 export class Question extends Component {
   //fetch department and ids to populate the dept list
+
+  static contextType = QuestionContext;
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +32,7 @@ export class Question extends Component {
         return res.json();
       })
       .then((question) => {
-        this.context.add(question);
+        this.context.setQuestion(question);
         this.props.history.push(`/questions`);
       })
 
@@ -38,6 +41,8 @@ export class Question extends Component {
       });
   };
   render() {
+    console.log(this.context);
+    const questions = this.context.questions;
     return (
       <div className="Question">
         <NavBar />
@@ -74,6 +79,10 @@ export class Question extends Component {
             <button type="submit">ASK</button>
           </fieldset>
         </form>
+        <ul>All questions:</ul>{" "}
+        {questions.map((question) => (
+          <li key={question.id}>{question.body} </li>
+        ))}
         <Link to="/answer">go look at all the answers</Link>
       </div>
     );
