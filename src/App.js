@@ -23,12 +23,10 @@ function App() {
             component={Registration}
           />
           <PublicOnlyRoute exact path="/login" component={Login} />
-          {/* add back private route after authentication is complete, for now its just route for 
-editing purposes */}
-          {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/question" component={Question} />
-          <Route exact path="/answer" component={Answer} />
+
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/question" component={Question} />
+          <PrivateRoute exact path="/answer" component={Answer} />
         </BrowserRouter>
       </UserProvider>
     </div>

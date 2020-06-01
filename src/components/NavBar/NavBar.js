@@ -14,6 +14,7 @@ export class NavBar extends Component {
   render() {
     return (
       <nav className="nav">
+        {/* only works on refresh!!screemmmmm */}
         <span id="user-name">hello {this.context.user.username}</span>
 
         <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">

@@ -9,7 +9,10 @@ export class Question extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newQuestion = {
-      title: e.target.title.value,
+      title: e.target["title"].value,
+      question_body: e.target["question"].value,
+      department_id: e.target["department"].value,
+      author: e.target.user_id,
     };
     fetch(`${config.API_ENDPOINT}/api/questions`, {
       method: "POST",
@@ -39,7 +42,33 @@ export class Question extends Component {
         Question page
         <form className="question form" onSubmit={this.handleSubmit}>
           <fieldset>
-            <input typeof="text" id="question--form"></input>
+            <label htmlFor="input-one">title</label>
+            <input
+              className="form-control"
+              type="text"
+              name="title"
+              id="title"
+              placeholder="title..."
+              required
+            />
+            <br />
+            <label htmlFor="input-one">question</label>
+            <input
+              className="form-control"
+              type="text"
+              name="question"
+              id="question"
+              placeholder="ask...."
+            />
+            <br />
+            <label htmlFor="input-one">department</label>
+            <input
+              className="drop-down"
+              type="dropdown"
+              name="department"
+              id="department"
+            />
+            <br />
             <button type="submit">ASK</button>
           </fieldset>
         </form>
