@@ -6,6 +6,8 @@ import config from "..//../config";
 import TokenService from "../../Services/TokenService";
 
 export class Question extends Component {
+  //fetch department and ids to populate the dept list
+
   handleSubmit = (e) => {
     e.preventDefault();
     const newQuestion = {
@@ -64,7 +66,7 @@ export class Question extends Component {
             <label htmlFor="input-one">department</label>
             <input
               className="drop-down"
-              type="dropdown"
+              type="select"
               name="department"
               id="department"
             />
