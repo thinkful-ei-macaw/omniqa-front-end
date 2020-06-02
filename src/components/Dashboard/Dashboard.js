@@ -1,8 +1,30 @@
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
+import config from "../../config";
 
 export class Dashboard extends Component {
+  //handleDelete
+  handleDelete = (e) => {
+    e.preventDefault();
+    const questionId = this.props.id;
+
+    fetch(`${config.API_ENDPOINT}/api/questions/${questionId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then(() => {
+        this.context.deleteQuestion(questionId);
+        // allow parent to perform extra behaviour << you can tell Dasha wrote this
+        //because I'm the only one who writes british style
+        this.props.onDeleteQuestion(questionId);
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
+  };
   render() {
     return (
       <div className="dashboard">
@@ -56,6 +78,9 @@ export class Dashboard extends Component {
             </div>
           </div>
         </section>
+        <button type="delete" onSubmit={this.handleDelete}>
+          delete this question but only if you asked it
+        </button>
       </div>
     );
   }

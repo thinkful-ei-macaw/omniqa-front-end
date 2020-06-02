@@ -28,11 +28,13 @@ export class Question extends Component {
       body: JSON.stringify(newQuestion),
     })
       .then((res) => {
+        console.log(res);
+
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
         return res.json();
       })
       .then((question) => {
-        this.context.setQuestion(question);
+        this.context.setQuestions(question);
         this.props.history.push(`/questions`);
       })
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TokenService from "../Services/TokenService";
 
 const QuestionContext = React.createContext({
-  user: {},
+  question: [],
   error: null,
   setError: () => {},
   clearError: () => {},
