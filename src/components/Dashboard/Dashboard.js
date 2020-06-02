@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import config from "../../config";
+import QuestionContext from "../../Context/QuestionContext";
 
 export class Dashboard extends Component {
   //handleDelete
+
+  static contextType = QuestionContext;
   handleDelete = (e) => {
     e.preventDefault();
     const questionId = this.props.id;
@@ -36,7 +39,7 @@ export class Dashboard extends Component {
           <div className="image-info">
             <div>
               <p>Asked By</p>
-              <img src="Spongebob_squarepants.png" />
+              <img src="Spongebob_squarepants.png" alt="user-profile-pic" />
             </div>
           </div>
           <div className="image-stats">
@@ -54,7 +57,7 @@ export class Dashboard extends Component {
           <div className="image-info">
             <div>
               <p>Asked By</p>
-              <img src="Spongebob_squarepants.png" />
+              <img src="Spongebob_squarepants.png" alt="user-profile-pic" />
             </div>
             <div className="image-stats">
               <p>Spongebob Squarepants</p>
@@ -70,7 +73,7 @@ export class Dashboard extends Component {
           <div className="image-info">
             <div>
               <p>Asked By</p>
-              <img src="Spongebob_squarepants.png" />
+              <img src="Spongebob_squarepants.png" alt="user-profile-pic" />
             </div>
             <div className="image-stats">
               <p>Spongebob Squarepants</p>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TokenService from "../Services/TokenService";
 
 const QuestionContext = React.createContext({
   question: [],
@@ -44,6 +43,11 @@ export class QuestionProvider extends Component {
     console.log("running");
     this.setState({ question });
   };
+  handleDeleteQuestion = (questionId) => {
+    this.setState({
+      questions: this.state.questions.filter((d) => d.id !== questionId),
+    });
+  };
 
   render() {
     const value = {
@@ -52,6 +56,7 @@ export class QuestionProvider extends Component {
       setError: this.setError,
       clearError: this.clearError,
       setQuestions: this.setQuestions,
+      handleDeleteQuestion: () => {},
     };
     return (
       <QuestionContext.Provider value={value}>

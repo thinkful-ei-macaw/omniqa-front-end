@@ -23,7 +23,7 @@ export class NavBar extends Component {
 
         <ul>
           <li id="logo">
-            <img src={require("./logo.png")} alt="omni logo" />
+            <img src={require("./logo.png")} alt="omni--logo" />
           </li>
           <li>
             <form className="search-bar">
@@ -32,7 +32,13 @@ export class NavBar extends Component {
                 placeholder="Search for questions..."
                 id="search-text-input"
               />
-              <input type="image" name="submit" id="magn" src={img} />
+              <input
+                type="image"
+                name="submit"
+                id="magn"
+                src={img}
+                alt="omni--logo"
+              />
             </form>
           </li>
           <li>

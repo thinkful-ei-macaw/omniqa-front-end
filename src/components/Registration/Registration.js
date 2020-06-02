@@ -47,7 +47,7 @@ export class Registration extends Component {
       <div className="Registration">
         <div role="alert">{error && <p>{error}</p>}</div>
         <form id="signup" onSubmit={this.handleSubmit}>
-          <img className="logo" src={img} />
+          <img className="logo" src={img} alt="omni--logo" />
           <fieldset>
             <legend>Sign Up</legend>
             <label htmlFor="username">Username: </label>
