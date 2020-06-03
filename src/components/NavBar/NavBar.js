@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import img from "./search.png";
+import magn from "./search.png";
 import UserContext from "../../Context/UserContext";
 
 export class NavBar extends Component {
@@ -15,8 +15,12 @@ export class NavBar extends Component {
     return (
       <nav className="nav">
         <ul>
-          <li id="logo">
-            <img src={require("./logo.png")} alt="omni--logo" />
+          <li id="logoicon">
+            <img
+              className="logoicon"
+              src={require("./logoicon.png")}
+              alt="omni--logo"
+            />
           </li>
           <li>
             <form className="search-bar">
@@ -29,25 +33,38 @@ export class NavBar extends Component {
                 type="image"
                 name="submit"
                 id="magn"
-                src={img}
-                alt="omni--logo"
+                src={magn}
+                alt="magnifying-glass"
               />
             </form>
           </li>
-          <li>
+          <li className="span1">
             <span>Q&A Home</span>
           </li>
-          <li>
+          <li className="span2">
             <span>Answer Q's</span>
           </li>
           <li id="question-btn">
-            <Link to="/Question">Ask a question</Link>
-          </li>
-          <li>
-            <span id="user-name">hello {this.context.user.username}</span>
-            <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">
-              Logout
+            <Link id="link" to="/Question">
+              Ask a question
             </Link>
+          </li>
+          <li className="selector">
+            <select type="select">
+              <option selected disabled>
+                {this.context.user.username}
+              </option>
+              <option>
+                {" "}
+                <Link
+                  id="nav-link"
+                  onClick={this.handleLogoutClick}
+                  to="/login"
+                >
+                  Logout
+                </Link>
+              </option>
+            </select>
           </li>
         </ul>
       </nav>

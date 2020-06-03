@@ -22,12 +22,6 @@ section {
   display: flex;
 }
 
-img {
-  height: 5em;
-  background-color: grey;
-  border-radius: 60%;
-}
-
 .image-info {
   display: flex;
   margin-left: auto;
