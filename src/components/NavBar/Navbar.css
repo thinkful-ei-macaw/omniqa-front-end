@@ -69,11 +69,11 @@ nav {
 
 #search-text-input {
   margin-top: 3.5em;
-  border-top: thin solid #e5e5e5;
-  border-right: thin solid #e5e5e5;
-  border-bottom: 0;
-  border-left: thin solid #e5e5e5;
-  box-shadow: 0px 1px 1px 1px #e5e5e5;
+  border-top: thin solid #cccccc;
+  border-right: thin solid #cccccc;
+  border-bottom: thin solid #cccccc;
+  border-left: thin solid #cccccc;
+  border-radius: 6px;
   float: left;
   height: 17px;
   outline: 0;

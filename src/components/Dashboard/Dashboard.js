@@ -24,27 +24,25 @@ export class Dashboard extends Component {
     return (
       <div className="dashboard">
         <NavBar />
-        <Sidebar />
-        <section>
-          <h1>Latest Questions</h1>
-          <ul>
-            {questions.map((question) => (
-              <li key={question.id}>
-                {question.author}
-                <br />
-                {question.department}
-                <br />
-                <Moment format="YYYY/MM/DD">{question.created_date}</Moment>
-                <br />
-                {question.question_body}
-              </li>
-            ))}
-          </ul>
+        <section className="main">
+          <Sidebar />
+          <div className="questionList">
+            <h1>Latest Questions</h1>
+            <ul className="qMap">
+              {questions.map((question) => (
+                <li className="qLi" key={question.id}>
+                  <span className="questionHead">{question.question_body}</span>
+                  <br />
+                  {question.department}
+                  <br />
+                  <Moment format="YYYY/MM/DD">{question.created_date}</Moment>
+                  <br />
+                  {question.author}
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
-
-        <button type="delete" onSubmit={this.handleDelete}>
-          delete this question but only if you asked it
-        </button>
       </div>
     );
   }

@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import QuestionContext from "../../Context/QuestionContext";
 
 export class Favorite extends Component {
+  static contextType = QuestionContext;
+
   render() {
-    return <div>thid ud where your likes go</div>;
+    return (
+      <div>
+        <h2>this is where your likes go</h2>
+      </div>
+    );
   }
 }
 

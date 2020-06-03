@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserContext from "../../Context/UserContext";
+import "./Sidebar.css";
 
 export class Sidebar extends Component {
   static contextType = UserContext;
@@ -7,20 +8,27 @@ export class Sidebar extends Component {
   render() {
     return (
       <div className="Sidebar">
-        this is a side bar but its not on the side yet
-        <span id="user-name">
-          this is your navigation: {this.context.user.username}
-        </span>{" "}
-        <section className="departments">
-          <ul className="departments">
-            Departments:
-            <li>Marketing</li>
-            <li>Sales</li>
-            <li>HR</li>
-            <li>Finance</li>
-            <li>Engineering</li>
+        <section className="myQs">
+          <label>Q's that I...</label>
+          <ul className="barUl">
+            <li>Asked</li>
+            <li>Answered</li>
+            <li>Voted</li>
+            <li>Liked</li>
           </ul>
-          <p>these links will be clickable</p>
+        </section>
+        <section className="departments">
+          <label>Q's with tags...</label>
+          <ul className="barUl">
+            <li>All tags</li>
+            <li>Marketing</li>
+            <li>Engineering</li>
+            <li>Sales</li>
+            <li>Support</li>
+            <li>Success</li>
+            <li>General</li>
+            <li>R&D</li>
+          </ul>
         </section>
       </div>
     );

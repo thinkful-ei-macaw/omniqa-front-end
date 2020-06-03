@@ -38,3 +38,30 @@ section {
   max-width: 85%;
   margin-right: 20em;
 }
+
+.questionList {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.qMap {
+  display: flex;
+  flex-direction: column;
+}
+
+.qLi {
+  border: thin solid #cccccc;
+  border-radius: 6px;
+  margin-bottom: 1.2em;
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 1em;
+  width: 800px;
+}
+
+.questionHead {
+  font-size: 28px;
+  color: rgb(24, 0, 24);
+  font-weight: 600;
+}

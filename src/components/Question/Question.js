@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Question.css";
 import NavBar from "../NavBar/NavBar";
-import config from "..//../config";
-import TokenService from "../../Services/TokenService";
 import QuestionContext from "../../Context/QuestionContext";
 import QuestionsApiService from "../../Services/questions-service";
 
@@ -70,7 +68,12 @@ export class Question extends Component {
             </button>
           </fieldset>
         </form>
-        <Link to="/answer">go look at all the answers</Link>
+        <Link to="/Dashboard">
+          <button type="button">go back</button>
+        </Link>
+        <Link to="/answer">
+          <button type="button">go look at all the answers</button>
+        </Link>
       </div>
     );
   }

@@ -13,14 +13,14 @@ const QuestionsApiService = {
     );
   },
 
-  postQuestion(title, question_body, department_id, author) {
+  postQuestion(question_body, department_id) {
     return fetch(`${config.API_ENDPOINT}/api/questions`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ title, question_body, department_id, author }),
+      body: JSON.stringify({ question_body, department_id }),
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
