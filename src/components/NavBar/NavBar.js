@@ -14,13 +14,6 @@ export class NavBar extends Component {
   render() {
     return (
       <nav className="nav">
-        {/* only works on refresh!!screemmmmm */}
-        <span id="user-name">hello {this.context.user.username}</span>
-
-        <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">
-          Logout
-        </Link>
-
         <ul>
           <li id="logo">
             <img src={require("./logo.png")} alt="omni--logo" />
@@ -49,6 +42,12 @@ export class NavBar extends Component {
           </li>
           <li id="question-btn">
             <Link to="/Question">Ask a question</Link>
+          </li>
+          <li>
+            <span id="user-name">hello {this.context.user.username}</span>
+            <Link id="nav-link" onClick={this.handleLogoutClick} to="/login">
+              Logout
+            </Link>
           </li>
         </ul>
       </nav>

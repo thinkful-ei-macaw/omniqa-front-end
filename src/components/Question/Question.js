@@ -5,6 +5,7 @@ import NavBar from "../NavBar/NavBar";
 import config from "..//../config";
 import TokenService from "../../Services/TokenService";
 import QuestionContext from "../../Context/QuestionContext";
+import QuestionsApiService from "../../Services/questions-service";
 
 export class Question extends Component {
   //fetch department and ids to populate the dept list
@@ -13,38 +14,21 @@ export class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     const newQuestion = {
       title: e.target["title"].value,
-      question_body: e.target["question"].value,
+      question_body: e.target["question_body"].value,
       department_id: e.target["department"].value,
       author: e.target.user_id,
     };
-    fetch(`${config.API_ENDPOINT}/api/questions`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify(newQuestion),
-    })
-      .then((res) => {
-        console.log(res);
-
-        if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        return res.json();
-      })
-      .then((question) => {
-        this.context.setQuestions(question);
-        this.props.history.push(`/questions`);
-      })
-
-      .catch((error) => {
-        console.error({ error });
-      });
+    QuestionsApiService.postQuestion()
+      .then(this.context.postQuestion)
+      .catch(this.context.setError);
   };
+
   render() {
     console.log(this.context);
-    const questions = this.context.questions;
+    const newQuestion = this.context.questions;
     return (
       <div className="Question">
         <NavBar />
@@ -65,7 +49,7 @@ export class Question extends Component {
             <input
               className="form-control"
               type="text"
-              name="question"
+              name="question_body"
               id="question"
               placeholder="ask...."
             />
@@ -78,13 +62,14 @@ export class Question extends Component {
               id="department"
             />
             <br />
-            <button type="submit">ASK</button>
+            <button
+              type="submit"
+              // onClick={(e) => this.props.history.push("/dashboard")}
+            >
+              ASK
+            </button>
           </fieldset>
         </form>
-        <ul>All questions:</ul>{" "}
-        {questions.map((question) => (
-          <li key={question.id}>{question.body} </li>
-        ))}
         <Link to="/answer">go look at all the answers</Link>
       </div>
     );

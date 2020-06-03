@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Answer.css";
 import NavBar from "../NavBar/NavBar";
+import AnswerApiService from "../../Services/answers-service";
 
 export class Answer extends Component {
   render() {

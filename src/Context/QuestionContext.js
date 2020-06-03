@@ -3,9 +3,11 @@ import React, { Component } from "react";
 const QuestionContext = React.createContext({
   question: [],
   error: null,
+  questionList: [],
   setError: () => {},
   clearError: () => {},
-  setUser: () => {},
+  setQuestions: () => {},
+  setQuestionList: () => {},
   processLogin: () => {},
   processLogout: () => {},
 });
@@ -13,22 +15,11 @@ const QuestionContext = React.createContext({
 export default QuestionContext;
 
 export class QuestionProvider extends Component {
-  constructor(props) {
-    super(props);
-    const state = { question: {}, error: null };
-
-    // if (TokenService.hasAuthToken()) {
-    //   const jwtPayload = TokenService.getInfoFromToken();
-    //   if (jwtPayload)
-    //     state.question = {
-    //       id: jwtPayload.user_id,
-    //       name: jwtPayload.name,
-    //       username: jwtPayload.sub,
-    //     };
-    // }
-
-    this.state = state;
-  }
+  state = {
+    question: [],
+    questionList: [],
+    error: null,
+  };
 
   setError = (error) => {
     console.error(error);
@@ -41,22 +32,22 @@ export class QuestionProvider extends Component {
 
   setQuestions = (question) => {
     console.log("running");
-    this.setState({ question });
+    this.setState({ questions: [...this.state.questions, question] });
   };
-  handleDeleteQuestion = (questionId) => {
-    this.setState({
-      questions: this.state.questions.filter((d) => d.id !== questionId),
-    });
+
+  setQuestionList = (questionList) => {
+    this.setState({ questionList });
   };
 
   render() {
     const value = {
+      questionList: this.state.questionList,
       question: this.state.question,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,
       setQuestions: this.setQuestions,
-      handleDeleteQuestion: () => {},
+      setQuestionList: this.setQuestionList,
     };
     return (
       <QuestionContext.Provider value={value}>
