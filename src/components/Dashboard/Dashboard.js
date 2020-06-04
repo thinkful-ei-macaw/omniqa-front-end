@@ -6,6 +6,8 @@ import QuestionContext from "../../Context/QuestionContext";
 import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
 import Moment from "react-moment";
+import Answer from "../Answer/Answer";
+import Sort from "../Sort/Sort";
 
 export class Dashboard extends Component {
   static contextType = QuestionContext;
@@ -26,6 +28,7 @@ export class Dashboard extends Component {
         <NavBar />
         <section className="main">
           <Sidebar />
+          <Sort />
           <div className="questionList">
             <h1>Latest Questions</h1>
             <ul className="qMap">

@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import magn from "./search.png";
 import UserContext from "../../Context/UserContext";
+import TokenService from "../../Services/TokenService";
 
 export class NavBar extends Component {
   static contextType = UserContext;
 
+  componentDidMount() {}
+
   handleLogoutClick = () => {
     this.context.processLogout();
+    window.location = "/login";
   };
 
   render() {
@@ -44,29 +48,21 @@ export class NavBar extends Component {
           <li className="span2">
             <span>Answer Q's</span>
           </li>
-          <li id="question-btn">
+          <li>
             <Link id="link" to="/Question">
-              Ask a question
+              <button id="question-btn">Ask a question</button>
             </Link>
           </li>
           <li className="selector">
-            <select type="select">
+            <select type="select" onChange={this.handleLogoutClick}>
               <option selected disabled>
-                {this.context.user.username}
+                {TokenService.getInfoFromToken().sub}
               </option>
-              <option>
-                {" "}
-                <Link
-                  id="nav-link"
-                  onClick={this.handleLogoutClick}
-                  to="/login"
-                >
-                  Logout
-                </Link>
-              </option>
+              <option>Logout</option>
             </select>
           </li>
         </ul>
+        <div className="line">this is a line</div>
       </nav>
     );
   }

@@ -11,25 +11,37 @@ import Question from "./components/Question/Question";
 import Answer from "./components/Answer/Answer";
 import { UserProvider } from "./Context/UserContext";
 import { QuestionProvider } from "./Context/QuestionContext";
+import { AnswerProvider } from "./Context/AnswerContext";
+import Marketing from "./components/Marketing/Marketing";
+import Sales from "./components/Sales/Sales";
+import HR from "./components/HR/HR";
+import Engineering from "./components/Engineering/Engineering";
+import Finance from "./components/Finance/Finance";
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
         <QuestionProvider>
-          <BrowserRouter>
-            <PublicOnlyRoute exact path="/" component={LandingPage} />
-            <PublicOnlyRoute
-              exact
-              path="/registration"
-              component={Registration}
-            />
-            <PublicOnlyRoute exact path="/login" component={Login} />
+          <AnswerProvider>
+            <BrowserRouter>
+              <PublicOnlyRoute exact path="/" component={LandingPage} />
+              <PublicOnlyRoute
+                exact
+                path="/registration"
+                component={Registration}
+              />
+              <PublicOnlyRoute exact path="/login" component={Login} />
 
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute exact path="/question" component={Question} />
-            <PrivateRoute exact path="/answer" component={Answer} />
-          </BrowserRouter>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/question" component={Question} />
+              <PrivateRoute exact path="/marketing" component={Marketing} />
+              <PrivateRoute exact path="/Sales" component={Sales} />
+              <PrivateRoute exact path="/HR" component={HR} />
+              <PrivateRoute exact path="/engineering" component={Engineering} />
+              <PrivateRoute exact path="/finance " component={Finance} />
+            </BrowserRouter>
+          </AnswerProvider>
         </QuestionProvider>
       </UserProvider>
     </div>

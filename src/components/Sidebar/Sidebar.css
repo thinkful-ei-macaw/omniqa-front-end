@@ -37,3 +37,12 @@ label {
   font-weight: 400;
   color: rgb(155, 155, 155);
 }
+
+a#side__tag {
+  color: rgb(155, 155, 155);
+}
+
+a#side__tag:hover {
+  color: #785380;
+  font-weight: 600;
+}

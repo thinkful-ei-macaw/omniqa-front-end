@@ -40,7 +40,7 @@ section {
 }
 
 .questionList {
-  margin-left: 2em;
+  margin-left: 3em;
   display: flex;
   flex-direction: column;
 }
