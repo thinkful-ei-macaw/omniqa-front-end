@@ -34,26 +34,26 @@ const AuthApiService = {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
-  //   getUser() {
-  //     return fetch(`${config.API_ENDPOINT}/api/user/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         authorization: `Bearer ${TokenService.getAuthToken()}`,
-  //       },
-  //     }).then((res) =>
-  //       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-  //     );
-  //   },
-  //   getDepartment() {
-  //     return fetch(`${config.API_ENDPOINT}/api/department/${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         authorization: `Bearer ${TokenService.getAuthToken()}`,
-  //       },
-  //     }).then((res) =>
-  //       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-  //     );
-  //   },
+  getUser(user_id) {
+    return fetch(`${config.API_ENDPOINT}/api/user/${user_id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  getDepartment(department_id) {
+    return fetch(`${config.API_ENDPOINT}/api/departments/${department_id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
 };
 
 //fetch()

@@ -20,6 +20,9 @@ export class Dashboard extends Component {
 
   render() {
     const questions = this.context.questionList;
+    const departments = this.context.departmentList;
+    console.log(departments);
+    console.log(questions);
     console.log(this.context.questionList);
     return (
       <div className='dashboard'>
