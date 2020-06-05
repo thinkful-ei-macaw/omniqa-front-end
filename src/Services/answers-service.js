@@ -10,7 +10,7 @@ const AnswersApiService = {
       },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-    );
+    )
   },
 
   postAnswer(answer_body, question_id, author) {

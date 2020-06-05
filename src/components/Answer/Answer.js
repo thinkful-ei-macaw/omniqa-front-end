@@ -16,15 +16,15 @@ export class Answer extends Component {
   };
 
   render() {
-    //get request fetch all the answers
-    //component did mount??
+
+    //get request fetch all the answersans    //component did mount??
+    console.log(this.state.answers)
+
     return (
       <div className="Answer">
         <NavBar />
         answer page
-        <Link to="/Question">
-          <button type="button">go back</button>
-        </Link>
+        <p>{this.state.answers.map(data => data.answer_body)}</p>
       </div>
     );
   }
