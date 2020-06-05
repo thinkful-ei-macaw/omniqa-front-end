@@ -61,12 +61,19 @@ export class Registration extends Component {
             />
             <br />
             <br />
-            <label htmlFor='name'>Your Name: </label>
-            <input className='form-control' type='text' name='name' id='name' placeholder='James Bond' required />
+            <label htmlFor="name">Your Name: </label>
+            <input
+              className="form-control"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="James Bond"
+              required
+            />
             <br />
             <br />
             <br />
-            <label htmlFor='password'>Password:</label>
+            <label htmlFor="password">Password:</label>
             <input
               className="form-control"
               type="password"
@@ -77,6 +84,7 @@ export class Registration extends Component {
             />
             <br />
             <br />
+            <label htmlFor="password">Re-enter password:</label>
 
             <input
               className="form-control"
@@ -91,7 +99,7 @@ export class Registration extends Component {
             <br />
 
             <br />
-            <button className='submit-form' type='submit'>
+            <button className="submit-form" type="submit">
               Register
             </button>
             <Link to="/login">
