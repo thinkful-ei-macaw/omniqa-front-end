@@ -31,30 +31,32 @@ export class Dashboard extends Component {
     return (
       <div className='dashboard'>
         <NavBar />
-        <section className='main'>
-          <Sidebar />
-          <div className='questionList'>
-            <h1>Latest Questions</h1>
-            <ul className='qMap'>
-              {questions.map((question) => (
-                <li className='qLi' key={question.id}>
-                  <span className='questionHead'>{question.question_body}</span>
-                  <br />
-                  <br />
-                  <span className='datePosted'>
-                    Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.author}
-                  </span>
-                  <br />
-                  <br />
-                  <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department}</span>
-                  <br />
-                  <br />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Sort />
-        </section>
+        <div className='main-wrapper'>
+          <section className='main'>
+            <Sidebar />
+            <div className='questionList'>
+              <h1>Latest Questions</h1>
+              <ul className='qMap'>
+                {questions.map((question) => (
+                  <li className='qLi' key={question.id}>
+                    <span className='questionHead'>{question.question_body}</span>
+                    <br />
+                    <br />
+                    <span className='datePosted'>
+                      Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.author}
+                    </span>
+                    <br />
+                    <br />
+                    <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department}</span>
+                    <br />
+                    <br />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Sort />
+          </section>
+        </div>
       </div>
     );
   }
