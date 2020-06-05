@@ -3,6 +3,7 @@ import './Login.css';
 import AuthApiService from '../../Services/auth-api-service';
 import UserContext from '../../Context/UserContext';
 import TokenService from '../../Services/TokenService';
+import { Link } from 'react-router-dom';
 
 export class Login extends Component {
   static defaultProps = {
@@ -35,7 +36,7 @@ export class Login extends Component {
 
   onLoginSuccess = () => {
     const { history } = this.props;
-    history.push('/Dashboard');
+    history.push('/dashboard');
   };
 
   //===================uncomment this out once login is ready!!if needed????==========
@@ -101,9 +102,9 @@ export class Login extends Component {
                 placeholder='********'
                 required
               />
-              {/* <Link to="/Dashboard"> */}
+              <Link to="/dashboard">
               <button type='submit'>Log In</button>
-              {/* </Link> */}
+              </Link>
             </fieldset>
           </form>
         </section>

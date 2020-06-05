@@ -32,7 +32,6 @@ function App() {
                 component={Registration}
               />
               <PublicOnlyRoute exact path="/login" component={Login} />
-
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/question" component={Question} />
               <PrivateRoute exact path="/marketing" component={Marketing} />

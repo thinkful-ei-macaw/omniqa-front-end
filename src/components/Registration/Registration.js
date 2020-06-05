@@ -3,6 +3,7 @@ import "./Registration.css";
 import { Link } from "react-router-dom";
 import AuthApiService from "../../Services/auth-api-service";
 import UserContext from "../../Context/UserContext";
+import TokenService from "../../Services/TokenService"
 import img from "./logo.png";
 
 export class Registration extends Component {
@@ -27,19 +28,32 @@ export class Registration extends Component {
         name: name.value,
       })
         .then((user) => {
+        this.onRegistrationSuccess(username.value, password.value);
           name.value = "";
           username.value = "";
           password.value = "";
-          this.onRegistrationSuccess(user);
         })
         .catch((res) => {
           this.setState({ error: res.error });
         });
     }
   };
-  onRegistrationSuccess = () => {
-    const { history } = this.props;
-    history.push("/Dashboard");
+  onRegistrationSuccess = (username, password) => {
+    console.log('check')
+    AuthApiService.postLogin({
+        username: username,
+        password: password
+      })
+      .then((res) => {
+        TokenService.saveAuthToken(res.authToken);
+        const { history } = this.props;
+        history.push("/dashboard");
+      })
+      .catch((res) => {
+        this.setState({
+          error: res.error.message
+        });
+      });
   };
   render() {
     const { error } = this.state;
@@ -99,12 +113,15 @@ export class Registration extends Component {
             <br />
 
             <br />
+           
+            
             <button className="submit-form" type="submit">
               Register
             </button>
-            <Link to="/login">
+         
+            <Link to="/dashboard">
               {" "}
-              <button type="button">I am already a member</button>
+              <button type="button">Log in</button>
             </Link>
           </fieldset>
         </form>
