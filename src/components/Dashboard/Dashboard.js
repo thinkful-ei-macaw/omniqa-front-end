@@ -8,6 +8,8 @@ import QuestionsApiService from "../../Services/questions-service";
 import Moment from "react-moment";
 import Answer from "../Answer/Answer";
 import Sort from "../Sort/Sort";
+import AuthApiService from '../../Services/auth-api-service';
+import DepartmentService from '../../Services/departments-service';
 
 export class Dashboard extends Component {
   static contextType = QuestionContext;
@@ -18,10 +20,17 @@ export class Dashboard extends Component {
     QuestionsApiService.getQuestions()
       .then(this.context.setQuestionList)
       .catch(this.context.setError);
+
+    DepartmentService.getDepartments()
+      .then(this.context.setDepartmentList)
+      .catch(this.context.setError);
   }
 
   render() {
     const questions = this.context.questionList;
+    const departments = this.context.departmentList;
+    console.log(departments)
+    console.log(questions)
     console.log(this.context.questionList);
     return (
       <div className="dashboard">
@@ -36,7 +45,7 @@ export class Dashboard extends Component {
                 <li className="qLi" key={question.id}>
                   <span className="questionHead">{question.question_body}</span>
                   <br />
-                  {question.department}
+                  <span>Department {question.department}</span>
                   <br />
                   <Moment format="YYYY/MM/DD">{question.created_date}</Moment>
                   <br />

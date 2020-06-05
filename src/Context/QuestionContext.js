@@ -4,12 +4,14 @@ const QuestionContext = React.createContext({
   question: [],
   error: null,
   questionList: [],
-  setError: () => {},
-  clearError: () => {},
-  setQuestions: () => {},
-  setQuestionList: () => {},
-  processLogin: () => {},
-  processLogout: () => {},
+  departmentList: [],
+  setError: () => { },
+  clearError: () => { },
+  setQuestions: () => { },
+  setQuestionList: () => { },
+  setDepartmentList: () => { },
+  processLogin: () => { },
+  processLogout: () => { },
 });
 
 export default QuestionContext;
@@ -18,6 +20,7 @@ export class QuestionProvider extends Component {
   state = {
     question: [],
     questionList: [],
+    departmentList: [],
     error: null,
   };
 
@@ -39,6 +42,13 @@ export class QuestionProvider extends Component {
     this.setState({ questionList });
   };
 
+  setDepartmentList = (departments) => {
+    this.setState({
+      departmentList: departments
+    })
+  };
+
+
   render() {
     const value = {
       questionList: this.state.questionList,
@@ -48,6 +58,8 @@ export class QuestionProvider extends Component {
       clearError: this.clearError,
       setQuestions: this.setQuestions,
       setQuestionList: this.setQuestionList,
+      setDepartmentList: this.setDepartmentList,
+      departmentList: this.state.departmentList
     };
     return (
       <QuestionContext.Provider value={value}>
