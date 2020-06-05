@@ -9,6 +9,8 @@ import Moment from 'react-moment';
 import Answer from '../Answer/Answer';
 import Sort from '../Sort/Sort';
 
+import DepartmentService from '../../Services/departments-service';
+
 export class Dashboard extends Component {
   static contextType = QuestionContext;
 
@@ -16,6 +18,8 @@ export class Dashboard extends Component {
     this.context.clearError();
 
     QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
+
+    DepartmentService.getDepartments().then(this.context.setDepartmentList).catch(this.context.setError);
   }
 
   render() {
