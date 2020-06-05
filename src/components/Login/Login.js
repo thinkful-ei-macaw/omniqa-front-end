@@ -29,7 +29,7 @@ export class Login extends Component {
         this.onLoginSuccess();
       })
       .catch((res) => {
-        this.setState({ error: res.error });
+        this.setState({ error: res.error.message });
       });
   };
 
