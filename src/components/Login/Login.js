@@ -3,6 +3,7 @@ import './Login.css';
 import AuthApiService from '../../Services/auth-api-service';
 import UserContext from '../../Context/UserContext';
 import TokenService from '../../Services/TokenService';
+import omnilogo from './logo.png';
 
 export class Login extends Component {
   static defaultProps = {
@@ -78,35 +79,33 @@ export class Login extends Component {
     return (
       <div className='Login'>
         <div role='alert'>{error && <p>{error}</p>}</div>
-
-        <section id='log-in'>
-          <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
-            <fieldset>
-              <legend>Log In</legend>
-              <label htmlFor='username'>Username</label>
-              <input
-                className='form-control'
-                type='text'
-                name='username'
-                id='username'
-                placeholder='james.bond'
-                required
-              />
-              <label htmlFor='password'>Password</label>
-              <input
-                className='form-control'
-                type='password'
-                name='password'
-                id='password'
-                placeholder='********'
-                required
-              />
-              {/* <Link to="/Dashboard"> */}
-              <button type='submit'>Log In</button>
-              {/* </Link> */}
-            </fieldset>
-          </form>
-        </section>
+        <img className='logo' src={omnilogo} alt='omni--logo' />
+        <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
+          <fieldset>
+            <legend>Log In</legend>
+            <label htmlFor='username'>Username: </label>
+            <input
+              className='form-control'
+              type='text'
+              name='username'
+              id='username'
+              placeholder='james.bond'
+              required
+            />
+            <br />
+            <label htmlFor='password'>Password: </label>
+            <input
+              className='form-control'
+              type='password'
+              name='password'
+              id='password'
+              placeholder='********'
+              required
+            />
+            <br />
+            <button type='submit'>Log In</button>
+          </fieldset>
+        </form>
       </div>
     );
   }
