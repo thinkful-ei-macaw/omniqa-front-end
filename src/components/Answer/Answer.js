@@ -17,14 +17,11 @@ export class Answer extends Component {
 
   render() {
 
-    //get request fetch all the answersans    //component did mount??
-    console.log(this.state.answers)
-
     return (
       <div className="Answer">
         <NavBar />
         answer page
-        <p>{this.state.answers.map(data => data.answer_body)}</p>
+        <p>{this.context.answers.map(data => data.answer_body)}</p>
       </div>
     );
   }
