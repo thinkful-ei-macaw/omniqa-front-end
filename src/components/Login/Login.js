@@ -15,10 +15,11 @@ export class Login extends Component {
   state = { error: null };
 
   handleSubmitJwtAuth = (ev) => {
+ 
     ev.preventDefault();
     this.setState({ error: null });
     const { username, password } = ev.target;
-
+    console.log(username,password )
     AuthApiService.postLogin({
       username: username.value,
       password: password.value
@@ -36,7 +37,7 @@ export class Login extends Component {
 
   onLoginSuccess = () => {
     const { history } = this.props;
-    history.push('/dashboard');
+    history.push('/Dashboard');
   };
 
   //===================uncomment this out once login is ready!!if needed????==========
@@ -102,9 +103,8 @@ export class Login extends Component {
                 placeholder='********'
                 required
               />
-              <Link to="/dashboard">
+              
               <button type='submit'>Log In</button>
-              </Link>
             </fieldset>
           </form>
         </section>
