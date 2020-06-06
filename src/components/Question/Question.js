@@ -9,6 +9,7 @@ import DepartmentApiService from "../../Services/department-api-service";
 export class Question extends Component {
   // Call the API on componentwillmount
   // Specify the DOM element and element rendering the reuslt
+<<<<<<< HEAD
 constructor(props) {
  super(props);
  this.state = {
@@ -16,26 +17,36 @@ constructor(props) {
    question_body: ''
  }
 }
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      department: [],
+      questions: ''
+    }
+  }
+>>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
 
-componentDidMount() {
-  let departmentList = [];
-  DepartmentApiService.getDepartments()
-  .then(data => {
-    departmentList = data.map((department) => {
-      return department
-    });
-    console.log(departmentList)
-    this.setState({
-      department: departmentList
-    })
-  })
-}
+  componentDidMount() {
+    let departmentList = [];
+    DepartmentApiService.getDepartments()
+      .then(data => {
+        departmentList = data.map((department) => {
+          return department
+        });
+        console.log(departmentList)
+        this.setState({
+          department: departmentList
+        })
+      })
+  }
 
 
   static contextType = QuestionContext;
 
   handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
 
     const {
       question_body, 
@@ -48,20 +59,34 @@ componentDidMount() {
     // QuestionsApiService.postQuestion(newQuestion)
     //   .then(this.context.postQuestion)
     //   .catch(this.context.setError);
+=======
+    console.log('do you see me')
+    const newQuestion = {
+      question_body: e.target["question_body"].value,
+      department_id: e.target["department"].value,
+      // author: e.target.user_id,
+    };
+    console.log(newQuestion)
+
+    QuestionsApiService.postQuestion()
+      .then(data => console.log(data))
+      .catch(this.context.setError);
+>>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
   };
 
   render() {
+    console.log(this.state.questions)
     let departments = this.state.department
-    let departmentItems = departments.map((department) => 
-    <option key={department.name}>{department.name}</option>)
+    let departmentItems = departments.map((department) =>
+      <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
-        <form className="question form" onSubmit={this.handleSubmit}>
+        <form className="question form" onSubmit={e => this.handleSubmit(e)}>
           <fieldset>
-    
-            <br/>
-            <label htmlFor="input-one">question</label>
+
+            <br />
+            <label htmlFor="question">question</label>
             <input
               required
               className="form-control"
@@ -71,16 +96,17 @@ componentDidMount() {
               onChange={this.handleChange}
               id="question"
               placeholder="ask...."
+              onChange={e => this.setState({ questions: e.target.value })}
             />
             <br />
             <label htmlFor="input-one">department</label>
             <select>
-                {departmentItems}
+              {departmentItems}
             </select>
             <br />
             <button
-              type="submit"
-              // onClick={(e) => this.props.history.push("/dashboard")}
+              type="button"
+              onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
