@@ -15,7 +15,7 @@ export class Question extends Component {
       value: { value: "HR" },
       questions: []
     }
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -40,8 +40,8 @@ export class Question extends Component {
     console.log('successful submit question')
     const newQuestion = {
       question_body: e.target["question_body"].value,
-      department_id: this.state.department
-      // author: e.target.user_id,
+      department_id: this.state.value,
+      author: e.target.user_id,
       // e.target["department"].value,
     };
     console.log(newQuestion)
@@ -53,14 +53,14 @@ export class Question extends Component {
 
   handleChange(event) {
     this.setState({
-      department: event.target.value
+      value: event.target.value
     })
   }
 
   render() {
     console.log(this.state.questions)
     console.log(this.context.departmentList)
-    let departments = this.state.department
+    // let departments = this.state.department
     // let departmentItems = departments.map((department) =>
     //   <option key={department.name} value={departments}>{department.name}</option>)
     return (
