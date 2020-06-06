@@ -9,15 +9,6 @@ import DepartmentApiService from "../../Services/department-api-service";
 export class Question extends Component {
   // Call the API on componentwillmount
   // Specify the DOM element and element rendering the reuslt
-<<<<<<< HEAD
-constructor(props) {
- super(props);
- this.state = {
-   department: [],
-   question_body: ''
- }
-}
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +16,6 @@ constructor(props) {
       questions: []
     }
   }
->>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
 
   componentDidMount() {
     let departmentList = [];
@@ -46,21 +36,7 @@ constructor(props) {
 
   handleSubmit(e) {
     e.preventDefault();
-<<<<<<< HEAD
-
-    const {
-      question_body, 
-      department 
-    } = e.target
-    // const newQuestion = {
-    //   question_body: e.target["question_body"].value,
-    //   department_id: e.target["department"].value,
-    // };
-    // QuestionsApiService.postQuestion(newQuestion)
-    //   .then(this.context.postQuestion)
-    //   .catch(this.context.setError);
-=======
-    console.log('do you see me')
+    console.log('successful submit')
     const newQuestion = {
       question_body: e.target["question_body"].value,
       department_id: e.target["department"].value,
@@ -71,7 +47,6 @@ constructor(props) {
     QuestionsApiService.postQuestion()
       .then(data => console.log(data))
       .catch(this.context.setError);
->>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
   };
 
   render() {
