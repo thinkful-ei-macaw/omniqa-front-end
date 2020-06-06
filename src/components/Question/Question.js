@@ -39,8 +39,9 @@ export class Question extends Component {
     console.log('successful submit question')
     const newQuestion = {
       question_body: e.target["question_body"].value,
-      department_id: e.target["department"].value,
+      department_id: this.state.department
       // author: e.target.user_id,
+      // e.target["department"].value,
     };
     console.log(newQuestion)
 
@@ -49,12 +50,18 @@ export class Question extends Component {
       .catch(this.context.setError);
   };
 
+  handleChange(event) {
+    this.setState({
+      department: event.target.value
+    })
+  }
+
   render() {
     console.log(this.state.questions)
     console.log(this.context.departmentList)
     let departments = this.state.department
     let departmentItems = departments.map((department) =>
-      <option key={department.name} value={this.state.department}>{department.name}</option>)
+      <option key={department.name} value={departments}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -76,7 +83,7 @@ export class Question extends Component {
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select onChange={this.setState({ department: this.context.departmentList })}>
+            <select onChange={e => this.handleChange(e)}>
               {departmentItems}
             </select>
             <br />
