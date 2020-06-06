@@ -12,9 +12,10 @@ export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      department: [],
+      value: { value: "HR" },
       questions: []
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -60,8 +61,8 @@ export class Question extends Component {
     console.log(this.state.questions)
     console.log(this.context.departmentList)
     let departments = this.state.department
-    let departmentItems = departments.map((department) =>
-      <option key={department.name} value={departments}>{department.name}</option>)
+    // let departmentItems = departments.map((department) =>
+    //   <option key={department.name} value={departments}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -83,8 +84,13 @@ export class Question extends Component {
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select onChange={e => this.handleChange(e)}>
-              {departmentItems}
+            <select value={this.state.value} onChange={e => this.handleChange(e)}>
+              <option value="HR">HR</option>
+              <option value="Sales">Sales</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Finance">Finance</option>
+              <option value="Engineering">Engineering</option>
+              {/* {departmentItems} */}
             </select>
             <br />
             <button
