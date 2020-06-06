@@ -42,7 +42,7 @@ export class Question extends Component {
       department_id: e.target["department"].value,
       // author: e.target.user_id,
     };
-    console.log(newQuestion.question_body)
+    console.log(newQuestion)
 
     QuestionsApiService.postQuestion()
       .then(data => console.log(data))
@@ -75,12 +75,12 @@ export class Question extends Component {
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select>
+            <select value={this.context.departmentList} onChange={e => this.setState({ department: e.target.value })}>
               {departmentItems}
             </select>
             <br />
             <button
-              type="button"
+              type="submit"
             // onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
