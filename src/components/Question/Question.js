@@ -76,7 +76,7 @@ export class Question extends Component {
               type="text"
               name="question_body"
               value={this.state.question_body}
-              onChange={this.handleChange}
+              onChange={this.handleSubmit}
               id="question"
               placeholder="ask...."
               onChange={e => this.setState({ questions: e.target.value })}
