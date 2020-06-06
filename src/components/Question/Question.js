@@ -12,7 +12,8 @@ export class Question extends Component {
 constructor(props) {
  super(props);
  this.state = {
-   department: []
+   department: [],
+   question_body: ''
  }
 }
 
@@ -36,15 +37,17 @@ componentDidMount() {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const newQuestion = {
-      title: e.target["title"].value,
-      question_body: e.target["question_body"].value,
-      department_id: e.target["department"].value,
-      author: e.target.user_id,
-    };
-    QuestionsApiService.postQuestion()
-      .then(this.context.postQuestion)
-      .catch(this.context.setError);
+    const {
+      question_body, 
+      department 
+    } = e.target
+    // const newQuestion = {
+    //   question_body: e.target["question_body"].value,
+    //   department_id: e.target["department"].value,
+    // };
+    // QuestionsApiService.postQuestion(newQuestion)
+    //   .then(this.context.postQuestion)
+    //   .catch(this.context.setError);
   };
 
   render() {
@@ -60,9 +63,12 @@ componentDidMount() {
             <br/>
             <label htmlFor="input-one">question</label>
             <input
+              required
               className="form-control"
               type="text"
               name="question_body"
+              value={this.state.question_body}
+              onChange={this.handleChange}
               id="question"
               placeholder="ask...."
             />
