@@ -12,8 +12,9 @@ export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: { value: "HR" },
-      questions: []
+      value: "HR",
+      questions: [],
+      department: []
     }
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -41,13 +42,13 @@ export class Question extends Component {
     const newQuestion = {
       question_body: e.target["question_body"].value,
       department_id: this.state.value,
-      author: e.target.user_id,
+      // author: e.target.user_id,
       // e.target["department"].value,
     };
     console.log(newQuestion)
 
-    QuestionsApiService.postQuestion()
-      .then(data => console.log(data))
+    QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
+      .then(data => console.log(data.json()))
       .catch(this.context.setError);
   };
 
@@ -58,11 +59,10 @@ export class Question extends Component {
   }
 
   render() {
-    console.log(this.state.questions)
-    console.log(this.context.departmentList)
-    // let departments = this.state.department
-    // let departmentItems = departments.map((department) =>
-    //   <option key={department.name} value={departments}>{department.name}</option>)
+
+    let departments = this.state.department
+    let departmentItems = departments.map((department) =>
+      <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -85,12 +85,7 @@ export class Question extends Component {
             <br />
             <label htmlFor="input-one">department</label>
             <select value={this.state.value} onChange={e => this.handleChange(e)}>
-              <option value="HR">HR</option>
-              <option value="Sales">Sales</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Finance">Finance</option>
-              <option value="Engineering">Engineering</option>
-              {/* {departmentItems} */}
+              {departmentItems}
             </select>
             <br />
             <button
