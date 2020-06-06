@@ -36,7 +36,7 @@ export class Question extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('successful submit')
+    console.log('successful submit question')
     const newQuestion = {
       question_body: e.target["question_body"].value,
       department_id: e.target["department"].value,
