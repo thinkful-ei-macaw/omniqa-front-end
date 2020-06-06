@@ -9,8 +9,8 @@ import DepartmentApiService from "../../Services/department-api-service";
 export class Question extends Component {
   // Call the API on componentwillmount
   // Specify the DOM element and element rendering the reuslt
-constructor() {
- super();
+constructor(props) {
+ super(props);
  this.state = {
    department: []
  }
@@ -19,11 +19,8 @@ constructor() {
 componentDidMount() {
   let departmentList = [];
   DepartmentApiService.getDepartments()
-  .then(res => {
-    console.log(res)
-    return res.json()
-  }).then(data => {
-    departmentList = data.results.map((department) => {
+  .then(data => {
+    departmentList = data.map((department) => {
       return department
     });
     console.log(departmentList)
@@ -51,8 +48,9 @@ componentDidMount() {
   };
 
   render() {
-    console.log(this.context);
-    const newQuestion = this.context.questions;
+    let departments = this.state.department
+    let departmentItems = departments.map((department) => 
+    <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -71,10 +69,7 @@ componentDidMount() {
             <br />
             <label htmlFor="input-one">department</label>
             <select>
-              <option></option>
-              <option></option>
-              <option></option>
-              <option></option>
+                {departmentItems}
             </select>
             <br />
             <button
