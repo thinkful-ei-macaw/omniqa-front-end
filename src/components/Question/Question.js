@@ -4,9 +4,35 @@ import "./Question.css";
 import NavBar from "../NavBar/NavBar";
 import QuestionContext from "../../Context/QuestionContext";
 import QuestionsApiService from "../../Services/questions-service";
+import DepartmentApiService from "../../Services/department-api-service";
 
 export class Question extends Component {
-  //fetch department and ids to populate the dept list
+  // Call the API on componentwillmount
+  // Specify the DOM element and element rendering the reuslt
+constructor() {
+ super();
+ this.state = {
+   department: []
+ }
+}
+
+componentDidMount() {
+  let departmentList = [];
+  DepartmentApiService.getDepartments()
+  .then(res => {
+    console.log(res)
+    return res.json()
+  }).then(data => {
+    departmentList = data.results.map((department) => {
+      return department
+    });
+    console.log(departmentList)
+    this.setState({
+      department: departmentList
+    })
+  })
+}
+
 
   static contextType = QuestionContext;
 
