@@ -13,7 +13,7 @@ export class Question extends Component {
     super(props);
     this.state = {
       department: [],
-      questions: ''
+      questions: []
     }
   }
 
@@ -34,7 +34,7 @@ export class Question extends Component {
 
   static contextType = QuestionContext;
 
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
     console.log('do you see me')
     const newQuestion = {
@@ -42,7 +42,7 @@ export class Question extends Component {
       department_id: e.target["department"].value,
       // author: e.target.user_id,
     };
-    console.log(newQuestion)
+    console.log(newQuestion.question_body)
 
     QuestionsApiService.postQuestion()
       .then(data => console.log(data))
@@ -78,7 +78,7 @@ export class Question extends Component {
             <br />
             <button
               type="button"
-              onClick={(e) => this.props.history.push("/dashboard")}
+            // onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
