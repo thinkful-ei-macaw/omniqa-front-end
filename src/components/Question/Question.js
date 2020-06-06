@@ -30,19 +30,10 @@ export class Question extends Component {
     return (
       <div className="Question">
         <NavBar />
-        Question page
         <form className="question form" onSubmit={this.handleSubmit}>
           <fieldset>
-            <label htmlFor="input-one">title</label>
-            <input
-              className="form-control"
-              type="text"
-              name="title"
-              id="title"
-              placeholder="title..."
-              required
-            />
-            <br />
+    
+            <br/>
             <label htmlFor="input-one">question</label>
             <input
               className="form-control"
@@ -53,12 +44,12 @@ export class Question extends Component {
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <input
-              className="drop-down"
-              type="select"
-              name="department"
-              id="department"
-            />
+            <select>
+              <option></option>
+              <option></option>
+              <option></option>
+              <option></option>
+            </select>
             <br />
             <button
               type="submit"
