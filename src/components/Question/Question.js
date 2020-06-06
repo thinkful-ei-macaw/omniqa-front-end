@@ -9,6 +9,15 @@ import DepartmentApiService from "../../Services/department-api-service";
 export class Question extends Component {
   // Call the API on componentwillmount
   // Specify the DOM element and element rendering the reuslt
+<<<<<<< HEAD
+constructor(props) {
+ super(props);
+ this.state = {
+   department: [],
+   question_body: ''
+ }
+}
+=======
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +25,7 @@ export class Question extends Component {
       questions: []
     }
   }
+>>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
 
   componentDidMount() {
     let departmentList = [];
@@ -36,6 +46,20 @@ export class Question extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
+
+    const {
+      question_body, 
+      department 
+    } = e.target
+    // const newQuestion = {
+    //   question_body: e.target["question_body"].value,
+    //   department_id: e.target["department"].value,
+    // };
+    // QuestionsApiService.postQuestion(newQuestion)
+    //   .then(this.context.postQuestion)
+    //   .catch(this.context.setError);
+=======
     console.log('do you see me')
     const newQuestion = {
       question_body: e.target["question_body"].value,
@@ -47,6 +71,7 @@ export class Question extends Component {
     QuestionsApiService.postQuestion()
       .then(data => console.log(data))
       .catch(this.context.setError);
+>>>>>>> cabff4edf6f7735b08dbad00369d464f105fdb6c
   };
 
   render() {
@@ -63,9 +88,12 @@ export class Question extends Component {
             <br />
             <label htmlFor="question">question</label>
             <input
+              required
               className="form-control"
               type="text"
               name="question_body"
+              value={this.state.question_body}
+              onChange={this.handleChange}
               id="question"
               placeholder="ask...."
               onChange={e => this.setState({ questions: e.target.value })}
