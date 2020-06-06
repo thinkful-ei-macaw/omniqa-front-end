@@ -51,9 +51,10 @@ export class Question extends Component {
 
   render() {
     console.log(this.state.questions)
+    console.log(this.context.departmentList)
     let departments = this.state.department
     let departmentItems = departments.map((department) =>
-      <option key={department.name}>{department.name}</option>)
+      <option key={department.name} value={this.state.department}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -75,7 +76,7 @@ export class Question extends Component {
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select value={this.context.departmentList} onChange={e => this.setState({ department: e.target.value })}>
+            <select onChange={this.setState({ department: this.context.departmentList })}>
               {departmentItems}
             </select>
             <br />
