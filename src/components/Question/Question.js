@@ -7,14 +7,15 @@ import QuestionsApiService from "../../Services/questions-service";
 import DepartmentApiService from "../../Services/department-api-service";
 
 export class Question extends Component {
-  
-constructor(props) {
- super(props);
- this.state = {
-   department: [],
-   question: ''
- }
-}
+  // Call the API on componentwillmount
+  // Specify the DOM element and element rendering the reuslt
+  constructor(props) {
+    super(props);
+    this.state = {
+      department: [],
+      questions: []
+    }
+  }
 
 componentDidMount() {
   let departmentList = [];
@@ -33,14 +34,17 @@ componentDidMount() {
 
   static contextType = QuestionContext;
 
-  handleSubmit = (e) => {
+  handleSubmit(e) {
     e.preventDefault();
+    console.log('successful submit')
     const newQuestion = {
       question_body: e.target["question_body"].value,
       department_id: e.target["department"].value,
     };
-    QuestionsApiService.postQuestion(newQuestion)
-      .then(this.context.postQuestion)
+    console.log(newQuestion.question_body)
+
+    QuestionsApiService.postQuestion()
+      .then(data => console.log(data))
       .catch(this.context.setError);
   };
 
@@ -72,8 +76,8 @@ componentDidMount() {
             </select>
             <br />
             <button
-              type="submit"
-              // onClick={(e) => this.props.history.push("/dashboard")}
+              type="button"
+            // onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
