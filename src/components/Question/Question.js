@@ -64,7 +64,7 @@ export class Question extends Component {
     console.log(this.state.department.map(department => department.id))
     let departments = this.state.department
     let departmentItems = this.state.department.map(department =>
-      <option key={department.id}>{department.id}</option>
+      <option value={department.id}>{department.name}</option>
     )
     // let departmentItems = departments.map((department) =>
     //   <option key={department.name}>{department.name}</option>)
@@ -95,7 +95,7 @@ export class Question extends Component {
             <br />
             <button
               type="submit"
-            // onClick={(e) => this.props.history.push("/dashboard")}
+              onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
