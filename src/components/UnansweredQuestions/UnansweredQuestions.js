@@ -11,6 +11,7 @@ export class UnansweredQuestions extends Component {
     super(props);
     this.state = {
       questions: [],
+      filterID: null
     }
   }
 
@@ -29,13 +30,22 @@ export class UnansweredQuestions extends Component {
       .catch(this.context.setError);
   }
 
+ filterQuestions = id => {
+   this.setState({
+     filterID: id
+   })
+ }
   render() {
-    const questions = this.state.questions;
+
+    const { filterID } = this.state    
+    const questions = filterID ? this.state.questions.filter(question => {
+      return question.department === filterID
+    }) : this.state.questions
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
-          <Sidebar />
+          <Sidebar filterQuestions={this.filterQuestions} />
           <div className="questionList">
             <h1>Unanswered Questions</h1>
             <ul className="qMap">
