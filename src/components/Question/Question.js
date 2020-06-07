@@ -37,7 +37,7 @@ export class Question extends Component {
 
   static contextType = QuestionContext;
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     console.log('successful submit question')
     const newQuestion = {
@@ -49,8 +49,11 @@ export class Question extends Component {
     console.log(newQuestion)
 
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
-      .then(data => console.log(data.json()))
+      .then(() => this.props.history.push("/unanswered-questions"))
       .catch(this.context.setError);
+      console.log(this.props.history)
+
+
   };
 
   handleChange(event) {
@@ -94,7 +97,6 @@ export class Question extends Component {
             <br />
             <button
               type="submit"
-              onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
