@@ -34,10 +34,8 @@ export class Dashboard extends Component {
 
   render() {
     const { filterID } = this.state
-    const questions = filterID ? 
-    this.context.questionList.filter(question => {
-      return question.department === filterID
-    }) : this.context.questionList
+    const questions = filterID ? this.context.questionList.filter(question => {
+      return question.department === filterID}) : this.context.questionList
     const departments = this.context.departmentList;
     console.log(departments);
     console.log(questions);
