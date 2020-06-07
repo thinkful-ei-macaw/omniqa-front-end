@@ -31,6 +31,24 @@ const QuestionsApiService = {
         console.error({ error });
       });
   },
+
+  likeQuestion(question_id, user_id) {
+    return fetch(`${config.API_ENDPOINT}/likes/${question_id}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `Bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify({
+        user_id
+      }),
+    })
+      .then(res =>
+        (!res.ok) ?
+        res.json().then(e => Promise.reject(e)) :
+        res
+      )
+  }
 };
 
 export default QuestionsApiService;
