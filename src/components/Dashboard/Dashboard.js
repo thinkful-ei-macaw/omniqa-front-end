@@ -14,7 +14,7 @@ export class Dashboard extends Component {
   state = {
     filterID: null,
     liked: false,
-    btnColor: ''
+    btnColor: 'white'
   }
 
   static contextType = QuestionContext;
@@ -39,7 +39,7 @@ export class Dashboard extends Component {
 
   likeBtnColor = () => {
     this.setState({
-      likeBtnColor: '#785380'
+      btnColor: '#785380'
     })
   }
 
@@ -70,7 +70,7 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
-                  <button style={{backgroundColor: this.state.btnColor}} onClick={() => this.handleQuestionLike()} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button style={{backgroundColor: this.state.btnColor}} onClick={this.handleQuestionLike} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
