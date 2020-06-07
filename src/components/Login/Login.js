@@ -3,7 +3,8 @@ import './Login.css';
 import AuthApiService from '../../Services/auth-api-service';
 import UserContext from '../../Context/UserContext';
 import TokenService from '../../Services/TokenService';
-import omnilogo from './logo.png';
+import { Link } from 'react-router-dom';
+import omniLogo from './logo.png';
 
 export class Login extends Component {
   static defaultProps = {
@@ -15,10 +16,11 @@ export class Login extends Component {
   state = { error: null };
 
   handleSubmitJwtAuth = (ev) => {
+ 
     ev.preventDefault();
     this.setState({ error: null });
     const { username, password } = ev.target;
-
+    console.log(username,password )
     AuthApiService.postLogin({
       username: username.value,
       password: password.value
@@ -79,7 +81,7 @@ export class Login extends Component {
     return (
       <div className='Login'>
         <div role='alert'>{error && <p>{error}</p>}</div>
-        <img className='logo' src={omnilogo} alt='omni--logo' />
+        <img className='logo' src={omniLogo} alt='omni--logo' />
         <form className='LoginForm' onSubmit={this.handleSubmitJwtAuth}>
           <fieldset>
             <legend>Log In</legend>

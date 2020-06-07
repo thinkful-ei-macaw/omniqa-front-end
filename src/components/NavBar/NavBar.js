@@ -48,7 +48,7 @@ export class NavBar extends Component {
             </select>
           </li>
         </ul>
-        <div className='line' />
+        <div className="line"></div>
       </nav>
     );
   }
