@@ -72,7 +72,7 @@ componentDidMount() {
           </ul>
         </section>
         <section className='departments'>
-          <label>Q's with tags...</label>
+          <label>Departments</label>
           <br />
           <ul className='barUl'>
             <li>

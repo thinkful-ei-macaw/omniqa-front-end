@@ -8,7 +8,6 @@ import QuestionsApiService from '../../Services/questions-service';
 import Moment from 'react-moment';
 import Answer from '../Answer/Answer';
 import Sort from '../Sort/Sort';
-
 import DepartmentService from '../../Services/departments-service';
 
 export class Dashboard extends Component {
@@ -54,11 +53,11 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   <span className='datePosted'>
-                    Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.author}
+                    Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
                   </span>
                   <br />
                   <br />
-                  <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department}</span>
+                  <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
