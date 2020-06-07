@@ -6,6 +6,8 @@ import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
 import Moment from "react-moment";
 import Answer from "../Answer/Answer";
+import AnswerApiService from '../../Services/answers-service';
+
 export class UnansweredQuestions extends Component {
   constructor(props) {
     super(props);
@@ -20,12 +22,12 @@ export class UnansweredQuestions extends Component {
     this.context.clearError();
 
     QuestionsApiService.getQuestions()
-     .then(question => {
-       console.log(question)
-       this.setState({
-         questions: question
-       })
-     })
+      .then(question => {
+        console.log(question)
+        this.setState({
+          questions: question
+        })
+      })
       .catch(this.context.setError);
   }
 
