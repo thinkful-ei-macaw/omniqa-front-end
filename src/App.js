@@ -17,7 +17,7 @@ import Sales from "./components/Sales/Sales";
 import HR from "./components/HR/HR";
 import Engineering from "./components/Engineering/Engineering";
 import Finance from "./components/Finance/Finance";
-import UnansweredQuestions from "./components/UnansweredQuestions/UnsweredQuestions"
+import UnansweredQuestions from "./components/UnansweredQuestions/UnansweredQuestions";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
               />
               <PublicOnlyRoute exact path="/login" component={Login} />
               <PrivateRoute exact path="/Dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/unanswered-questions" component={UnansweredQuestions}/>
+              <PrivateRoute exact path ="/unanswered-questions" component={UnansweredQuestions}/>
               <PrivateRoute exact path="/question" component={Question} />
               <PrivateRoute exact path="/marketing" component={Marketing} />
               <PrivateRoute exact path="/Sales" component={Sales} />
