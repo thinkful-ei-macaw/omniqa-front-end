@@ -95,6 +95,7 @@ export class Question extends Component {
             <br />
             <button
               type="submit"
+            // onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
