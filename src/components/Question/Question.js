@@ -12,7 +12,7 @@ export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "HR",
+      value: 1,
       questions: [],
       department: []
     }
@@ -23,6 +23,7 @@ export class Question extends Component {
     let departmentList = [];
     DepartmentApiService.getDepartments()
       .then(data => {
+        console.log(data)
         departmentList = data.map((department) => {
           return department
         });
@@ -60,9 +61,13 @@ export class Question extends Component {
 
   render() {
 
+    console.log(this.state.department.map(department => department.id))
     let departments = this.state.department
-    let departmentItems = departments.map((department) =>
-      <option key={department.name}>{department.name}</option>)
+    let departmentItems = this.state.department.map(department =>
+      <option key={department.id}>{department.id}</option>
+    )
+    // let departmentItems = departments.map((department) =>
+    //   <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
