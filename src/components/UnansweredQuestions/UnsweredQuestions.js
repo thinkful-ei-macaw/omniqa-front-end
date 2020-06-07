@@ -1,54 +1,46 @@
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
+import "./Dashboard.css";
 import config from "../../config";
 import QuestionContext from "../../Context/QuestionContext";
 import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
 import Moment from "react-moment";
 import Answer from "../Answer/Answer";
-export class UnansweredQuestions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questions: [],
-    }
-  }
+import Sort from "../Sort/Sort";
 
+export class UnansweredQuestions extends Component {
   static contextType = QuestionContext;
 
   componentDidMount() {
     this.context.clearError();
 
     QuestionsApiService.getQuestions()
-     .then(question => {
-       console.log(question)
-       this.setState({
-         questions: question
-       })
-     })
+      .then(this.context.setQuestionList)
       .catch(this.context.setError);
   }
 
   render() {
-    const questions = this.state.questions;
+    const questions = this.context.questionList;
+    console.log(this.context.questionList);
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
           <Sidebar />
+          <Sort />
           <div className="questionList">
-            <h1>Unanswered Questions</h1>
+            <h1>Latest Questions</h1>
             <ul className="qMap">
               {questions.map((question) => (
                 <li className="qLi" key={question.id}>
-                  {console.log(question)}
                   <span className="questionHead">{question.question_body}</span>
                   <br />
-                  {question.department_name}
+                  {question.department}
                   <br />
                   <Moment format="YYYY/MM/DD">{question.created_date}</Moment>
                   <br />
-                  {question.user_name}
+                  {question.author}
                 </li>
               ))}
             </ul>

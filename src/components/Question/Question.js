@@ -51,9 +51,13 @@ export class Question extends Component {
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
       .then(() => this.props.history.push("/unanswered-questions"))
       .catch(this.context.setError);
+<<<<<<< HEAD
       console.log(this.props.history)
 
 
+=======
+    // this.props.history.push("/unanswered-questions")
+>>>>>>> 78a558b1984e31ff3e49c7a0a95740a6bd2334ac
   };
 
   handleChange(event) {
@@ -74,7 +78,7 @@ export class Question extends Component {
     return (
       <div className="Question">
         <NavBar />
-        <form className="question form" onSubmit={this.handleSubmit}>
+        <form className="question form" onSubmit={e => this.handleSubmit(e)}>
           <fieldset>
     
             <br/>
@@ -97,6 +101,10 @@ export class Question extends Component {
             <br />
             <button
               type="submit"
+<<<<<<< HEAD
+=======
+            // onClick={(e) => this.props.history.push("/dashboard")}
+>>>>>>> 78a558b1984e31ff3e49c7a0a95740a6bd2334ac
             >
               ASK
             </button>
