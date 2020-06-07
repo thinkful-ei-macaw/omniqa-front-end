@@ -12,46 +12,62 @@ export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      department: [],
-      questions: []
+      value: 1,
+      questions: [],
+      department: []
     }
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-componentDidMount() {
-  let departmentList = [];
-  DepartmentApiService.getDepartments()
-  .then(data => {
-    departmentList = data.map((department) => {
-      return department
-    });
-    console.log(departmentList)
-    this.setState({
-      department: departmentList
-    })
-  })
-}
+  componentDidMount() {
+    let departmentList = [];
+    DepartmentApiService.getDepartments()
+      .then(data => {
+        console.log(data)
+        departmentList = data.map((department) => {
+          return department
+        });
+        console.log(departmentList)
+        this.setState({
+          department: departmentList
+        })
+      })
+  }
 
 
   static contextType = QuestionContext;
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('successful submit')
+    console.log('successful submit question')
     const newQuestion = {
       question_body: e.target["question_body"].value,
-      department_id: e.target["department"].value,
+      department_id: this.state.value,
+      // author: e.target.user_id,
+      // e.target["department"].value,
     };
-    console.log(newQuestion.question_body)
+    console.log(newQuestion)
 
-    QuestionsApiService.postQuestion()
-      .then(data => console.log(data))
+    QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
+      .then(data => console.log(data.json()))
       .catch(this.context.setError);
   };
 
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
   render() {
+
+    console.log(this.state.department.map(department => department.id))
     let departments = this.state.department
-    let departmentItems = departments.map((department) => 
-    <option key={department.name}>{department.name}</option>)
+    let departmentItems = this.state.department.map(department =>
+      <option value={department.id}>{department.name}</option>
+    )
+    // let departmentItems = departments.map((department) =>
+    //   <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
@@ -64,20 +80,21 @@ componentDidMount() {
               className="form-control"
               type="text"
               name="question_body"
-              value={this.state.}
+              value={this.state.question_body}
+              onChange={this.handleSubmit}
               id="question"
               placeholder="ask...."
               onChange={e => this.setState({ questions: e.target.value })}
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select>
-                {departmentItems}
+            <select value={this.state.value} onChange={e => this.handleChange(e)}>
+              {departmentItems}
             </select>
             <br />
             <button
-              type="button"
-            // onClick={(e) => this.props.history.push("/dashboard")}
+              type="submit"
+              onClick={(e) => this.props.history.push("/dashboard")}
             >
               ASK
             </button>
