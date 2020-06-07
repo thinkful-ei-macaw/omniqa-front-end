@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
-import "./Dashboard.css";
+// import "./Dashboard.css";
 import config from "../../config";
 import QuestionContext from "../../Context/QuestionContext";
 import Sidebar from "../Sidebar/Sidebar";
