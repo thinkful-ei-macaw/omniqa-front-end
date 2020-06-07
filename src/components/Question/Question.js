@@ -71,13 +71,12 @@ export class Question extends Component {
     return (
       <div className="Question">
         <NavBar />
-        <form className="question form" onSubmit={e => this.handleSubmit(e)}>
+        <form className="question form" onSubmit={this.handleSubmit}>
           <fieldset>
-
-            <br />
-            <label htmlFor="question">question</label>
+    
+            <br/>
+            <label htmlFor="input-one">question</label>
             <input
-              required
               className="form-control"
               type="text"
               name="question_body"
