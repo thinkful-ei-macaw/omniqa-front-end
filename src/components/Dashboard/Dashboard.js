@@ -12,6 +12,10 @@ import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 
 export class Dashboard extends Component {
+  state = {
+    filterID: null
+  }
+
   static contextType = QuestionContext;
 
   componentDidMount() {
@@ -22,8 +26,18 @@ export class Dashboard extends Component {
     DepartmentService.getDepartments().then(this.context.setDepartmentList).catch(this.context.setError);
   }
 
+  filterQuestions = id => {
+    this.setState({
+      filterID: id
+    })
+  }
+
   render() {
-    const questions = this.context.questionList;
+    const { filterID } = this.state
+    const questions = filterID ? 
+    this.context.questionList.filter(question => {
+      return question.department === filterID
+    }) : this.context.questionList
     const departments = this.context.departmentList;
     console.log(departments);
     console.log(questions);
@@ -32,7 +46,7 @@ export class Dashboard extends Component {
       <div className='dashboard'>
         <NavBar />
         <section className='main'>
-          <Sidebar />
+          <Sidebar filterQuestions={this.filterQuestions} />
           <div className='questionList'>
             <h1>Latest Questions</h1>
             <ul className='qMap'>
