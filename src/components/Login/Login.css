@@ -1,8 +1,24 @@
-#log-in {
+.Login {
   text-align: center;
+  display: flex;
   padding: 2em;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  text-align: right;
+  margin-right: 1em;
 }
 
 fieldset {
   padding: 2em;
+}
+
+#username {
+  margin-bottom: 2em;
+}
+
+#password {
+  margin-bottom: 2em;
 }

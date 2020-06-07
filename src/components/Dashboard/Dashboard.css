@@ -1,6 +1,6 @@
-div.dashboard {
-  margin: 0;
-  box-sizing: border-box;
+.dashboard {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 ul {
@@ -16,6 +16,11 @@ li {
 #question-btn {
   margin-left: auto;
   margin-right: 15em;
+}
+
+.datePosted {
+  font-size: 16px;
+  color: grey;
 }
 
 section {
@@ -64,4 +69,22 @@ section {
   font-size: 28px;
   color: rgb(24, 0, 24);
   font-weight: 600;
+}
+
+#likeButton {
+  padding-top: .35em;
+  padding-bottom: .35em;
+  margin-right: .5em;
+  color: grey;
+  font-weight: 600;
+  border: thin solid lightgray;
+  background-color: white;
+}
+
+.hashtag {
+  background-color: grey;
+  color: white;
+  font-size: 12px;
+  padding: .25em .8em .25em .8em;
+  border-radius: 9px;
 }
