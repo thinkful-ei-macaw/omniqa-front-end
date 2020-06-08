@@ -46,6 +46,13 @@ export class Dashboard extends Component {
   }
 
  likeBtnColor = (id) => {
+  /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
+
+ typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
+  then set the value to true.
+
+ otherwise set it to the opposite of what it currently is */
+
  let btnColors = this.state.btnColors;
  btnColors[id] = typeof btnColors[id] === "undefined" ? true : !btnColors[id]
    this.setState({
