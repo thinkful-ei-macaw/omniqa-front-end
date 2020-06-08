@@ -12,7 +12,9 @@ import DepartmentService from '../../Services/departments-service';
 
 export class Dashboard extends Component {
   state = {
-    filterID: null
+    filterID: null,
+    // btnColors is an empty object
+    btnColors:{},
   }
 
   static contextType = QuestionContext;
@@ -30,6 +32,33 @@ export class Dashboard extends Component {
       filterID: id
     })
   }
+
+  handleQuestionLike = (id, like) => {
+  // Calling QuestionAPIService to update a liked question.
+  // QuestionsApiService.likeQuestion(id)
+  this.likeBtnColor(id)
+  // .then(() => {
+  //   this.setState({
+  //     liked: true
+  //   })
+  // })
+
+  }
+
+ likeBtnColor = (id) => {
+  /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
+
+ typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
+  then set the value to true.
+
+ otherwise set it to the opposite of what it currently is */
+
+ let btnColors = this.state.btnColors;
+ btnColors[id] = typeof btnColors[id] === "undefined" ? true : !btnColors[id]
+   this.setState({
+    btnColors
+   })
+ }
 
   render() {
     const { filterID } = this.state
@@ -57,7 +86,8 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
-                  <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
