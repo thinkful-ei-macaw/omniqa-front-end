@@ -12,7 +12,9 @@ import DepartmentService from '../../Services/departments-service';
 
 export class Dashboard extends Component {
   state = {
-    filterID: null
+    filterID: null,
+    liked: false,
+    btnColors:{},
   }
 
   static contextType = QuestionContext;
@@ -31,7 +33,26 @@ export class Dashboard extends Component {
     })
   }
 
+  handleQuestionLike = (id) => {
+  QuestionsApiService.likeQuestion(id)
+  .then(() => {
+    this.setState({
+      liked: true
+    })
+  })
+
+  }
+
+ likeBtnColor = (id) => {
+ let btnColors = this.state.btnColors;
+ btnColors[id] = btnColors[id] ? !btnColors[id] : true;
+   this.setState({
+    btnColors
+   })
+ }
+
   render() {
+
     const { filterID } = this.state
     const questions = filterID ? this.context.questionList.filter(question => {
       return question.department === filterID}) : this.context.questionList
@@ -57,7 +78,7 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
-                  <button id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
