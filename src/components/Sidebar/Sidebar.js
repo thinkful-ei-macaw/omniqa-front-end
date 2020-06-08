@@ -3,10 +3,10 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import DepartmentApiService from "../../Services/department-api-service";
 import TokenService from "../../Services/TokenService";
-// import QuestionContext from "../../Context/QuestionContext";
+import QuestionContext from "../../Context/QuestionContext";
 
 export class Sidebar extends Component {
-  // static contextType = QuestionContext;
+  static contextType = QuestionContext;
 
   constructor(props) {
     super(props);
@@ -15,7 +15,6 @@ export class Sidebar extends Component {
     };
   }
   //get info from token, and map over the question by user_id
-  //const { user_id } = TokenService.readJwtToken()
 
   //clean up architecture
 
@@ -32,6 +31,14 @@ export class Sidebar extends Component {
       });
     });
   }
+
+  filterMyAskedQuestions = () => {
+    const { user_id } = TokenService.readJwtToken();
+    let myAskedQuesions = this.context.questionList.filter(
+      (question) => question.author === user_id
+    );
+    this.context.setQuestionList(myAskedQuesions);
+  };
 
   render() {
     // let questions = this.state.questionList.filter(question => {
@@ -51,9 +58,11 @@ export class Sidebar extends Component {
           <ul className="barUl">
             <li>
               <span
-                onClick={() => this.context.filterQuestions(null)}
+                onClick={() => this.filterMyAskedQuestions()}
                 id="side__tag"
-              ></span>
+              >
+                Asked
+              </span>
               {/* match to user_id answerwed: false/true */}
               {/* <Link id="side__tag" to="/asked">
                 Asked
