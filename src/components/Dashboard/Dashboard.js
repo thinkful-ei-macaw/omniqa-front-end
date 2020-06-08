@@ -14,6 +14,7 @@ export class Dashboard extends Component {
   state = {
     filterID: null,
     liked: false,
+    // btnColors is an empty object
     btnColors:{},
   }
 
@@ -35,6 +36,7 @@ export class Dashboard extends Component {
 
   handleQuestionLike = (id) => {
   QuestionsApiService.likeQuestion(id)
+  this.likeBtnColor()
   .then(() => {
     this.setState({
       liked: true
@@ -77,6 +79,7 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
+                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
                   <button style={{backgroundColor: this.state.btnColors[question.id] ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
