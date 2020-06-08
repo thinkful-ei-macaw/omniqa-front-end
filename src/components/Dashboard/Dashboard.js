@@ -13,7 +13,6 @@ import DepartmentService from '../../Services/departments-service';
 export class Dashboard extends Component {
   state = {
     filterID: null,
-    liked: false,
     // btnColors is an empty object
     btnColors:{},
   }
@@ -34,14 +33,15 @@ export class Dashboard extends Component {
     })
   }
 
-  handleQuestionLike = (id) => {
-  QuestionsApiService.likeQuestion(id)
-  this.likeBtnColor()
-  .then(() => {
-    this.setState({
-      liked: true
-    })
-  })
+  handleQuestionLike = (id, like) => {
+  // Calling QuestionAPIService to update a liked question.
+  // QuestionsApiService.likeQuestion(id)
+  this.likeBtnColor(id)
+  // .then(() => {
+  //   this.setState({
+  //     liked: true
+  //   })
+  // })
 
   }
 
