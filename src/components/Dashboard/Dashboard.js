@@ -47,7 +47,7 @@ export class Dashboard extends Component {
 
  likeBtnColor = (id) => {
  let btnColors = this.state.btnColors;
- btnColors[id] = btnColors[id] ? !btnColors[id] : true;
+ btnColors[id] = typeof btnColors[id] === "undefined" ? true : !btnColors[id]
    this.setState({
     btnColors
    })
@@ -80,7 +80,7 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  <button style={{backgroundColor: this.state.btnColors[question.id] ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
