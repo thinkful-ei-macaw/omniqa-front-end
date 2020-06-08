@@ -13,7 +13,7 @@ import DepartmentService from '../../Services/departments-service';
 export class Dashboard extends Component {
   state = {
     filterID: null,
-    liked: false,
+    // btnColors is an empty object
     btnColors:{},
   }
 
@@ -33,26 +33,34 @@ export class Dashboard extends Component {
     })
   }
 
-  handleQuestionLike = (id) => {
-  QuestionsApiService.likeQuestion(id)
-  .then(() => {
-    this.setState({
-      liked: true
-    })
-  })
+  handleQuestionLike = (id, like) => {
+  // Calling QuestionAPIService to update a liked question.
+  // QuestionsApiService.likeQuestion(id)
+  this.likeBtnColor(id)
+  // .then(() => {
+  //   this.setState({
+  //     liked: true
+  //   })
+  // })
 
   }
 
  likeBtnColor = (id) => {
+  /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
+
+ typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
+  then set the value to true.
+
+ otherwise set it to the opposite of what it currently is */
+
  let btnColors = this.state.btnColors;
- btnColors[id] = btnColors[id] ? !btnColors[id] : true;
+ btnColors[id] = typeof btnColors[id] === "undefined" ? true : !btnColors[id]
    this.setState({
     btnColors
    })
  }
 
   render() {
-
     const { filterID } = this.state
     const questions = filterID ? this.context.questionList.filter(question => {
       return question.department === filterID}) : this.context.questionList
@@ -78,7 +86,8 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
-                  <button style={{backgroundColor: this.state.btnColors[question.id] ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
