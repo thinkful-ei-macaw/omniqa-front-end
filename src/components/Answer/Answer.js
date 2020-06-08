@@ -3,10 +3,10 @@ import "./Answer.css";
 import NavBar from "../NavBar/NavBar";
 import AnswerApiService from "../../Services/answers-service";
 import { Link } from "react-router-dom";
-import AnswerContext from "../../Context/AnswerContext";
+import QuestionContext from "../../Context/QuestionContext";
 
 export class Answer extends Component {
-  static contextType = AnswerContext;
+  static contextType = QuestionContext;
   componentDidMount = () => {
     this.context.clearError();
 
@@ -16,12 +16,11 @@ export class Answer extends Component {
   };
 
   render() {
-
     return (
       <div className="Answer">
         <NavBar />
         answer page
-        <p>{this.context.answers.map(data => data.answer_body)}</p>
+        <p>{this.context.answers.map((data) => data.answer_body)}</p>
       </div>
     );
   }
