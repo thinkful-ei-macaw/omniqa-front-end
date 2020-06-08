@@ -14,7 +14,7 @@ export class Dashboard extends Component {
   state = {
     filterID: null,
     liked: false,
-    btnDefaultWhite: true,
+    btnColors:{},
   }
 
   static contextType = QuestionContext;
@@ -43,12 +43,13 @@ export class Dashboard extends Component {
 
   }
 
-  likeBtnColor = () => {
-    this.setState({
-      btnDefaultWhite: !this.state.btnDefaultWhite,
-    })
-
-  }
+ likeBtnColor = (id) => {
+ let btnColors = this.state.btnColors;
+ btnColors[id] = btnColors[id] ? !btnColors[id] : true;
+   this.setState({
+    btnColors
+   })
+ }
 
   render() {
 
@@ -77,7 +78,7 @@ export class Dashboard extends Component {
                   </span>
                   <br />
                   <br />
-                  <button style={{backgroundColor: this.state.btnDefaultWhite ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? 'white' :'#785380'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
