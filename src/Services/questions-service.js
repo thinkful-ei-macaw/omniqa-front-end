@@ -6,7 +6,7 @@ const QuestionsApiService = {
     return fetch(`${config.API_ENDPOINT}/api/questions`, {
       method: "GET",
       headers: {
-        "content-type": "application/json",
+         Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
@@ -33,7 +33,8 @@ const QuestionsApiService = {
   },
 
   likeQuestion(question_id, user_id) {
-    return fetch(`${config.API_ENDPOINT}/likes/${question_id}`, {
+    console.log(question_id)
+    return fetch(`${config.API_ENDPOINT}/api/likes/${question_id}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -43,11 +44,6 @@ const QuestionsApiService = {
         user_id
       }),
     })
-      .then(res =>
-        (!res.ok) ?
-        res.json().then(e => Promise.reject(e)) :
-        res
-      )
   }
 };
 
