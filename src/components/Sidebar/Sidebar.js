@@ -35,6 +35,7 @@ componentDidMount() {
     // })
 
     return (
+      <div id='sideBars'>
       <div className='Sidebar'>
         <section className='myQs'>
           <Link id='side__tag' to='/Dashboard'>
@@ -89,6 +90,24 @@ componentDidMount() {
     ))}
           </ul>
         </section>
+      </div>
+      <div className='Sidebar2'>
+        <select>
+          <option>All Q&As</option>
+          <option>Qs that I...</option>
+          <option>Asked</option>
+          <option>Answered</option>
+          <option>Voted</option>
+          <option>Liked</option>
+          <option>Departments</option>
+           {this.state.department.map(department => (
+       <>
+      <option><span id='side__tag' onClick={() => this.props.filterQuestions(department.id)}>{department.name}</span></option> 
+      <br/>
+      </>
+    ))}
+        </select>
+      </div>
       </div>
     );
   }

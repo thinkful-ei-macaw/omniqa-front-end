@@ -9,13 +9,14 @@ import Moment from 'react-moment';
 import Answer from '../Answer/Answer';
 import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
+import { withRouter } from 'react-router-dom';
 
 export class Dashboard extends Component {
   state = {
     filterID: null,
     // btnColors is an empty object
-    btnColors:{},
-  }
+    btnColors: {}
+  };
 
   static contextType = QuestionContext;
 
@@ -27,43 +28,45 @@ export class Dashboard extends Component {
     DepartmentService.getDepartments().then(this.context.setDepartmentList).catch(this.context.setError);
   }
 
-  filterQuestions = id => {
+  filterQuestions = (id) => {
     this.setState({
       filterID: id
-    })
-  }
+    });
+  };
 
   handleQuestionLike = (id, like) => {
-  // Calling QuestionAPIService to update a liked question.
-  // QuestionsApiService.likeQuestion(id)
-  this.likeBtnColor(id)
-  // .then(() => {
-  //   this.setState({
-  //     liked: true
-  //   })
-  // })
+    // Calling QuestionAPIService to update a liked question.
+    // QuestionsApiService.likeQuestion(id)
+    this.likeBtnColor(id);
+    // .then(() => {
+    //   this.setState({
+    //     liked: true
+    //   })
+    // })
+  };
 
-  }
-
- likeBtnColor = (id) => {
-  /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
+  likeBtnColor = (id) => {
+    /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
 
  typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
   then set the value to true.
 
  otherwise set it to the opposite of what it currently is */
 
- let btnColors = this.state.btnColors;
- btnColors[id] = typeof btnColors[id] === "undefined" ? true : !btnColors[id]
-   this.setState({
-    btnColors
-   })
- }
+    let btnColors = this.state.btnColors;
+    btnColors[id] = typeof btnColors[id] === 'undefined' ? true : !btnColors[id];
+    this.setState({
+      btnColors
+    });
+  };
 
   render() {
-    const { filterID } = this.state
-    const questions = filterID ? this.context.questionList.filter(question => {
-      return question.department === filterID}) : this.context.questionList
+    const { filterID } = this.state;
+    const questions = filterID
+      ? this.context.questionList.filter((question) => {
+          return question.department === filterID;
+        })
+      : this.context.questionList;
     const departments = this.context.departmentList;
     console.log(departments);
     console.log(questions);
@@ -87,7 +90,17 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button
+                    style={{
+                      backgroundColor: this.state.btnColors[question.id] ? '#785380' : 'white',
+                      color: this.state.btnColors[question.id] ? 'white' : 'grey'
+                    }}
+                    onClick={() => this.handleQuestionLike(question.id)}
+                    id='likeButton'
+                  >
+                    Like
+                  </button>{' '}
+                  <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
