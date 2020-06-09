@@ -38,11 +38,8 @@ const QuestionsApiService = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'authorization': `Bearer ${TokenService.getAuthToken()}`
+        Authorization: `Bearer ${TokenService.getAuthToken(user_id)}`
       },
-      body: JSON.stringify({
-        user_id
-      }),
     })
   }
 };
