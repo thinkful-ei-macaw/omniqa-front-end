@@ -54,7 +54,13 @@ export class Dashboard extends Component {
   };
  
 
-  handleDeleteQuestion = (id) => {
+  handleDeleteQuestion = (id, author) => {
+    const { user_id } = TokenService.readJwtToken();
+
+    if (author !== user_id) {
+      return alert(`You can only delete your own questions`)
+    } 
+
     QuestionsApiService.deleteQuestions(id)
     let newQuestionList = this.context.questionList.filter(
       (question) => question.id !== id
@@ -80,6 +86,7 @@ export class Dashboard extends Component {
 
   render() {
     const { filterID } = this.state;
+    const { user_id } = TokenService.readJwtToken()
     const questions = filterID
       ? this.context.questionList.filter((question) => {
           return question.department === filterID;
@@ -110,7 +117,7 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  <button onClick={() => this.handleDeleteQuestion(question.id)}>Delete</button>
+                  {(question.author === user_id) && <button onClick={() => this.handleDeleteQuestion(question.id, question.author)}>Delete</button>}
                   <button
                     style={{
                       backgroundColor: this.state.btnColors[question.id]
