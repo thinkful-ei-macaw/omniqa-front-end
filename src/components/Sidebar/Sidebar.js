@@ -40,14 +40,14 @@ export class Sidebar extends Component {
     this.context.setQuestionList(myAskedQuesions);
   };
 
-  // filterMyLikedQuestions = () => {
-  //   const { user_id } = TokenService.readJwtToken()
-  //   let myLikedQuestions = this.context.questionList.filter(question => 
-  //   question.)
-  // }
-
+  filterMyLikedQuestions = () => {
+    const { user_id } = TokenService.readJwtToken();
+    let myLikedQuesions = this.context.questionList.filter(
+      (question) => question.author === user_id
+    );
+    this.context.setQuestionList(myLikedQuesions);
+  };
   render() {
-  
     return (
       <div className="Sidebar">
         <section className="myQs">
@@ -85,9 +85,12 @@ export class Sidebar extends Component {
             </li>
             <br />
             <li>
-              <Link id="side__tag" to="liked">
+              <span
+                onClick={() => this.filterMyLikedQuestions()}
+                id="side__tag"
+              >
                 Liked
-              </Link>
+              </span>
             </li>
             <br />
           </ul>
