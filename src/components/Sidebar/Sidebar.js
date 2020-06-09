@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
 import DepartmentApiService from "../../Services/department-api-service"
+import usericon from './user.png'
 
 export class Sidebar extends Component {
   // static contextType = UserContext;
@@ -43,7 +44,7 @@ componentDidMount() {
           </Link>
           <br />
           <br />
-          <label>Q's that I...</label>
+          <label><img src={usericon} />Q's that I...</label>
           <br />
           <ul className='barUl'>
             <li>
@@ -94,12 +95,12 @@ componentDidMount() {
       <div className='Sidebar2'>
         <select>
           <option>All Q&As</option>
-          <option>Qs that I...</option>
+          <option disabled><img src={usericon} />Qs that I...</option>
           <option>Asked</option>
           <option>Answered</option>
           <option>Voted</option>
           <option>Liked</option>
-          <option>Departments</option>
+          <option disabled>Departments</option>
            {this.state.department.map(department => (
        <>
       <option><span id='side__tag' onClick={() => this.props.filterQuestions(department.id)}>{department.name}</span></option> 
