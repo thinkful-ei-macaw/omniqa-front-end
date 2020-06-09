@@ -54,6 +54,21 @@ const QuestionsApiService = {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
+
+   deleteQuestions (question_id, user_id) {
+     fetch(`${config.API_ENDPOINT}/api/questions/${question_id}`, {
+         method: 'DELETE',
+         headers: {
+           'content-type': 'application/json',
+           Authorization: `Bearer ${TokenService.getAuthToken(user_id)}`,
+         },
+       })
+       .catch(error => {
+         console.error({
+           error
+         })
+       })
+   }
 };
 
 export default QuestionsApiService;
