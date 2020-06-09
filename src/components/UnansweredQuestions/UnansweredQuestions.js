@@ -6,14 +6,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
 import Moment from "react-moment";
 import Answer from "../Answer/Answer";
-import AnswerApiService from '../../Services/answers-service';
+import AnswersApiService from '../../Services/answers-service';
+import { Link } from 'react-router-dom';
 
 export class UnansweredQuestions extends Component {
   constructor(props) {
     super(props);
     this.state = {
       questions: [],
-      filterID: null
     }
   }
 
@@ -32,22 +32,14 @@ export class UnansweredQuestions extends Component {
       .catch(this.context.setError);
   }
 
- filterQuestions = id => {
-   this.setState({
-     filterID: id
-   })
- }
   render() {
+    const questions = this.state.questions;
 
-    const { filterID } = this.state    
-    const questions = filterID ? this.state.questions.filter(question => {
-      return question.department === filterID
-    }) : this.state.questions
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
-          <Sidebar filterQuestions={this.filterQuestions} />
+          <Sidebar />
           <div className="questionList">
             <h1>Unanswered Questions</h1>
             <ul className="qMap">
@@ -61,6 +53,9 @@ export class UnansweredQuestions extends Component {
                   <Moment format="YYYY/MM/DD">{question.created_date}</Moment>
                   <br />
                   {question.user_name}
+                  <Link to={`/post-answer/${question.id}`}>
+                    Answer Question
+                  </Link>
                 </li>
               ))}
             </ul>
