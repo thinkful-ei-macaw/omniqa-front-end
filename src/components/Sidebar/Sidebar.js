@@ -40,10 +40,14 @@ export class Sidebar extends Component {
     this.context.setQuestionList(myAskedQuesions);
   };
 
+  //It loops through question_likes array and find the question in questionList by question_id
+  //for a specific user_id (which you know how to obtained by using TokenService.readJwtToken();
+  // and then set the liked attribute of the question to true.
+
   filterMyLikedQuestions = () => {
     const { user_id } = TokenService.readJwtToken();
     let myLikedQuesions = this.context.questionList.filter(
-      (question) => question.author === user_id
+      (question) => question.liked === user_id
     );
     this.context.setQuestionList(myLikedQuesions);
   };

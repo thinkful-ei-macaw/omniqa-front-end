@@ -16,6 +16,7 @@ import HR from "./components/HR/HR";
 import Engineering from "./components/Engineering/Engineering";
 import Finance from "./components/Finance/Finance";
 import UnansweredQuestions from "./components/UnansweredQuestions/UnansweredQuestions";
+import InfoPage from "./components/InfoPage/InfoPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <QuestionProvider>
         <BrowserRouter>
           <PublicOnlyRoute exact path="/" component={LandingPage} />
+          <PublicOnlyRoute exact path="/info" component={InfoPage} />
           <PublicOnlyRoute
             exact
             path="/registration"
