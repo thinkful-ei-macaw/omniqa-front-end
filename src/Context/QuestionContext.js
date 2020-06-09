@@ -37,7 +37,7 @@ export class QuestionProvider extends Component {
       answer: [],
       answerList: [],
       error: null,
-      // likedQuestions,
+      likedQuestions: true,
     };
     if (TokenService.hasAuthToken()) {
       const jwtPayload = TokenService.getInfoFromToken();
@@ -85,9 +85,9 @@ export class QuestionProvider extends Component {
   setUser = (user) => {
     this.setState({ user });
   };
-  // userLikedQuestions = (likedQuestions) => {
-  //   this.setState({ user_id });
-  // };
+  userLikedQuestions = (likedQuestions) => {
+    this.setState({ likedQuestions: true });
+  };
 
   processLogin = (authToken) => {
     TokenService.saveAuthToken(authToken);
