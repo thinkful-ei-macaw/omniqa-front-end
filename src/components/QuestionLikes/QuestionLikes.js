@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
-import './Dashboard.css';
+// import './Dashboard.css';
 import config from '../../config';
 import QuestionContext from '../../Context/QuestionContext';
 import Sidebar from '../Sidebar/Sidebar';
@@ -10,15 +10,11 @@ import Answer from '../Answer/Answer';
 import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 
-
-
-
-export class Dashboard extends Component {
+export class QuestionLikes extends Component {
   state = {
-    /**filterID is for filtering departmentID */
     filterID: null,
+    // btnColors is an empty object
     btnColors:{},
-    questionsLiked: null
   }
 
   static contextType = QuestionContext;
@@ -37,16 +33,15 @@ export class Dashboard extends Component {
     })
   }
 
-  filterQuestionLikes = id => {
-    this.setState({
-      questionsLiked: id
-    })
-  }
-
-  handleQuestionLike = (question_id, user_id) => {
+  handleQuestionLike = (id, like) => {
   // Calling QuestionAPIService to update a liked question.
-  QuestionsApiService.likeQuestion(question_id, user_id)
-  this.likeBtnColor(question_id)
+  // QuestionsApiService.likeQuestion(id)
+  this.likeBtnColor(id)
+  // .then(() => {
+  //   this.setState({
+  //     liked: true
+  //   })
+  // })
 
   }
 
@@ -79,7 +74,7 @@ export class Dashboard extends Component {
         <section className='main'>
           <Sidebar filterQuestions={this.filterQuestions} />
           <div className='questionList'>
-            <h1>Latest Questions</h1>
+            <h1>Liked Questions</h1>
             <ul className='qMap'>
               {questions.map((question) => (
                 <li className='qLi' key={question.id}>
@@ -87,13 +82,12 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   <span className='datePosted'>
-                   Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
-                   </span>
+                    Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
+                  </span>
                   <br />
                   <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)
-                  } id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
+                  <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
                   <br />
                   <br />
                 </li>
@@ -107,4 +101,4 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default QuestionLikes;
