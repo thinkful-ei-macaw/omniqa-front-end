@@ -105,10 +105,15 @@ export class QuestionProvider extends Component {
     this.setUser({});
   };
 
+  deleteQuestions = (questionList) => {
+    this.setState({
+      questionList
+    })
+  }
+
   render() {
     const value = {
       user: this.state.user,
-
       answerList: this.state.answerList,
       answer: this.state.answer,
       questionList: this.state.questionList,
@@ -125,6 +130,7 @@ export class QuestionProvider extends Component {
       setUser: this.setUser,
       processLogin: this.processLogin,
       processLogout: this.processLogout,
+      deleteQuestions: this.deleteQuestions
     };
     return (
       <QuestionContext.Provider value={value}>

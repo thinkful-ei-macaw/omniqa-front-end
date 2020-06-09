@@ -55,17 +55,13 @@ const QuestionsApiService = {
     );
   },
 
-   deleteQuestions (question_id) {
-     fetch(`${config.API_ENDPOINT}/api//questions/${question_id}`, {
+   deleteQuestions (question_id, user_id) {
+     fetch(`${config.API_ENDPOINT}/api/questions/${question_id}`, {
          method: 'DELETE',
          headers: {
-           'content-type': 'application/json'
+           'content-type': 'application/json',
+           Authorization: `Bearer ${TokenService.getAuthToken(user_id)}`,
          },
-       })
-       .then(res => {
-         if (!res.ok)
-           return res.json().then(e => Promise.reject(e))
-         return res.json()
        })
        .catch(error => {
          console.error({

@@ -55,14 +55,11 @@ export class Dashboard extends Component {
  
 
   handleDeleteQuestion = (id) => {
-    const {
-      user_id
-    } = TokenService.readJwtToken();
-    let deleteQuestion = this.context.questionList.filter(
-      (question) => question.id !== user_id
-    );
-    this.context.setQuestionList(deleteQuestion);
     QuestionsApiService.deleteQuestions(id)
+    let newQuestionList = this.context.questionList.filter(
+      (question) => question.id !== id
+    );
+    this.context.setQuestionList(newQuestionList);
   };
 
   likeBtnColor = (id) => {
