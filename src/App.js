@@ -18,12 +18,30 @@ import Finance from "./components/Finance/Finance";
 import UnansweredQuestions from "./components/UnansweredQuestions/UnansweredQuestions";
 import PostAnswer from "./components/PostAnswer/postAnswer";
 import InfoPage from "./components/InfoPage/InfoPage";
+import config from "./config";
+import QuestionsApiService from "./Services/questions-service";
+import AnswersApiService from "./Services/answers-service";
+import QuestionContext from "./Context/QuestionContext";
 
 class App extends Component {
+  static contextType = QuestionContext;
+
+  componentDidMount = () => {
+    Promise.all([
+      QuestionsApiService.getQuestions(),
+      AnswersApiService.getAnswers(),
+    ]).then((results) => {
+      const questions = results[0];
+      const answers = results[1];
+      this.context.setQuestionList(questions);
+      this.context.setAnswerList(answers);
+    });
+  };
+
   render() {
     return (
-      <div className="App">
-        <QuestionProvider>
+      <QuestionProvider>
+        <div className="App">
           <BrowserRouter>
             <PublicOnlyRoute exact path="/" component={LandingPage} />
             <PublicOnlyRoute exact path="/info" component={InfoPage} />
@@ -51,8 +69,8 @@ class App extends Component {
               component={PostAnswer}
             />
           </BrowserRouter>
-        </QuestionProvider>
-      </div>
+        </div>
+      </QuestionProvider>
     );
   }
 }
