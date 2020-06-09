@@ -9,6 +9,8 @@ import Moment from "react-moment";
 import Answer from "../Answer/Answer";
 import Sort from "../Sort/Sort";
 import DepartmentService from "../../Services/departments-service";
+import Question from "../Question/Question";
+import TokenService from "../../Services/TokenService";
 
 export class Dashboard extends Component {
   state = {
@@ -49,6 +51,18 @@ export class Dashboard extends Component {
 
     QuestionsApiService.likeQuestion(question_id, user_id);
     this.likeBtnColor(question_id);
+  };
+ 
+
+  handleDeleteQuestion = (id) => {
+    const {
+      user_id
+    } = TokenService.readJwtToken();
+    let deleteQuestion = this.context.questionList.filter(
+      (question) => question.id !== user_id
+    );
+    this.context.setQuestionList(deleteQuestion);
+    QuestionsApiService.deleteQuestions(id)
   };
 
   likeBtnColor = (id) => {
@@ -99,6 +113,7 @@ export class Dashboard extends Component {
                   <br />
                   <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
+                  <button onClick={() => this.handleDeleteQuestion(question.id)}>Delete</button>
                   <button
                     style={{
                       backgroundColor: this.state.btnColors[question.id]

@@ -21,6 +21,7 @@ const QuestionContext = React.createContext({
   setUser: () => {},
   processLogin: () => {},
   processLogout: () => {},
+  deleteQuestions: () => {}
 });
 
 export default QuestionContext;
