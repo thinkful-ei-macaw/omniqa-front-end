@@ -22,20 +22,23 @@ import config from "./config";
 import QuestionsApiService from "./Services/questions-service";
 import AnswersApiService from "./Services/answers-service";
 import QuestionContext from "./Context/QuestionContext";
+import TokenService from "./Services/TokenService";
 
 class App extends Component {
   static contextType = QuestionContext;
 
   componentDidMount = () => {
-    Promise.all([
-      QuestionsApiService.getQuestions(),
-      AnswersApiService.getAnswers(),
-    ]).then((results) => {
-      const questions = results[0];
-      const answers = results[1];
-      this.context.setQuestionList(questions);
-      this.context.setAnswerList(answers);
-    });
+    if (TokenService.hasAuthToken()) {
+      Promise.all([
+        QuestionsApiService.getQuestions(),
+        AnswersApiService.getAnswers(),
+      ]).then((results) => {
+        const questions = results[0];
+        const answers = results[1];
+        this.context.setQuestionList(questions);
+        this.context.setAnswerList(answers);
+      });
+    }
   };
 
   render() {
@@ -76,4 +79,3 @@ class App extends Component {
 }
 
 export default App;
-
