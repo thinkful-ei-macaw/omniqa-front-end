@@ -50,12 +50,7 @@ class App extends Component {
               path="/unanswered-questions"
               component={UnansweredQuestions}
             />
-            <PrivateRoute exact path="/question" component={Question} />
-            <PrivateRoute exact path="/marketing" component={Marketing} />
-            <PrivateRoute exact path="/Sales" component={Sales} />
-            <PrivateRoute exact path="/HR" component={HR} />
-            <PrivateRoute exact path="/engineering" component={Engineering} />
-            <PrivateRoute exact path="/finance " component={Finance} />
+
             <PrivateRoute
               exact
               path="/post-answer/:question_id"
