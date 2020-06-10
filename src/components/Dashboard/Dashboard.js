@@ -3,9 +3,9 @@ import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import config from "../../config";
 import QuestionContext from "../../Context/QuestionContext";
+import QuestionList from "../../components/QuestionList/QuestionList";
 import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
-import Moment from "react-moment";
 import Answer from "../Answer/Answer";
 import Sort from "../Sort/Sort";
 import DepartmentService from "../../Services/departments-service";
@@ -91,51 +91,15 @@ export class Dashboard extends Component {
       ? this.context.questionList.filter((question) => {
           return question.department === filterID;
         })
-      : this.context.questionList;
-    const departments = this.context.departmentList;
-    console.log(departments);
-    console.log(questions);
-    console.log(this.context.questionList);
+      : this.context.questionList;  
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
           <Sidebar filterQuestions={this.filterQuestions} />
-          <div className="questionList">
-            <h1>Latest Questions</h1>
-            <ul className="qMap">
-              {questions.map((question) => (
-                <li className="qLi" key={question.id}>
-                  <span className="questionHead">{question.question_body}</span>
-                  <br />
-                  <br />
-                  <span className="datePosted">
-                    Posted on{" "}
-                    <Moment format="YYYY/MM/DD">{question.created_date}</Moment>{" "}
-                    by {question.user_name}
-                  </span>
-                  <br />
-                  <br />
-                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  {(question.author === user_id) && <button onClick={() => this.handleDeleteQuestion(question.id, question.author)}>Delete</button>}
-                  <button
-                    style={{
-                      backgroundColor: this.state.btnColors[question.id]
-                        ? "#785380"
-                        : "white",
-                    }}
-                    onClick={() => this.handleQuestionLike(question.id)}
-                    id="likeButton"
-                  >
-                    Like
-                  </button>{" "}
-                  <span className="hashtag">#{question.department_name}</span>
-                  <br />
-                  <br />
-                </li>
-              ))}
-            </ul>
-          </div>
+          <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
+           btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
+          
           <Sort />
         </section>
       </div>
