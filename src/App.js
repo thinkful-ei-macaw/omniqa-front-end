@@ -28,15 +28,7 @@ class App extends Component {
 
   componentDidMount = () => {
     if (TokenService.hasAuthToken()) {
-      Promise.all([
-        QuestionsApiService.getQuestions(),
-        AnswersApiService.getAnswers(),
-      ]).then((results) => {
-        const questions = results[0];
-        const answers = results[1];
-        this.context.setQuestionList(questions);
-        this.context.setAnswerList(answers);
-      });
+     this.context.loadData()
     }
   };
 

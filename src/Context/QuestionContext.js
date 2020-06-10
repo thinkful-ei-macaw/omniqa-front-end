@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import TokenService from "../Services/TokenService";
+import QuestionsApiService from "../Services/questions-service";
+import AnswersApiService from "../Services/answers-service";
 
 const QuestionContext = React.createContext({
   user: {},
@@ -21,7 +23,8 @@ const QuestionContext = React.createContext({
   setUser: () => {},
   processLogin: () => {},
   processLogout: () => {},
-  deleteQuestions: () => {}
+  deleteQuestions: () => {},
+  loadData: () => {}
 });
 
 export default QuestionContext;
@@ -109,7 +112,19 @@ export class QuestionProvider extends Component {
     this.setState({
       questionList
     })
-  }
+  };
+
+  loadData = () => {
+ return Promise.all([
+   QuestionsApiService.getQuestions(),
+   AnswersApiService.getAnswers(),
+ ]).then((results) => {
+   const questions = results[0];
+   const answers = results[1];
+   this.setQuestionList(questions);
+   this.setAnswerList(answers);
+ });
+ }
 
   render() {
     const value = {
@@ -130,7 +145,8 @@ export class QuestionProvider extends Component {
       setUser: this.setUser,
       processLogin: this.processLogin,
       processLogout: this.processLogout,
-      deleteQuestions: this.deleteQuestions
+      deleteQuestions: this.deleteQuestions,
+      loadData: this.loadData
     };
     return (
       <QuestionContext.Provider value={value}>
