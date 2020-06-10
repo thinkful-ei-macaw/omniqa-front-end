@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import TokenService from "../Services/TokenService";
 import QuestionsApiService from "../Services/questions-service";
 import AnswersApiService from "../Services/answers-service";
-import DepartmentService from "../Services/departments-service"
+import DepartmentService from "../Services/departments-service";
+import QuestionApiService from '../Services/questions-service';
 
 const QuestionContext = React.createContext({
   user: {},
@@ -12,6 +13,7 @@ const QuestionContext = React.createContext({
   error: null,
   questionList: [],
   answerList: [],
+  userLikedQuestions: [],
 
   departmentList: [],
   setError: () => {},
@@ -89,8 +91,8 @@ export class QuestionProvider extends Component {
   setUser = (user) => {
     this.setState({ user });
   };
-  userLikedQuestions = (likedQuestions) => {
-    this.setState({ likedQuestions: true });
+  setUserLikedQuestions = (userLikedQs) => {
+    this.setState({ userLikedQuestions: userLikedQs });
   };
 
   processLogin = (authToken) => {
@@ -119,14 +121,17 @@ export class QuestionProvider extends Component {
  return Promise.all([
    QuestionsApiService.getQuestions(),
    AnswersApiService.getAnswers(),
-   DepartmentService.getDepartments()
+   DepartmentService.getDepartments(),
+   QuestionApiService.userLikedQuestions()
  ]).then((results) => {
    const questions = results[0];
    const answers = results[1];
    const departments = results[2];
+   const userLikedQs = results[3];
    this.setQuestionList(questions);
    this.setAnswerList(answers);
    this.setDepartmentList(departments);
+   this.setUserLikedQuestions(userLikedQs)
  });
  }
 

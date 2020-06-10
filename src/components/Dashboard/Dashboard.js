@@ -20,24 +20,27 @@ export class Dashboard extends Component {
     filterLiked: false,
     btnColors: {},
     questionsLiked: null,
-    userLikedQuestions: [],
   };
 
   static contextType = QuestionContext;
 
   componentDidMount() {
     this.context.clearError();
-    let { user_id } = TokenService.readJwtToken();
-    let userLikedQs = QuestionsApiService.userLikedQuestions(user_id).map(el => el.question_id)
-    this.setState({
-      userLikedQuestions: userLikedQs
-    })
+
   }
 
   filterQuestions = (id) => {
     this.setState({
       filterID: id,
     });
+  };
+
+  filterAsked = () => {
+    this.setState({filterAsked: !this.state.filterAsked})
+  };
+
+  filterLiked = () => {
+    this.setState({filterLiked: !this.state.filterLiked})
   };
 
   filterQuestionLikes = (id) => {
@@ -101,16 +104,16 @@ export class Dashboard extends Component {
     }
 
     if (filterLiked) {
-      questions = questions.filter((question) => {
-        
-      })
+      questions = questions.filter((question) => 
+        this.context.userLikedQuestions.includes(question.id)
+      )
     }
 
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
-          <Sidebar filterQuestions={this.filterQuestions} />
+          <Sidebar filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
            btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
           

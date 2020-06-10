@@ -32,25 +32,26 @@ export class Sidebar extends Component {
     });
   }
 
-  filterMyAskedQuestions = () => {
-    const { user_id } = TokenService.readJwtToken();
-    let myAskedQuesions = this.context.questionList.filter(
-      (question) => question.author === user_id
-    );
-    this.context.setQuestionList(myAskedQuesions);
-  };
+  // filterMyAskedQuestions = () => {
+  //   const { user_id } = TokenService.readJwtToken();
+  //   let myAskedQuesions = this.context.questionList.filter(
+  //     (question) => question.author === user_id
+  //   );
+  //   this.context.setQuestionList(myAskedQuesions);
+  // };
 
   //It loops through question_likes array and find the question in questionList by question_id
   //for a specific user_id (which you know how to obtained by using TokenService.readJwtToken();
   // and then set the liked attribute of the question to true.
 
-  filterMyLikedQuestions = () => {
-    const { user_id } = TokenService.readJwtToken();
-    let myLikedQuesions = this.context.questionList.filter(
-      (question) => question.liked === user_id
-    );
-    this.context.setQuestionList(myLikedQuesions);
-  };
+  // filterMyLikedQuestions = () => {
+  //   const { user_id } = TokenService.readJwtToken();
+  //   let myLikedQuesions = this.context.questionList.filter(
+  //     (question) => question.liked === user_id
+  //   );
+  //   this.context.setQuestionList(myLikedQuesions);
+  // };
+
   render() {
     return (
       <div className="Sidebar">
@@ -58,14 +59,11 @@ export class Sidebar extends Component {
           <Link id="side__tag" to="/Dashboard">
             All Q&As
           </Link>
-          <br />
-          <br />
           <label>Q's that I...</label>
-          <br />
           <ul className="barUl">
             <li>
               <span
-                onClick={() => this.filterMyAskedQuestions()}
+                onClick={() => this.props.filterAsked()}
                 id="side__tag"
               >
                 Asked
@@ -75,33 +73,23 @@ export class Sidebar extends Component {
                 Asked
               </Link> */}
             </li>
-            <br />
             <li>
               <Link id="side__tag" to="/answered">
                 Answered
               </Link>
             </li>
-            <br />
-            <li>
-              <Link id="side__tag" to="/voted">
-                Voted
-              </Link>
-            </li>
-            <br />
             <li>
               <span
-                onClick={() => this.filterMyLikedQuestions()}
+                onClick={() => this.props.filterLiked()}
                 id="side__tag"
               >
                 Liked
               </span>
             </li>
-            <br />
           </ul>
         </section>
         <section className="departments">
           <label>Departments</label>
-          <br />
           <ul className="barUl">
             <li>
               <span
@@ -111,7 +99,6 @@ export class Sidebar extends Component {
                 All tags
               </span>
             </li>
-            <br />
             {this.state.department.map((department) => (
               <>
                 <li>
@@ -122,7 +109,6 @@ export class Sidebar extends Component {
                     {department.name}
                   </span>
                 </li>
-                <br />
               </>
             ))}
           </ul>
