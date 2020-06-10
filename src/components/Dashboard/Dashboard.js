@@ -12,6 +12,7 @@ import DepartmentService from "../../Services/departments-service";
 import Question from "../Question/Question";
 import TokenService from "../../Services/TokenService";
 import AnswerApiService from '../../Services/answers-service';
+import QuestionItem from '../../components/QuestionItem/QuestionItem';
 
 export class Dashboard extends Component {
   state = {
@@ -38,6 +39,22 @@ export class Dashboard extends Component {
       .then(this.context.setAnswerList)
       .catch(this.context.setError)
   }
+
+  likeBtnColor = (id) => {
+    /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
+
+ typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
+  then set the value to true.
+
+ otherwise set it to the opposite of what it currently is */
+
+    let btnColors = this.state.btnColors;
+    btnColors[id] =
+      typeof btnColors[id] === "undefined" ? true : !btnColors[id];
+    this.setState({
+      btnColors,
+    });
+  };
 
   filterQuestions = (id) => {
     this.setState({
@@ -73,21 +90,7 @@ export class Dashboard extends Component {
     this.context.setQuestionList(newQuestionList);
   };
 
-  likeBtnColor = (id) => {
-    /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
 
- typeof btnColors[id] === "undefined" <- if there the is no  "whateverWasPassedIntoTheFunction" key in the object
-  then set the value to true.
-
- otherwise set it to the opposite of what it currently is */
-
-    let btnColors = this.state.btnColors;
-    btnColors[id] =
-      typeof btnColors[id] === "undefined" ? true : !btnColors[id];
-    this.setState({
-      btnColors,
-    });
-  };
 
   render() {
     let answers = this.context.answerList
@@ -112,37 +115,9 @@ export class Dashboard extends Component {
           <div className="questionList">
             <h1>Latest Questions</h1>
             <ul className="qMap">
+              {/* questions.map(question => <Question question={question} />) */}
               {questions.map((question) => (
-                <li className="qLi" key={question.id}>
-                  <span className="questionHead">{question.question_body}</span>
-                  <br />
-                  <br />
-                  <span className="datePosted">
-                    Posted on{" "}
-                    <Moment format="YYYY/MM/DD">{question.created_date}</Moment>{" "}
-                    by {question.user_name}
-                    <br />
-                    {answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body)}
-                  </span>
-                  <br />
-                  <br />
-                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  {(question.author === user_id) && <button onClick={() => this.handleDeleteQuestion(question.id, question.author)}>Delete</button>}
-                  <button
-                    style={{
-                      backgroundColor: this.state.btnColors[question.id]
-                        ? "#785380"
-                        : "white",
-                    }}
-                    onClick={() => this.handleQuestionLike(question.id)}
-                    id="likeButton"
-                  >
-                    Like
-                  </button>{" "}
-                  <span className="hashtag">#{question.department_name}</span>
-                  <br />
-                  <br />
-                </li>
+                <QuestionItem question={question} answers={answers} handleQuestionLike={this.handleQuestionLike} likeBtnColor={this.state.btnColors} />
               ))}
             </ul>
           </div>
