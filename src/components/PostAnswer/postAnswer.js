@@ -3,20 +3,23 @@ import AnswerApiService from "../../Services/answers-service";
 import { Link } from "react-router-dom";
 
 export default class postAnswer extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Successful answer submit");
 
-    AnswerApiService.postAnswer(
-      e.target.answer_body.value,
-      this.props.match.params.question_id
-    );
-  };
+
+
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('Successful answer submit')
+
+    AnswerApiService.postAnswer(e.target.answer_body.value, this.props.match.params.question_id)
+
+  }
 
   render() {
+
     return (
       <div className="Answer">
-        <form className="answer-form" onSubmit={(e) => this.handleSubmit(e)}>
+        <form className="answer-form" onSubmit={e => this.handleSubmit(e)}>
           <fieldset>
             <br />
             <label htmlFor="answer-label">Answer</label>
@@ -29,10 +32,11 @@ export default class postAnswer extends Component {
             />
             <br />
             <button type="submit">Submit Answer</button>
+
           </fieldset>
         </form>
-        <Link to="/Dashboard">Return to Dashboard</Link>
+        <Link to='/unanswered-questions'>Return to Unanswered Questions</Link>
       </div>
-    );
+    )
   }
 }
