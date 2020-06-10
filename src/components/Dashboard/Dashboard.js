@@ -11,6 +11,7 @@ import Sort from "../Sort/Sort";
 import DepartmentService from "../../Services/departments-service";
 import Question from "../Question/Question";
 import TokenService from "../../Services/TokenService";
+import AnswerApiService from '../../Services/answers-service';
 
 export class Dashboard extends Component {
   state = {
@@ -32,6 +33,10 @@ export class Dashboard extends Component {
     DepartmentService.getDepartments()
       .then(this.context.setDepartmentList)
       .catch(this.context.setError);
+
+    AnswerApiService.getAnswers()
+      .then(this.context.setAnswerList)
+      .catch(this.context.setError)
   }
 
   filterQuestions = (id) => {
@@ -52,14 +57,14 @@ export class Dashboard extends Component {
     QuestionsApiService.likeQuestion(question_id, user_id);
     this.likeBtnColor(question_id);
   };
- 
+
 
   handleDeleteQuestion = (id, author) => {
     const { user_id } = TokenService.readJwtToken();
 
     if (author !== user_id) {
       return alert(`You can only delete your own questions`)
-    } 
+    }
 
     QuestionsApiService.deleteQuestions(id)
     let newQuestionList = this.context.questionList.filter(
@@ -85,17 +90,20 @@ export class Dashboard extends Component {
   };
 
   render() {
+    let answers = this.context.answerList
+    console.log(answers)
     const { filterID } = this.state;
     const { user_id } = TokenService.readJwtToken()
     const questions = filterID
       ? this.context.questionList.filter((question) => {
-          return question.department === filterID;
-        })
+        return question.department === filterID;
+      })
       : this.context.questionList;
+    console.log(questions)
     const departments = this.context.departmentList;
-    console.log(departments);
+    // console.log(departments);
     console.log(questions);
-    console.log(this.context.questionList);
+    // console.log(this.context.questionList);
     return (
       <div className="dashboard">
         <NavBar />
@@ -113,6 +121,8 @@ export class Dashboard extends Component {
                     Posted on{" "}
                     <Moment format="YYYY/MM/DD">{question.created_date}</Moment>{" "}
                     by {question.user_name}
+                    <br />
+                    {answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body)}
                   </span>
                   <br />
                   <br />

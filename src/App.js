@@ -45,6 +45,7 @@ class App extends Component {
             <PrivateRoute exact path="/HR" component={HR} />
             <PrivateRoute exact path="/engineering" component={Engineering} />
             <PrivateRoute exact path="/finance " component={Finance} />
+            <PrivateRoute exact path="/answers" component={Answer} />
             <PrivateRoute
               exact
               path="/post-answer/:question_id"

@@ -16,11 +16,13 @@ export class Answer extends Component {
   };
 
   render() {
+    let answers = this.context.answerList || []
+    console.log(answers)
     return (
       <div className="Answer">
         <NavBar />
         answer page
-        <p>{this.context.answers.map((data) => data.answer_body)}</p>
+        <p>{answers.map((data) => data.answer_body)}</p>
       </div>
     );
   }
