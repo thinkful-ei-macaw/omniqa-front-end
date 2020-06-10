@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TokenService from "../Services/TokenService";
 import QuestionsApiService from "../Services/questions-service";
 import AnswersApiService from "../Services/answers-service";
+import DepartmentService from "../Services/departments-service"
 
 const QuestionContext = React.createContext({
   user: {},
@@ -118,11 +119,14 @@ export class QuestionProvider extends Component {
  return Promise.all([
    QuestionsApiService.getQuestions(),
    AnswersApiService.getAnswers(),
+   DepartmentService.getDepartments()
  ]).then((results) => {
    const questions = results[0];
    const answers = results[1];
+   const departments = results[2];
    this.setQuestionList(questions);
    this.setAnswerList(answers);
+   this.setDepartmentList(departments);
  });
  }
 
