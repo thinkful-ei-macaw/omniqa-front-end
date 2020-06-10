@@ -16,15 +16,22 @@ export class Dashboard extends Component {
   state = {
     /**filterID is for filtering departmentID */
     filterID: null,
+    filterAsked: false,
+    filterLiked: false,
     btnColors: {},
     questionsLiked: null,
+    userLikedQuestions: [],
   };
 
   static contextType = QuestionContext;
 
   componentDidMount() {
     this.context.clearError();
-
+    let { user_id } = TokenService.readJwtToken();
+    let userLikedQs = QuestionsApiService.userLikedQuestions(user_id).map(el => el.question_id)
+    this.setState({
+      userLikedQuestions: userLikedQs
+    })
   }
 
   filterQuestions = (id) => {
@@ -78,13 +85,27 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const { filterID } = this.state;
+    const { filterID, filterAsked, filterLiked } = this.state;
     const { user_id } = TokenService.readJwtToken()
-    const questions = filterID
-      ? this.context.questionList.filter((question) => {
-          return question.department === filterID;
-        })
-      : this.context.questionList;  
+    let questions = this.context.questionList;
+    if (filterID) {
+      questions = questions.filter((question) => {
+        return question.department === filterID;
+      })
+    }
+
+    if (filterAsked) {
+      questions = questions.filter((question) => {
+        return question.author === user_id
+      })
+    }
+
+    if (filterLiked) {
+      questions = questions.filter((question) => {
+        
+      })
+    }
+
     return (
       <div className="dashboard">
         <NavBar />

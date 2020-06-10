@@ -27,7 +27,7 @@ export class UnansweredQuestions extends Component {
         <section className="main">
           <Sidebar />
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
-          btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
+          btnColors={this.props.btnColors} userID={user_id} questions={questions}/>
          
         </section>
       </div>
