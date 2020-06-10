@@ -13,6 +13,7 @@ import Question from "../Question/Question";
 import TokenService from "../../Services/TokenService";
 import AnswerApiService from '../../Services/answers-service';
 import QuestionItem from '../../components/QuestionItem/QuestionItem';
+import AuthApiService from '../../Services/auth-api-service';
 
 export class Dashboard extends Component {
   state = {
@@ -37,6 +38,10 @@ export class Dashboard extends Component {
 
     AnswerApiService.getAnswers()
       .then(this.context.setAnswerList)
+      .catch(this.context.setError)
+
+    AuthApiService.getUser()
+      .then(this.context.user)
       .catch(this.context.setError)
   }
 
@@ -94,7 +99,9 @@ export class Dashboard extends Component {
 
   render() {
     let answers = this.context.answerList
+    let users = this.context.user
     console.log(answers)
+    console.log(users)
     const { filterID } = this.state;
     const { user_id } = TokenService.readJwtToken()
     const questions = filterID
@@ -117,7 +124,7 @@ export class Dashboard extends Component {
             <ul className="qMap">
               {/* questions.map(question => <Question question={question} />) */}
               {questions.map((question) => (
-                <QuestionItem question={question} answers={answers} handleQuestionLike={this.handleQuestionLike} likeBtnColor={this.state.btnColors} />
+                <QuestionItem question={question} answers={answers} handleQuestionLike={this.handleQuestionLike} likeBtnColor={this.state.btnColors} users={users} />
               ))}
             </ul>
           </div>

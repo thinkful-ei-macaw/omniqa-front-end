@@ -18,7 +18,7 @@ export default class QuestionItem extends Component {
 
 
     render() {
-
+        console.log(this.props.question.user_name)
 
 
         return (
@@ -27,13 +27,22 @@ export default class QuestionItem extends Component {
                     <span className="questionHead">{this.props.question.question_body}</span>
                     <br />
                     <br />
-                    <span className="datePosted">
+                    <div className="datePosted">
                         Posted on{" "}
                         <Moment format="YYYY/MM/DD">{this.props.question.created_date}</Moment>{" "}
                     by {this.props.question.user_name}
                         <br />
-                        {this.props.answers.filter(answer => answer.question == this.props.question.id).map(answer => answer.answer_body)}
-                    </span>
+
+                        <br />
+                        {this.props.answers.filter(answer => answer.question == this.props.question.id).map(answer =>
+
+                            <div>
+                                <p>Answered By</p>
+                                {answer.user_name}
+                                <p>{answer.answer_body}</p>
+                            </div>
+                        )}
+                    </div>
                     <br />
                     <br />
                     {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
