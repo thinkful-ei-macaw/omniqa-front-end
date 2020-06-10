@@ -9,7 +9,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { BrowserRouter } from "react-router-dom";
 import Question from "./components/Question/Question";
 import Answer from "./components/Answer/Answer";
-import { QuestionProvider } from "./Context/QuestionContext";
 import Marketing from "./components/Marketing/Marketing";
 import Sales from "./components/Sales/Sales";
 import HR from "./components/HR/HR";
@@ -43,7 +42,6 @@ class App extends Component {
 
   render() {
     return (
-      <QuestionProvider>
         <div className="App">
           <BrowserRouter>
             <PublicOnlyRoute exact path="/" component={LandingPage} />
@@ -73,7 +71,6 @@ class App extends Component {
             />
           </BrowserRouter>
         </div>
-      </QuestionProvider>
     );
   }
 }
