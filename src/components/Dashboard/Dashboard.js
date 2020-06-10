@@ -10,6 +10,7 @@ import Answer from '../Answer/Answer';
 import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 import { withRouter } from 'react-router-dom';
+// import like from './like.png';
 
 export class Dashboard extends Component {
   state = {
@@ -76,8 +77,9 @@ export class Dashboard extends Component {
         <NavBar />
         <section className='main'>
           <Sidebar filterQuestions={this.filterQuestions} />
+          <Sort />
           <div className='questionList'>
-            <h1>Latest Questions</h1>
+            <h1>Newest</h1>
             <ul className='qMap'>
               {questions.map((question) => (
                 <li className='qLi' key={question.id}>
@@ -98,6 +100,7 @@ export class Dashboard extends Component {
                     onClick={() => this.handleQuestionLike(question.id)}
                     id='likeButton'
                   >
+                    {/* <img id='likeButton' src={like} /> */}
                     Like
                   </button>{' '}
                   <span className='hashtag'>#{question.department_name}</span>
@@ -107,7 +110,6 @@ export class Dashboard extends Component {
               ))}
             </ul>
           </div>
-          <Sort />
         </section>
       </div>
     );

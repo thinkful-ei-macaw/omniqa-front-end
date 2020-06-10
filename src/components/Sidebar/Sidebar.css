@@ -11,7 +11,11 @@ select {
   border-radius: 8px;
 }
 
-@media screen and (min-width: 1000px) {
+#optionDis {
+  font-weight: 550;
+}
+
+@media screen and (min-width: 1080px) {
   .Sidebar2 {
     display: none;
   }

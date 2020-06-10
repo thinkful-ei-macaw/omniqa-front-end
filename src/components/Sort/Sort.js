@@ -1,40 +1,40 @@
-import React, { Component } from "react";
-import UserContext from "../../Context/UserContext";
-import "./Sort.css";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import UserContext from '../../Context/UserContext';
+import './Sort.css';
+import { Link } from 'react-router-dom';
 
 export class Sort extends Component {
   static contextType = UserContext;
 
   render() {
     return (
-      <div className="Sort">
-        <section className="myQs">
-          <label>Sort by...</label>
-          <ul className="barUl">
+      <div className='Sort'>
+        <section className='myQs'>
+          <label id='sortLabel'>Sort:</label>
+          <ul className='barUl'>
             <li>
-              <Link id="side__tag" to="/Suggested">
+              <Link id='side__tag' to='/Suggested'>
                 Suggested
-              </Link>
-            </li>
-            <li>
-              <Link id="side__tag" to="/Newest">
-                Newest
               </Link>
             </li>
 
             <li>
-              <Link id="side__tag" to="/MostVotes">
+              <Link id='side__tag' to='/Newest'>
+                Newest
+              </Link>
+            </li>
+            <li>
+              <Link id='side__tag' to='/MostVotes'>
                 Most Votes
               </Link>
             </li>
             <li>
-              <Link id="side__tag" to="/MostLiked">
+              <Link id='side__tag' to='/MostLiked'>
                 Most Liked
               </Link>
             </li>
             <li>
-              <Link id="side__tag" to="/MostActive">
+              <Link id='side__tag' to='/MostActive'>
                 Most Active
               </Link>
             </li>
