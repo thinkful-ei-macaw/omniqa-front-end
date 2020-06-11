@@ -1,0 +1,22 @@
+#answer_body {
+    display: flex;
+   
+
+}
+
+#user {
+    margin-left: 3em;
+}
+
+#answer {
+    word-wrap: break-word;
+    width: 30em;  
+    border: 1px solid white;
+    box-shadow: 10px 10px 8px #888888;
+    padding-left: 1em;
+    padding-right: 2em;
+}
+
+.title {
+    font-weight: bold;
+}

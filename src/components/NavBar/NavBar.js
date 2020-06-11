@@ -4,18 +4,66 @@ import "./Navbar.css";
 import magn from "./search.png";
 import QuestionContext from "../../Context/QuestionContext";
 import TokenService from "../../Services/TokenService";
+import QuestionsApiService from '../../Services/questions-service';
+import QuestionItem from '../../components/QuestionItem/QuestionItem';
 
 export class NavBar extends Component {
   static contextType = QuestionContext;
 
-  componentDidMount() {}
 
-  handleLogoutClick = () => {
-    this.context.processLogout();
-    window.location = "/login";
-  };
+  // state = {
+  //   questionList: [],
+  //   filter: ''
+  // }
+
+
+  // componentDidMount() {
+  //   QuestionsApiService.getQuestions()
+  //     .then(questionResult => {
+  //       this.setState({
+  //         questionList: questionResult
+  //       })
+  //     })
+  // }
+
+  // handleChange = e => {
+  //   this.setState({
+  //     filter: e.target.value
+  //   })
+  // }
+
+  // handleLogoutClick = () => {
+  //   this.context.processLogout();
+  //   window.location = "/login";
+  // };
 
   render() {
+
+    // let questions = [];
+    // let questionBody = this.context.questionList.map(question => question.question_body) || []
+
+    // let currentQuestion = this.state.questionList;
+
+    // let newQuestion = currentQuestion.filter(input => {
+    //   const body = input.questions
+    //   const filter = this.state.filter.toLowerCase().trim();
+    //   return body.includes(filter);
+
+    // })
+
+    // if (this.state.questionList & this.state.questionList.length > 0) {
+    //   questions = newQuestion.map(question => {
+
+    //     return (
+    //       <QuestionItem question={question} />
+    //     )
+
+
+
+    //   })
+    // }
+
+
     return (
       <nav className="nav">
         <ul>
@@ -32,6 +80,7 @@ export class NavBar extends Component {
                 type="text"
                 placeholder="Search for questions..."
                 id="search-text-input"
+                onChange={this.handleChange}
               />
               <input
                 type="image"
@@ -62,7 +111,9 @@ export class NavBar extends Component {
             </select>
           </li>
         </ul>
-        <div className="line"></div>
+        <div className="line">
+          {/* {questions} */}
+        </div>
       </nav>
     );
   }

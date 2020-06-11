@@ -21,6 +21,7 @@ export class Dashboard extends Component {
     filterID: null,
     btnColors: {},
     questionsLiked: null,
+    searchFilter: ''
   };
 
   static contextType = QuestionContext;
@@ -98,10 +99,14 @@ export class Dashboard extends Component {
 
 
   render() {
+
+
+    console.log(this.context.questionList.map(question => question.question_body))
+
     let answers = this.context.answerList
     let users = this.context.user
-    console.log(answers)
-    console.log(users)
+    // console.log(answers)
+    // console.log(users)
     const { filterID } = this.state;
     const { user_id } = TokenService.readJwtToken()
     const questions = filterID
@@ -115,6 +120,8 @@ export class Dashboard extends Component {
     console.log(questions);
     // console.log(this.context.questionList);
     return (
+
+
       <div className="dashboard">
         <NavBar />
         <section className="main">

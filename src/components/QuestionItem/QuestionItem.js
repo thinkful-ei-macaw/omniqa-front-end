@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Moment from "react-moment";
+import './QuestionItem.css';
 
 export default class QuestionItem extends Component {
 
@@ -18,11 +19,15 @@ export default class QuestionItem extends Component {
 
 
     render() {
-        console.log(this.props.question.user_name)
+        // console.log(this.props.question.user_name)
+        let question = this.props.question;
+        let answers = this.props.answers
+
 
 
         return (
-            <div>
+
+            <div div >
                 <li className="qLi" key={this.props.question.id}>
                     <span className="questionHead">{this.props.question.question_body}</span>
                     <br />
@@ -36,10 +41,21 @@ export default class QuestionItem extends Component {
                         <br />
                         {this.props.answers.filter(answer => answer.question == this.props.question.id).map(answer =>
 
-                            <div>
-                                <p>Answered By</p>
-                                {answer.user_name}
-                                <p>{answer.answer_body}</p>
+                            <div id="answer_body">
+
+
+                                <div >
+                                    <p class="title">Question Answer</p>
+                                    <div id="answer">
+                                        <p>{answer.answer_body}</p>
+                                    </div>
+                                </div>
+                                <div id="user">
+                                    <p class="title">Answered By</p>
+                                    {answer.user_name}
+                                </div>
+
+
                             </div>
                         )}
                     </div>
@@ -62,7 +78,7 @@ export default class QuestionItem extends Component {
                     <br />
                     <br />
                 </li>
-            </div>
+            </div >
         )
     }
 }
