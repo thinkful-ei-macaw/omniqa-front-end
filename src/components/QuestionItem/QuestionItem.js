@@ -29,7 +29,9 @@ export default class QuestionItem extends Component {
 
             <div div >
                 <li className="qLi" key={this.props.question.id}>
-                    <span className="questionHead">{this.props.question.question_body}</span>
+                    <div className="questionHead">
+                        <span >{this.props.question.question_body}</span>
+                    </div>
                     <br />
                     <br />
                     <div className="datePosted">
@@ -44,7 +46,7 @@ export default class QuestionItem extends Component {
                             <div id="answer_body">
 
 
-                                <div >
+                                <div id="question_answer_body">
                                     <p class="title">Question Answer</p>
                                     <div id="answer">
                                         <p>{answer.answer_body}</p>
