@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import "./Registration.css";
-import { Link } from "react-router-dom";
-import AuthApiService from "../../Services/auth-api-service";
-import QuestionContext from "../../Context/QuestionContext";
-import TokenService from "../../Services/TokenService";
-import img from "./logo.png";
+import React, { Component } from 'react';
+import './Registration.css';
+import { Link } from 'react-router-dom';
+import AuthApiService from '../../Services/auth-api-service';
+import QuestionContext from '../../Context/QuestionContext';
+import TokenService from '../../Services/TokenService';
+import img from './logo.png';
 
 export class Registration extends Component {
   static defaultProps = {
-    onRegistrationSuccess: () => {},
+    onRegistrationSuccess: () => {}
   };
 
   static contextType = QuestionContext;
@@ -20,18 +20,18 @@ export class Registration extends Component {
     this.setState({ error: null });
 
     if (password.value !== confirmpassword.value) {
-      alert("Passwords do not match.");
+      alert('Passwords do not match.');
     } else {
       AuthApiService.postUser({
         username: username.value,
         password: password.value,
-        name: name.value,
+        name: name.value
       })
         .then((user) => {
           this.onRegistrationSuccess(username.value, password.value);
-          name.value = "";
-          username.value = "";
-          password.value = "";
+          name.value = '';
+          username.value = '';
+          password.value = '';
         })
         .catch((res) => {
           this.setState({ error: res.error });
@@ -39,73 +39,66 @@ export class Registration extends Component {
     }
   };
   onRegistrationSuccess = (username, password) => {
-    console.log("check");
+    console.log('check');
     AuthApiService.postLogin({
       username: username,
-      password: password,
+      password: password
     })
       .then((res) => {
         TokenService.saveAuthToken(res.authToken);
         const { history } = this.props;
-        history.push("/dashboard");
+        history.push('/dashboard');
       })
       .catch((res) => {
         this.setState({
-          error: res.error.message,
+          error: res.error.message
         });
       });
   };
   render() {
     const { error } = this.state;
     return (
-      <div className="Registration">
-        <div role="alert">{error && <p>{error}</p>}</div>
-        <form id="signup" onSubmit={this.handleSubmit}>
-          <img className="logo" src={img} alt="omni--logo" />
+      <div className='Registration'>
+        <div role='alert'>{error && <p>{error}</p>}</div>
+        <form id='signup' onSubmit={this.handleSubmit}>
+          <img className='logo' src={img} alt='omni--logo' />
           <fieldset>
             <legend>Sign Up</legend>
-            <label htmlFor="username">Username: </label>
+            <label htmlFor='username'>Username: </label>
             <input
-              className="form-control"
-              type="text"
-              name="username"
-              id="username"
-              placeholder="james.bond"
+              className='form-control'
+              type='text'
+              name='username'
+              id='username'
+              placeholder='james.bond'
               required
             />
             <br />
             <br />
-            <label htmlFor="name">Your Name: </label>
+            <label htmlFor='name'>Your Name: </label>
+            <input className='form-control' type='text' name='name' id='name' placeholder='James Bond' required />
+            <br />
+            <br />
+            <br />
+            <label htmlFor='password'>Password:</label>
             <input
-              className="form-control"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="James Bond"
+              className='form-control'
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Password123!'
               required
             />
             <br />
             <br />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <input
-              className="form-control"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password123!"
-              required
-            />
-            <br />
-            <br />
-            <label htmlFor="password">Re-enter password:</label>
+            <label htmlFor='password'>Re-enter password:</label>
 
             <input
-              className="form-control"
-              type="password"
-              name="confirmpassword"
-              id="confirmpassword"
-              placeholder="Password123!"
+              className='form-control'
+              type='password'
+              name='confirmpassword'
+              id='confirmpassword'
+              placeholder='Password123!'
               required
             />
             <br />
@@ -114,13 +107,15 @@ export class Registration extends Component {
 
             <br />
 
-            <button className="submit-form" type="submit">
+            <button className='submit-form' type='submit'>
               Register
             </button>
 
-            <Link to="/dashboard">
-              {" "}
-              <button type="button">Log in</button>
+            <Link to='/dashboard'>
+              {' '}
+              <button type='button' id='login'>
+                Log in
+              </button>
             </Link>
           </fieldset>
         </form>

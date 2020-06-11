@@ -18,7 +18,7 @@ export class NavBar extends Component {
   render() {
     return (
       <nav className="nav">
-        <ul>
+        <ul id="wholeNav">
           <li id="logoicon">
             <img
               className="logoicon"
