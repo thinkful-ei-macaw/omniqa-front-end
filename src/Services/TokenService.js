@@ -1,5 +1,5 @@
-import config from '../config';
-const jwtDecode = require('jwt-decode');
+import config from "../config";
+const jwtDecode = require("jwt-decode");
 
 const TokenService = {
   saveAuthToken(token) {
@@ -21,7 +21,17 @@ const TokenService = {
     const token = TokenService.getAuthToken();
     const decoded = jwtDecode(token);
     return decoded;
-  }
+  },
+  parseJwt(jwt) {
+    if (jwt) {
+      return jwtDecode(jwt);
+    } else {
+      return {};
+    }
+  },
+  readJwtToken() {
+    return TokenService.parseJwt(TokenService.getAuthToken());
+  },
 };
 
 export default TokenService;

@@ -21,6 +21,12 @@ export default class LandingPage extends Component {
               Get Started!
             </button>{" "}
           </Link>
+          <Link to="/info">
+            {" "}
+            <button className="info-button" type="button">
+              More info
+            </button>{" "}
+          </Link>
         </div>
       </div>
     );

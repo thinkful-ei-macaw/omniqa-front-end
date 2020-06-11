@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import magn from './search.png';
-import UserContext from '../../Context/UserContext';
+import QuestionContext from '../../Context/QuestionContext';
 import TokenService from '../../Services/TokenService';
 
 export class NavBar extends Component {
-  static contextType = UserContext;
+  static contextType = QuestionContext;
 
   componentDidMount() {}
 
@@ -29,19 +29,24 @@ export class NavBar extends Component {
               <input type='image' name='submit' id='magn' src={magn} alt='magnifying-glass' />
             </form>
           </li>
-        </ul>
 
-        <ul id='navButtons'>
           <li className='span1'>
-            <button>Q&A Home</button>
+            <span>Q&A Home</span>
           </li>
           <li className='span2'>
-            <button>Answer Q's</button>
+            <span>Answer Q's</span>
           </li>
           <li>
             <Link id='link' to='/Question'>
               <button id='question-btn'>Ask a question</button>
             </Link>
+          </li>
+
+          <li className='selector'>
+            <select type='select' onChange={this.handleLogoutClick}>
+              <option disabled>{TokenService.getInfoFromToken().sub}</option>
+              <option>Logout</option>
+            </select>
           </li>
         </ul>
         <li className='selector'>

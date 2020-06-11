@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Registration.css';
 import { Link } from 'react-router-dom';
 import AuthApiService from '../../Services/auth-api-service';
-import UserContext from '../../Context/UserContext';
+import QuestionContext from '../../Context/QuestionContext';
 import TokenService from '../../Services/TokenService';
 import img from './logo.png';
 
@@ -11,7 +11,7 @@ export class Registration extends Component {
     onRegistrationSuccess: () => {}
   };
 
-  static contextType = UserContext;
+  static contextType = QuestionContext;
 
   state = { error: null };
   handleSubmit = (ev) => {

@@ -1,5 +1,14 @@
 .Sidebar {
-  display: none;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin-top: 4em;
+  margin-left: 5em;
+  display: flex;
+  flex-direction: column;
+
+  width: 100px;
+  font-size: 16px;
 }
 
 .Sidebar2 {
@@ -69,4 +78,10 @@ select {
     color: #785380;
     font-weight: 600;
   }
+}
+
+span#side__tag:hover {
+  color: #785380;
+  font-weight: 600;
+  cursor: pointer;
 }
