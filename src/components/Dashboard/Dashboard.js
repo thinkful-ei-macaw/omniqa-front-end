@@ -18,8 +18,10 @@ export class Dashboard extends Component {
     filterID: null,
     filterAsked: false,
     filterLiked: false,
+    filterAnswers: false,
     btnColors: {},
     questionsLiked: null,
+
   };
 
   static contextType = QuestionContext;
@@ -49,6 +51,12 @@ export class Dashboard extends Component {
       questionsLiked: id,
     });
   };
+
+  filterAnswers = () => {
+    this.setState({
+      filterAnswers: !this.state.filterAnswers
+    })
+  }
 
   handleQuestionLike = (question_id, user_id) => {
     // Calling QuestionAPIService to update a liked question.
@@ -89,9 +97,12 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const { filterID, filterAsked, filterLiked } = this.state;
+    const { filterID, filterAsked, filterLiked, filterAnswers } = this.state;
+    let answers = this.context.answerList;
+    console.log(answers)
     const { user_id } = TokenService.readJwtToken()
     let questions = this.context.questionList;
+
     if (filterID) {
       questions = questions.filter((question) => {
         return question.department === filterID;
@@ -114,11 +125,23 @@ export class Dashboard extends Component {
       console.log(questions)
     }
 
+    if (filterAnswers) {
+      answers = answers.filter((answer) => { 
+        return answer.answer_body === questions.id
+      })
+    }
+
+  //  .map(answer => answer.answer_body))
+  //     return answers
+  //   }
+
+  //   console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
+
     return (
       <div className="dashboard">
         <NavBar />
         <section className="main">
-          <Sidebar filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
+          <Sidebar filterAnswers={this.filterAnswers} filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
            btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
           

@@ -95,7 +95,6 @@ export class QuestionProvider extends Component {
   };
   setUserLikedQuestions = (userLikedQs) => {
     let ids = userLikedQs.map(likedQuestions => likedQuestions.question_id)
-   
     this.setState({ userLikedQuestions: ids });
   };
 
