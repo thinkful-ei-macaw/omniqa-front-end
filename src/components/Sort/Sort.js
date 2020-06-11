@@ -11,7 +11,7 @@ export class Sort extends Component {
       <div className='Sort'>
         <section className='myQs'>
           <label id='sortLabel'>Sort:</label>
-          <ul className='barUl'>
+          <ul className='barUlSort'>
             <li>
               <Link id='side__tag' to='/Suggested'>
                 Suggested
