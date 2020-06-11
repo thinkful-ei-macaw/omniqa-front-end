@@ -44,6 +44,7 @@ export class QuestionProvider extends Component {
       answerList: [],
       error: null,
       likedQuestions: true,
+      userLikedQuestions: []
     };
     if (TokenService.hasAuthToken()) {
       const jwtPayload = TokenService.getInfoFromToken();
@@ -88,11 +89,14 @@ export class QuestionProvider extends Component {
   setAnswerList = (answerList) => {
     this.setState({ answerList });
   };
+  
   setUser = (user) => {
     this.setState({ user });
   };
   setUserLikedQuestions = (userLikedQs) => {
-    this.setState({ userLikedQuestions: userLikedQs });
+    let ids = userLikedQs.map(likedQuestions => likedQuestions.question_id)
+   
+    this.setState({ userLikedQuestions: ids });
   };
 
   processLogin = (authToken) => {
@@ -138,6 +142,7 @@ export class QuestionProvider extends Component {
   render() {
     const value = {
       user: this.state.user,
+      userLikedQuestions: this.state.userLikedQuestions,
       answerList: this.state.answerList,
       answer: this.state.answer,
       questionList: this.state.questionList,
@@ -155,7 +160,8 @@ export class QuestionProvider extends Component {
       processLogin: this.processLogin,
       processLogout: this.processLogout,
       deleteQuestions: this.deleteQuestions,
-      loadData: this.loadData
+      loadData: this.loadData,
+      // setUserLikedQuestions: this.setUserLikedQuestions
     };
     return (
       <QuestionContext.Provider value={value}>

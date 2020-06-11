@@ -101,8 +101,9 @@ export class Sidebar extends Component {
             </li>
             {this.state.department.map((department) => (
               <>
-                <li>
-                  <span
+                <li key={department.id}>
+                  <span 
+                  
                     id="side__tag"
                     onClick={() => this.props.filterQuestions(department.id)}
                   >

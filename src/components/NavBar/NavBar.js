@@ -55,7 +55,7 @@ export class NavBar extends Component {
           </li>
           <li className="selector">
             <select type="select" onChange={this.handleLogoutClick}>
-              <option selected disabled>
+              <option disabled>
                 {TokenService.getInfoFromToken().sub}
               </option>
               <option>Logout</option>

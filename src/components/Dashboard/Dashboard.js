@@ -25,6 +25,7 @@ export class Dashboard extends Component {
   static contextType = QuestionContext;
 
   componentDidMount() {
+    console.log('28', this.context)
     this.context.clearError();
 
   }
@@ -104,9 +105,13 @@ export class Dashboard extends Component {
     }
 
     if (filterLiked) {
-      questions = questions.filter((question) => 
-        this.context.userLikedQuestions.includes(question.id)
-      )
+
+      questions = questions.filter((question) => {
+        console.log(this.context)
+        return this.context.userLikedQuestions.includes(question.id) 
+        
+      })
+      console.log(questions)
     }
 
     return (
