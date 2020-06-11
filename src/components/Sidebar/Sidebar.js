@@ -40,32 +40,25 @@ export class Sidebar extends Component {
   //   this.context.setQuestionList(myAskedQuesions);
   // };
 
-  //It loops through question_likes array and find the question in questionList by question_id
-  //for a specific user_id (which you know how to obtained by using TokenService.readJwtToken();
-  // and then set the liked attribute of the question to true.
-
-  // filterMyLikedQuestions = () => {
-  //   const { user_id } = TokenService.readJwtToken();
-  //   let myLikedQuesions = this.context.questionList.filter(
-  //     (question) => question.liked === user_id
-  //   );
-  //   this.context.setQuestionList(myLikedQuesions);
-  // };
-
-  filterMyLikedQuestions = () => {
-    const { user_id } = TokenService.readJwtToken();
-    let myLikedQuesions = this.context.questionList.filter(
-      (question) => question.liked === user_id
-    );
-    this.context.setQuestionList(myLikedQuesions);
-  };
   render() {
+    console.log('line 56',this.context.questionList)
     return (
       <div className="Sidebar">
+         <section className="departments">
+          <label>Discover</label>
+          <ul className="barUl">
+            <li>
+              <span
+                onClick={() => this.props.filterAnswers()}
+                id="side__tag"
+              >
+                All Q&A's
+              </span>
+            </li>
+          </ul>
+        </section>
         <section className="myQs">
-          <Link id="side__tag" to="/Dashboard">
-            All Q&As
-          </Link>
+   
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
