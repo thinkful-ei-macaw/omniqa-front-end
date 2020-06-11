@@ -9,10 +9,6 @@ export class Answer extends Component {
   static contextType = QuestionContext;
   componentDidMount = () => {
     this.context.clearError();
-
-    AnswerApiService.getAnswers()
-      .then(this.context.setAnswerList)
-      .catch(this.context.setError);
   };
 
   render() {

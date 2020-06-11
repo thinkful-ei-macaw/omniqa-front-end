@@ -41,11 +41,11 @@ export class Dashboard extends Component {
   };
 
   filterAsked = () => {
-    this.setState({filterAsked: !this.state.filterAsked})
+    this.setState({ filterAsked: !this.state.filterAsked })
   };
 
   filterLiked = () => {
-    this.setState({filterLiked: !this.state.filterLiked})
+    this.setState({ filterLiked: !this.state.filterLiked })
   };
 
   filterQuestionLikes = (id) => {
@@ -66,14 +66,14 @@ export class Dashboard extends Component {
     QuestionsApiService.likeQuestion(question_id, user_id);
     this.likeBtnColor(question_id);
   };
- 
+
 
   handleDeleteQuestion = (id, author) => {
     const { user_id } = TokenService.readJwtToken();
 
     if (author !== user_id) {
       return alert(`You can only delete your own questions`)
-    } 
+    }
 
     QuestionsApiService.deleteQuestions(id)
     let newQuestionList = this.context.questionList.filter(
@@ -122,25 +122,25 @@ export class Dashboard extends Component {
 
       questions = questions.filter((question) => {
         console.log(this.context)
-        return this.context.userLikedQuestions.includes(question.id) 
-        
+        return this.context.userLikedQuestions.includes(question.id)
+
       })
       console.log(questions)
     }
 
     if (filterUnansweredQs) {
-     let answered = answers.map((answer) => { 
+      let answered = answers.map((answer) => {
         return answer.question
       })
-     answered = new Set(answered)
-     questions = questions.filter(question => !answered.has(question.id))
+      answered = new Set(answered)
+      questions = questions.filter(question => !answered.has(question.id))
     }
 
-// answers.map(answer => answer.question)
+    // answers.map(answer => answer.question)
 
-// answered = answers.map...
+    // answered = answers.map...
 
-// questions.filter(q => answered.includes(q.id))
+    // questions.filter(q => answered.includes(q.id))
     // console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
 
     return (
@@ -148,10 +148,10 @@ export class Dashboard extends Component {
         <NavBar />
 
         <section className="main">
-          <Sidebar filterUnansweredQs={this.filterUnansweredQs} filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
+          <Sidebar filterUnansweredQs={this.filterUnansweredQs} filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked} />
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
-           btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
-          
+            answers={answers} btnColors={this.state.btnColors} userID={user_id} questions={questions} />
+
           <Sort />
         </section>
       </div>
