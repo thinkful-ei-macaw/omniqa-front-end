@@ -18,10 +18,9 @@ export class Dashboard extends Component {
     filterID: null,
     filterAsked: false,
     filterLiked: false,
-    filterAnswers: false,
+    filterUnansweredQs: false,
     btnColors: {},
     questionsLiked: null,
-
   };
 
   static contextType = QuestionContext;
@@ -52,9 +51,9 @@ export class Dashboard extends Component {
     });
   };
 
-  filterAnswers = () => {
+  filterUnansweredQs = () => {
     this.setState({
-      filterAnswers: !this.state.filterAnswers
+      filterUnansweredQs: !this.state.filterUnansweredQs
     })
   }
 
@@ -97,9 +96,9 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const { filterID, filterAsked, filterLiked, filterAnswers } = this.state;
+    const { filterID, filterAsked, filterLiked, filterUnansweredQs } = this.state;
     let answers = this.context.answerList;
-    console.log(answers)
+    console.log('these are the answers', answers)
     const { user_id } = TokenService.readJwtToken()
     let questions = this.context.questionList;
 
@@ -125,15 +124,14 @@ export class Dashboard extends Component {
       console.log(questions)
     }
 
-    if (filterAnswers) {
-      answers = answers.filter((answer) => { 
-        return answer.answer_body === questions.id
+    if (filterUnansweredQs) {
+      console.log('unfiltered questions =', questions)
+      questions = questions.filter((question) => { 
+        return question.answered === false
+        
       })
-    }
 
-  //  .map(answer => answer.answer_body))
-  //     return answers
-  //   }
+    }
 
   //   console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
 
@@ -141,7 +139,7 @@ export class Dashboard extends Component {
       <div className="dashboard">
         <NavBar />
         <section className="main">
-          <Sidebar filterAnswers={this.filterAnswers} filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
+          <Sidebar filterUnansweredQs={this.filterUnansweredQs} filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
            btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
           

@@ -48,6 +48,11 @@ a#side__tag:hover {
   font-weight: 600;
 }
 
+a#side_tag:focus{
+  color: #785380;
+  font-weight: 600;
+}
+
 span#side__tag:hover {
   color: #785380;
   font-weight: 600;
