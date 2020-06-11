@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import UserContext from '../../Context/UserContext';
-import './Sort.css';
-import { Link } from 'react-router-dom';
+
+import React, { Component } from "react";
+import QuestionContext from "../../Context/QuestionContext";
+import "./Sort.css";
+import { Link } from "react-router-dom";
 
 export class Sort extends Component {
-  static contextType = UserContext;
+  static contextType = QuestionContext;
 
   render() {
     return (

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./Registration.css";
 import { Link } from "react-router-dom";
 import AuthApiService from "../../Services/auth-api-service";
-import UserContext from "../../Context/UserContext";
-import TokenService from "../../Services/TokenService"
+import QuestionContext from "../../Context/QuestionContext";
+import TokenService from "../../Services/TokenService";
 import img from "./logo.png";
 
 export class Registration extends Component {
@@ -11,7 +11,7 @@ export class Registration extends Component {
     onRegistrationSuccess: () => {},
   };
 
-  static contextType = UserContext;
+  static contextType = QuestionContext;
 
   state = { error: null };
   handleSubmit = (ev) => {
@@ -28,7 +28,7 @@ export class Registration extends Component {
         name: name.value,
       })
         .then((user) => {
-        this.onRegistrationSuccess(username.value, password.value);
+          this.onRegistrationSuccess(username.value, password.value);
           name.value = "";
           username.value = "";
           password.value = "";
@@ -39,11 +39,11 @@ export class Registration extends Component {
     }
   };
   onRegistrationSuccess = (username, password) => {
-    console.log('check')
+    console.log("check");
     AuthApiService.postLogin({
-        username: username,
-        password: password
-      })
+      username: username,
+      password: password,
+    })
       .then((res) => {
         TokenService.saveAuthToken(res.authToken);
         const { history } = this.props;
@@ -51,7 +51,7 @@ export class Registration extends Component {
       })
       .catch((res) => {
         this.setState({
-          error: res.error.message
+          error: res.error.message,
         });
       });
   };
@@ -113,12 +113,11 @@ export class Registration extends Component {
             <br />
 
             <br />
-           
-            
+
             <button className="submit-form" type="submit">
               Register
             </button>
-         
+
             <Link to="/dashboard">
               {" "}
               <button type="button">Log in</button>
