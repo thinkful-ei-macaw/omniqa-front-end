@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import TokenService from "../Services/TokenService";
+import QuestionsApiService from "../Services/questions-service";
+import AnswersApiService from "../Services/answers-service";
+import DepartmentService from "../Services/departments-service";
+import QuestionApiService from '../Services/questions-service';
 
 const QuestionContext = React.createContext({
   user: {},
@@ -9,6 +13,7 @@ const QuestionContext = React.createContext({
   error: null,
   questionList: [],
   answerList: [],
+  userLikedQuestions: [],
 
   departmentList: [],
   setError: () => {},
@@ -21,6 +26,8 @@ const QuestionContext = React.createContext({
   setUser: () => {},
   processLogin: () => {},
   processLogout: () => {},
+  deleteQuestions: () => {},
+  loadData: () => {}
 });
 
 export default QuestionContext;
@@ -37,6 +44,8 @@ export class QuestionProvider extends Component {
       answerList: [],
       error: null,
       likedQuestions: true,
+
+      userLikedQuestions: []
     };
     if (TokenService.hasAuthToken()) {
       const jwtPayload = TokenService.getInfoFromToken();
@@ -81,11 +90,15 @@ export class QuestionProvider extends Component {
   setAnswerList = (answerList) => {
     this.setState({ answerList });
   };
+  
   setUser = (user) => {
     this.setState({ user });
   };
-  userLikedQuestions = (likedQuestions) => {
-    this.setState({ likedQuestions: true });
+
+  setUserLikedQuestions = (userLikedQs) => {
+    let ids = userLikedQs.map(likedQuestions => likedQuestions.question_id)
+   
+    this.setState({ userLikedQuestions: ids });
   };
 
   processLogin = (authToken) => {
@@ -104,10 +117,34 @@ export class QuestionProvider extends Component {
     this.setUser({});
   };
 
+  deleteQuestions = (questionList) => {
+    this.setState({
+      questionList
+    })
+  };
+
+  loadData = () => {
+ return Promise.all([
+   QuestionsApiService.getQuestions(),
+   AnswersApiService.getAnswers(),
+   DepartmentService.getDepartments(),
+   QuestionApiService.userLikedQuestions()
+ ]).then((results) => {
+   const questions = results[0];
+   const answers = results[1];
+   const departments = results[2];
+   const userLikedQs = results[3];
+   this.setQuestionList(questions);
+   this.setAnswerList(answers);
+   this.setDepartmentList(departments);
+   this.setUserLikedQuestions(userLikedQs)
+ });
+ }
+
   render() {
     const value = {
       user: this.state.user,
-
+      userLikedQuestions: this.state.userLikedQuestions,
       answerList: this.state.answerList,
       answer: this.state.answer,
       questionList: this.state.questionList,
@@ -124,6 +161,9 @@ export class QuestionProvider extends Component {
       setUser: this.setUser,
       processLogin: this.processLogin,
       processLogout: this.processLogout,
+      deleteQuestions: this.deleteQuestions,
+      loadData: this.loadData,
+      // setUserLikedQuestions: this.setUserLikedQuestions
     };
     return (
       <QuestionContext.Provider value={value}>

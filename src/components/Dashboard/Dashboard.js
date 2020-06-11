@@ -1,41 +1,51 @@
+
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
 import config from "../../config";
 import QuestionContext from "../../Context/QuestionContext";
+import QuestionList from "../../components/QuestionList/QuestionList";
 import Sidebar from "../Sidebar/Sidebar";
 import QuestionsApiService from "../../Services/questions-service";
-import Moment from "react-moment";
 import Answer from "../Answer/Answer";
 import Sort from "../Sort/Sort";
 import DepartmentService from "../../Services/departments-service";
+import Question from "../Question/Question";
+import TokenService from "../../Services/TokenService";
 
 export class Dashboard extends Component {
   state = {
     /**filterID is for filtering departmentID */
     filterID: null,
+
+    filterAsked: false,
+    filterLiked: false,
     btnColors: {},
     questionsLiked: null,
+
   };
 
   static contextType = QuestionContext;
 
   componentDidMount() {
+    console.log('28', this.context)
     this.context.clearError();
 
-    QuestionsApiService.getQuestions()
-      .then(this.context.setQuestionList)
-      .catch(this.context.setError);
-
-    DepartmentService.getDepartments()
-      .then(this.context.setDepartmentList)
-      .catch(this.context.setError);
   }
 
   filterQuestions = (id) => {
     this.setState({
+
       filterID: id,
     });
+  };
+
+  filterAsked = () => {
+    this.setState({filterAsked: !this.state.filterAsked})
+  };
+
+  filterLiked = () => {
+    this.setState({filterLiked: !this.state.filterLiked})
   };
 
   filterQuestionLikes = (id) => {
@@ -50,6 +60,22 @@ export class Dashboard extends Component {
     QuestionsApiService.likeQuestion(question_id, user_id);
     this.likeBtnColor(question_id);
   };
+ 
+
+  handleDeleteQuestion = (id, author) => {
+    const { user_id } = TokenService.readJwtToken();
+
+    if (author !== user_id) {
+      return alert(`You can only delete your own questions`)
+    } 
+
+    QuestionsApiService.deleteQuestions(id)
+    let newQuestionList = this.context.questionList.filter(
+      (question) => question.id !== id
+    );
+    this.context.setQuestionList(newQuestionList);
+  };
+
 
   likeBtnColor = (id) => {
     /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
@@ -60,6 +86,7 @@ export class Dashboard extends Component {
  otherwise set it to the opposite of what it currently is */
 
     let btnColors = this.state.btnColors;
+
     btnColors[id] =
       typeof btnColors[id] === "undefined" ? true : !btnColors[id];
     this.setState({
@@ -68,55 +95,41 @@ export class Dashboard extends Component {
   };
 
   render() {
-    const { filterID } = this.state;
-    const questions = filterID
-      ? this.context.questionList.filter((question) => {
-          return question.department === filterID;
-        })
-      : this.context.questionList;
-    const departments = this.context.departmentList;
-    console.log(departments);
-    console.log(questions);
-    console.log(this.context.questionList);
+
+    const { filterID, filterAsked, filterLiked } = this.state;
+    const { user_id } = TokenService.readJwtToken()
+    let questions = this.context.questionList;
+    if (filterID) {
+      questions = questions.filter((question) => {
+        return question.department === filterID;
+      })
+    }
+
+    if (filterAsked) {
+      questions = questions.filter((question) => {
+        return question.author === user_id
+      })
+    }
+
+    if (filterLiked) {
+
+      questions = questions.filter((question) => {
+        console.log(this.context)
+        return this.context.userLikedQuestions.includes(question.id) 
+        
+      })
+      console.log(questions)
+    }
+
     return (
       <div className="dashboard">
         <NavBar />
+
         <section className="main">
-          <Sidebar filterQuestions={this.filterQuestions} />
-          <div className="questionList">
-            <h1>Latest Questions</h1>
-            <ul className="qMap">
-              {questions.map((question) => (
-                <li className="qLi" key={question.id}>
-                  <span className="questionHead">{question.question_body}</span>
-                  <br />
-                  <br />
-                  <span className="datePosted">
-                    Posted on{" "}
-                    <Moment format="YYYY/MM/DD">{question.created_date}</Moment>{" "}
-                    by {question.user_name}
-                  </span>
-                  <br />
-                  <br />
-                  {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                  <button
-                    style={{
-                      backgroundColor: this.state.btnColors[question.id]
-                        ? "#785380"
-                        : "white",
-                    }}
-                    onClick={() => this.handleQuestionLike(question.id)}
-                    id="likeButton"
-                  >
-                    Like
-                  </button>{" "}
-                  <span className="hashtag">#{question.department_name}</span>
-                  <br />
-                  <br />
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Sidebar filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
+          <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
+           btnColors={this.state.btnColors} userID={user_id} questions={questions}/>
+          
           <Sort />
         </section>
       </div>

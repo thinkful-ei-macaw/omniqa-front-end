@@ -19,7 +19,6 @@ export class Login extends Component {
     ev.preventDefault();
     this.setState({ error: null });
     const { username, password } = ev.target;
-    console.log(username, password);
     AuthApiService.postLogin({
       username: username.value,
       password: password.value,
@@ -34,47 +33,12 @@ export class Login extends Component {
         this.setState({ error: res.error.message });
       });
   };
-
   onLoginSuccess = () => {
+    this.context.loadData()
     const { history } = this.props;
     history.push("/Dashboard");
   };
 
-  //===================uncomment this out once login is ready!!if needed????==========
-
-  //  static defaultProps = {
-  //     onLoginSuccess: () => {},
-  //   };
-
-  //   static contextType = QuestionContext;
-
-  //   state = { error: null };
-
-  //   firstInput = React.createRef();
-  //   handleSubmit = (ev) => {
-  //     ev.preventDefault();
-  //     const { username, password } = ev.target;
-
-  //     this.setState({ error: null });
-
-  //     AuthApiService.postLogin({
-  //       username: username.value,
-  //       password: password.value,
-  //     })
-  //       .then((res) => {
-  //         username.value = "";
-  //         password.value = "";
-  //         this.context.processLogin(res.authToken);
-  //         this.props.onLoginSuccess();
-  //       })
-  //       .catch((res) => {
-  //         this.setState({ error: res.error });
-  //       });
-  //   };
-
-  //   componentDidMount() {
-  //     this.firstInput.current.focus();
-  //   }
   render() {
     const { error } = this.state;
     return (
