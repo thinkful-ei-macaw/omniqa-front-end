@@ -54,6 +54,7 @@ export class Sidebar extends Component {
 
   render() {
     return (
+
       <div className="Sidebar">
         <section className="myQs">
           <Link id="side__tag" to="/Dashboard">
@@ -114,6 +115,24 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
+      </div>
+      <div className='Sidebar2'>
+        <select>
+          <option>All Q&As</option>
+          <option disabled id='optionDis'>Qs that I...</option>
+          <option>Asked</option>
+          <option>Answered</option>
+          <option>Voted</option>
+          <option>Liked</option>
+          <option disabled id='optionDis'>Departments</option>
+           {this.state.department.map(department => (
+       <>
+      <option><span id='side__tag' onClick={() => this.props.filterQuestions(department.id)}>{department.name}</span></option> 
+      <br/>
+      </>
+    ))}
+        </select>
+      </div>
       </div>
     );
   }

@@ -26,6 +26,7 @@ export class NavBar extends Component {
               alt="omni--logo"
             />
           </li>
+
           <li>
             <form className="search-bar">
               <input
@@ -42,6 +43,7 @@ export class NavBar extends Component {
               />
             </form>
           </li>
+
           <li className="span1">
             <span>Q&A Home</span>
           </li>
@@ -53,6 +55,7 @@ export class NavBar extends Component {
               <button id="question-btn">Ask a question</button>
             </Link>
           </li>
+
           <li className="selector">
             <select type="select" onChange={this.handleLogoutClick}>
               <option disabled>
@@ -62,7 +65,14 @@ export class NavBar extends Component {
             </select>
           </li>
         </ul>
-        <div className="line"></div>
+        <li className='selector'>
+          <span>
+            Hello, {TokenService.getInfoFromToken().sub}!{'   '}
+          </span>
+          <Link id='logoutlink'>Logout</Link>
+        </li>
+        <ul />
+        <div className='line' />
       </nav>
     );
   }

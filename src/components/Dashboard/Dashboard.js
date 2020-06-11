@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.css";
@@ -16,10 +17,12 @@ export class Dashboard extends Component {
   state = {
     /**filterID is for filtering departmentID */
     filterID: null,
+
     filterAsked: false,
     filterLiked: false,
     btnColors: {},
     questionsLiked: null,
+
   };
 
   static contextType = QuestionContext;
@@ -32,6 +35,7 @@ export class Dashboard extends Component {
 
   filterQuestions = (id) => {
     this.setState({
+
       filterID: id,
     });
   };
@@ -72,6 +76,7 @@ export class Dashboard extends Component {
     this.context.setQuestionList(newQuestionList);
   };
 
+
   likeBtnColor = (id) => {
     /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
 
@@ -81,6 +86,7 @@ export class Dashboard extends Component {
  otherwise set it to the opposite of what it currently is */
 
     let btnColors = this.state.btnColors;
+
     btnColors[id] =
       typeof btnColors[id] === "undefined" ? true : !btnColors[id];
     this.setState({
@@ -89,6 +95,7 @@ export class Dashboard extends Component {
   };
 
   render() {
+
     const { filterID, filterAsked, filterLiked } = this.state;
     const { user_id } = TokenService.readJwtToken()
     let questions = this.context.questionList;
@@ -117,6 +124,7 @@ export class Dashboard extends Component {
     return (
       <div className="dashboard">
         <NavBar />
+
         <section className="main">
           <Sidebar filterQuestions={this.filterQuestions} filterAsked={this.filterAsked} filterLiked={this.filterLiked}/>
           <QuestionList handleQuestionLike={this.handleQuestionLike} handleDeleteQuestion={this.handleDeleteQuestion}
