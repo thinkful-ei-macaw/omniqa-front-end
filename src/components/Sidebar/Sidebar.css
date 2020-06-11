@@ -48,7 +48,7 @@ a#side__tag:hover {
   font-weight: 600;
 }
 
-a#side_tag:focus{
+.active a#side_tag:focus{
   color: #785380;
   font-weight: 600;
 }
