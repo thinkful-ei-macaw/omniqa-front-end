@@ -44,6 +44,7 @@ export class Sidebar extends Component {
   //for a specific user_id (which you know how to obtained by using TokenService.readJwtToken();
   // and then set the liked attribute of the question to true.
 
+
   // filterMyLikedQuestions = () => {
   //   const { user_id } = TokenService.readJwtToken();
   //   let myLikedQuesions = this.context.questionList.filter(
@@ -52,6 +53,13 @@ export class Sidebar extends Component {
   //   this.context.setQuestionList(myLikedQuesions);
   // };
 
+  filterMyLikedQuestions = () => {
+    const { user_id } = TokenService.readJwtToken();
+    let myLikedQuesions = this.context.questionList.filter(
+      (question) => question.liked === user_id
+    );
+    this.context.setQuestionList(myLikedQuesions);
+  };
   render() {
     return (
 
@@ -80,6 +88,7 @@ export class Sidebar extends Component {
               </Link>
             </li>
             <li>
+
               <span
                 onClick={() => this.props.filterLiked()}
                 id="side__tag"

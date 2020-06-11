@@ -44,6 +44,7 @@ export class QuestionProvider extends Component {
       answerList: [],
       error: null,
       likedQuestions: true,
+
       userLikedQuestions: []
     };
     if (TokenService.hasAuthToken()) {
@@ -93,6 +94,7 @@ export class QuestionProvider extends Component {
   setUser = (user) => {
     this.setState({ user });
   };
+
   setUserLikedQuestions = (userLikedQs) => {
     let ids = userLikedQs.map(likedQuestions => likedQuestions.question_id)
    
