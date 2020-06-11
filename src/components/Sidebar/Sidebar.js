@@ -41,7 +41,7 @@ export class Sidebar extends Component {
   // };
 
   render() {
-    console.log('line 56',this.context.questionList)
+    // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
          <section className="departments">
@@ -49,10 +49,10 @@ export class Sidebar extends Component {
           <ul className="barUl">
             <li>
               <span
-                onClick={() => this.props.filterAnswers()}
+                onClick={() => this.props.filterUnansweredQs()}
                 id="side__tag"
               >
-                All Q&A's
+                Unanswered Q's
               </span>
             </li>
           </ul>
@@ -90,7 +90,7 @@ export class Sidebar extends Component {
                 onClick={() => this.props.filterQuestions(null)}
                 id="side__tag"
               >
-                All tags
+                All Departments
               </span>
             </li>
             {this.state.department.map((department) => (

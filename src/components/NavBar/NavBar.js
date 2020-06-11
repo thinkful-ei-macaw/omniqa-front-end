@@ -45,10 +45,10 @@ export class NavBar extends Component {
           </li>
 
           <li className="span1">
-            <span>Q&A Home</span>
+        
           </li>
           <li className="span2">
-            <span>Answer Q's</span>
+           
           </li>
           <li>
             <Link id="link" to="/Question">

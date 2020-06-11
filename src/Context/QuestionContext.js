@@ -44,8 +44,8 @@ export class QuestionProvider extends Component {
       answerList: [],
       error: null,
       likedQuestions: true,
-
-      userLikedQuestions: []
+      userLikedQuestions: [],
+      unansweredQuestions: []
     };
     if (TokenService.hasAuthToken()) {
       const jwtPayload = TokenService.getInfoFromToken();
@@ -98,6 +98,12 @@ export class QuestionProvider extends Component {
   setUserLikedQuestions = (userLikedQs) => {
     let ids = userLikedQs.map(likedQuestions => likedQuestions.question_id)
     this.setState({ userLikedQuestions: ids });
+  };
+
+  setUnansweredQuestions = (unansweredQs) => {
+   this.setState({
+    unansweredQuestions: unansweredQs
+   });
   };
 
   processLogin = (authToken) => {
@@ -162,6 +168,7 @@ export class QuestionProvider extends Component {
       processLogout: this.processLogout,
       deleteQuestions: this.deleteQuestions,
       loadData: this.loadData,
+      setUnansweredQuestions: this.setUnansweredQuestions
       // setUserLikedQuestions: this.setUserLikedQuestions
     };
     return (
