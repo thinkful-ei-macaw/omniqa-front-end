@@ -40,6 +40,8 @@ class App extends Component {
             />
             <PublicOnlyRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/Question" component={Question} />
+
             <PrivateRoute
               exact
               path="/unanswered-questions"
