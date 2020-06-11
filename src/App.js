@@ -24,36 +24,37 @@ class App extends Component {
 
   componentDidMount = () => {
     if (TokenService.hasAuthToken()) {
-     this.context.loadData()
+      this.context.loadData();
     }
   };
 
   render() {
     return (
-        <div className="App">
-          <BrowserRouter>
-            <PublicOnlyRoute exact path="/" component={LandingPage} />
-            <PublicOnlyRoute exact path="/info" component={InfoPage} />
-            <PublicOnlyRoute
-              exact
-              path="/registration"
-              component={Registration}
-            />
-            <PublicOnlyRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
-            <PrivateRoute
-              exact
-              path="/unanswered-questions"
-              component={UnansweredQuestions}
-            />
+      <div className="App">
+        <BrowserRouter>
+          <PublicOnlyRoute exact path="/" component={LandingPage} />
+          <PublicOnlyRoute exact path="/info" component={InfoPage} />
+          <PublicOnlyRoute
+            exact
+            path="/registration"
+            component={Registration}
+          />
+          <PublicOnlyRoute exact path="/login" component={Login} />
+          <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/Question" component={Question} />
+          <PrivateRoute
+            exact
+            path="/unanswered-questions"
+            component={UnansweredQuestions}
+          />
 
-            <PrivateRoute
-              exact
-              path="/post-answer/:question_id"
-              component={PostAnswer}
-            />
-          </BrowserRouter>
-        </div>
+          <PrivateRoute
+            exact
+            path="/post-answer/:question_id"
+            component={PostAnswer}
+          />
+        </BrowserRouter>
+      </div>
     );
   }
 }

@@ -58,21 +58,21 @@ export class NavBar extends Component {
 
           <li className="selector">
             <select type="select" onChange={this.handleLogoutClick}>
-              <option disabled>
-                {TokenService.getInfoFromToken().sub}
-              </option>
+              <option disabled>{TokenService.getInfoFromToken().sub}</option>
               <option>Logout</option>
             </select>
           </li>
         </ul>
-        <li className='selector'>
+        <li className="selector">
           <span>
-            Hello, {TokenService.getInfoFromToken().sub}!{'   '}
+            Hello, {TokenService.getInfoFromToken().sub}!{"   "}
           </span>
-          <Link id='logoutlink'>Logout</Link>
+          <Link to="/login" id="logoutlink">
+            Logout
+          </Link>
         </li>
         <ul />
-        <div className='line' />
+        <div className="line" />
       </nav>
     );
   }
