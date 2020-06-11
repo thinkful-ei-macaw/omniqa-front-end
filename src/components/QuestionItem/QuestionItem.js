@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Moment from "react-moment";
+import './QuestionItem.css';
 
 function QuestionItem(props) {
 
@@ -17,10 +18,21 @@ function QuestionItem(props) {
             </span>
             {props.answers.filter(answer => answer.question == props.question.id).map(answer =>
 
-                <div>
-                    <p>Answered By</p>
-                    {answer.user_name}
-                    <p>{answer.answer_body}</p>
+                <div className="answer_body">
+
+
+                    <div className="question_answer_body">
+                        <p className="answer-title">Question Answer</p>
+                        <div className="answer">
+                            <p>{answer.answer_body}</p>
+                        </div>
+                    </div>
+                    <div className="answer-user">
+                        <p className="answer-title">Answered By</p>
+                        {answer.user_name}
+                    </div>
+
+
                 </div>
             )}
             <br />
