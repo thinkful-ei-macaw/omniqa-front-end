@@ -15,7 +15,14 @@ function QuestionItem(props) {
                 <Moment format="YYYY/MM/DD">{question.created_date}</Moment>{" "}
                 by {question.user_name}
             </span>
-            {props.answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body)}
+            {props.answers.filter(answer => answer.question == props.question.id).map(answer =>
+
+                <div>
+                    <p>Answered By</p>
+                    {answer.user_name}
+                    <p>{answer.answer_body}</p>
+                </div>
+            )}
             <br />
             <br />
             {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
