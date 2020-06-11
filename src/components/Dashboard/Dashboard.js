@@ -125,15 +125,19 @@ export class Dashboard extends Component {
     }
 
     if (filterUnansweredQs) {
-      console.log('unfiltered questions =', questions)
-      questions = questions.filter((question) => { 
-        return question.answered === false
-        
+     let answered = answers.map((answer) => { 
+        return answer.question
       })
-
+     answered = new Set(answered)
+     questions = questions.filter(question => !answered.has(question.id))
     }
 
-  //   console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
+// answers.map(answer => answer.question)
+
+// answered = answers.map...
+
+// questions.filter(q => answered.includes(q.id))
+    // console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
 
     return (
       <div className="dashboard">
