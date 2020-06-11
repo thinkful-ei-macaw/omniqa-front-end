@@ -48,6 +48,8 @@ button {
   border-radius: 8px;
   margin: 0px 2px 0px 2px;
   color: white;
+  background-color: #785380;
+  border: none;
 }
 
 #magn {

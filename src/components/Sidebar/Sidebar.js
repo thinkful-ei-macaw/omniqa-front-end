@@ -62,6 +62,7 @@ export class Sidebar extends Component {
   render() {
     return (
       <div className="Sidebar">
+        <div className='Sidebar1'>
         <section className="myQs">
           <Link id="side__tag" to="/Dashboard">
             All Q&As
@@ -114,6 +115,7 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
+        </div>
         <div className="Sidebar2">
           <select>
             <option>All Q&As</option>
