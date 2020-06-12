@@ -14,70 +14,67 @@ export class Question extends Component {
     this.state = {
       value: 1,
       questions: [],
-      department: []
-    }
+      department: [],
+    };
     // this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     let departmentList = [];
-    DepartmentApiService.getDepartments()
-      .then(data => {
-        console.log(data)
-        departmentList = data.map((department) => {
-          return department
-        });
-        console.log(departmentList)
-        this.setState({
-          department: departmentList
-        })
-      })
+    DepartmentApiService.getDepartments().then((data) => {
+      console.log(data);
+      departmentList = data.map((department) => {
+        return department;
+      });
+      console.log(departmentList);
+      this.setState({
+        department: departmentList,
+      });
+    });
   }
-
 
   static contextType = QuestionContext;
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log('successful submit question')
+    console.log("successful submit question");
     const newQuestion = {
       question_body: e.target["question_body"].value,
       department_id: this.state.value,
       // author: e.target.user_id,
       // e.target["department"].value,
     };
-    console.log(newQuestion)
+    console.log(newQuestion);
 
-    QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
-      .then(() => this.props.history.push("/unanswered-questions"))
+    QuestionsApiService.postQuestion(
+      newQuestion.question_body,
+      newQuestion.department_id
+    )
+      .then(() => this.props.history.push("/Dashboard"))
       .catch(this.context.setError);
-      console.log(this.props.history)
-
-
+    console.log(this.props.history);
   };
 
   handleChange(event) {
     this.setState({
-      value: event.target.value
-    })
+      value: event.target.value,
+    });
   }
 
   render() {
-
-    console.log(this.state.department.map(department => department.id))
-    let departments = this.state.department
-    let departmentItems = this.state.department.map(department =>
+    console.log(this.state.department.map((department) => department.id));
+    let departments = this.state.department;
+    let departmentItems = this.state.department.map((department) => (
       <option value={department.id}>{department.name}</option>
-    )
+    ));
     // let departmentItems = departments.map((department) =>
     //   <option key={department.name}>{department.name}</option>)
     return (
       <div className="Question">
         <NavBar />
-        <form className="question form" onSubmit={e => this.handleSubmit(e)}>
+        <form className="question form" onSubmit={(e) => this.handleSubmit(e)}>
           <fieldset>
-    
-            <br/>
+            <br />
             <label htmlFor="input-one">question</label>
             <input
               className="form-control"
@@ -87,19 +84,18 @@ export class Question extends Component {
               onChange={this.handleSubmit}
               id="question"
               placeholder="ask...."
-              onChange={e => this.setState({ questions: e.target.value })}
+              onChange={(e) => this.setState({ questions: e.target.value })}
             />
             <br />
             <label htmlFor="input-one">department</label>
-            <select value={this.state.value} onChange={e => this.handleChange(e)}>
+            <select
+              value={this.state.value}
+              onChange={(e) => this.handleChange(e)}
+            >
               {departmentItems}
             </select>
             <br />
-            <button
-              type="submit"
-            >
-              ASK
-            </button>
+            <button type="submit">ASK</button>
           </fieldset>
         </form>
         <Link to="/Dashboard">
