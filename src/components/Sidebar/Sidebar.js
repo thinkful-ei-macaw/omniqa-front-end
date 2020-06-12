@@ -63,13 +63,13 @@ export class Sidebar extends Component {
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
-              <span style={{color: this.props.askedStatus ? '#785380' : 'grey'}} onClick={() => this.props.filterAsked()} id="side__tag">
+              <span style={{color: this.props.askedStatus ? '#785380' : 'grey', fontWeight: this.props.askedStatus ? '600' : '400'}} onClick={() => this.props.filterAsked()} id="side__tag">
                 Asked
               </span>
 
             </li>
             <li>
-              <span style={{color: this.props.likedStatus ? '#785380' : 'grey'}} onClick={() => this.props.filterLiked()} id="side__tag">
+              <span style={{color: this.props.likedStatus ? '#785380' : 'grey', fontWeight: this.props.likedStatus ? '600' : '400'}} onClick={() => this.props.filterLiked()} id="side__tag">
                 Liked
               </span>
             </li>
