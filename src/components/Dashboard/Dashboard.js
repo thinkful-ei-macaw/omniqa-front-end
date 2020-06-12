@@ -98,6 +98,8 @@ export class Dashboard extends Component {
   };
 
   render() {
+    let id = this.context.questionList.map(id => id.id)
+    console.log(id)
     const { filterID, filterAsked, filterLiked, filterUnansweredQs } = this.state;
     let answers = this.context.answerList;
     const { user_id } = TokenService.readJwtToken();
@@ -137,7 +139,7 @@ export class Dashboard extends Component {
 
     // questions.filter(q => answered.includes(q.id))
     // console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
-
+    console.log(questions)
     return (
       <div className='dashboard'>
         <NavBar />

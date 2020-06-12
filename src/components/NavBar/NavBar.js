@@ -8,7 +8,7 @@ import TokenService from "../../Services/TokenService";
 export class NavBar extends Component {
   static contextType = QuestionContext;
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleLogoutClick = () => {
     console.log("clicked");
@@ -17,6 +17,9 @@ export class NavBar extends Component {
   };
 
   render() {
+
+
+
     return (
       <nav className="nav">
         <ul id="wholeNav">

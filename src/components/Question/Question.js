@@ -47,8 +47,11 @@ export class Question extends Component {
     console.log(newQuestion);
 
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
-      .then(() => this.props.history.push('/Dashboard'))
+      .then(() => this.props.history.push("/Dashboard"))
       .catch(this.context.setError);
+    console.log(this.props.history)
+
+
   };
 
   handleChange(event) {
