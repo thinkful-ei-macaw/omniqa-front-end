@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import './QuestionItem.css';
+import TokenService from '../../Services/TokenService';
 
 function QuestionItem(props) {
   let question = props.question;
@@ -23,14 +24,15 @@ function QuestionItem(props) {
           </div>
           <div className='answer-user'>
             <p className='answer-title'>Answered By</p>
-            {answer.author}
+            {answer.user_name}
           </div>
         </div>
       ))}
       <br />
       <br />
       {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-      {question.author === props.userID && (
+      {console.log(props.user_id)}
+      {question.author === props.user_id && (
         <button onClick={() => props.handleDeleteQuestion(question.id, question.author)}>Delete</button>
       )}
       <button

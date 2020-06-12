@@ -98,6 +98,7 @@ export class Dashboard extends Component {
     const { filterID, filterAsked, filterLiked, filterUnansweredQs } = this.state;
     let answers = this.context.answerList;
     const { user_id } = TokenService.readJwtToken();
+    console.log(user_id);
     let questions = this.context.questionList;
 
     if (filterID) {

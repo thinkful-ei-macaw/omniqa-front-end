@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./Question.css";
-import NavBar from "../NavBar/NavBar";
-import QuestionContext from "../../Context/QuestionContext";
-import QuestionsApiService from "../../Services/questions-service";
-import DepartmentApiService from "../../Services/department-api-service";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Question.css';
+import NavBar from '../NavBar/NavBar';
+import QuestionContext from '../../Context/QuestionContext';
+import QuestionsApiService from '../../Services/questions-service';
+import DepartmentApiService from '../../Services/department-api-service';
 
 export class Question extends Component {
   // Call the API on componentwillmount
@@ -14,7 +14,7 @@ export class Question extends Component {
     this.state = {
       value: 1,
       questions: [],
-      department: [],
+      department: []
     };
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -28,7 +28,7 @@ export class Question extends Component {
       });
       console.log(departmentList);
       this.setState({
-        department: departmentList,
+        department: departmentList
       });
     });
   }
@@ -37,27 +37,23 @@ export class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("successful submit question");
+    console.log('successful submit question');
     const newQuestion = {
-      question_body: e.target["question_body"].value,
-      department_id: this.state.value,
+      question_body: e.target['question_body'].value,
+      department_id: this.state.value
       // author: e.target.user_id,
       // e.target["department"].value,
     };
     console.log(newQuestion);
 
-    QuestionsApiService.postQuestion(
-      newQuestion.question_body,
-      newQuestion.department_id
-    )
-      .then(() => this.props.history.push("/Dashboard"))
+    QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
+      .then(() => this.props.history.push('/Dashboard'))
       .catch(this.context.setError);
-    console.log(this.props.history);
   };
 
   handleChange(event) {
     this.setState({
-      value: event.target.value,
+      value: event.target.value
     });
   }
 
@@ -70,40 +66,40 @@ export class Question extends Component {
     // let departmentItems = departments.map((department) =>
     //   <option key={department.name}>{department.name}</option>)
     return (
-      <div className="Question">
+      <div className='askPage'>
         <NavBar />
-        <form className="question form" onSubmit={(e) => this.handleSubmit(e)}>
-          <fieldset>
-            <br />
-            <label htmlFor="input-one">question</label>
-            <input
-              className="form-control"
-              type="text"
-              name="question_body"
-              value={this.state.question_body}
-              onChange={this.handleSubmit}
-              id="question"
-              placeholder="ask...."
-              onChange={(e) => this.setState({ questions: e.target.value })}
-            />
-            <br />
-            <label htmlFor="input-one">department</label>
-            <select
-              value={this.state.value}
-              onChange={(e) => this.handleChange(e)}
-            >
-              {departmentItems}
-            </select>
-            <br />
-            <button type="submit">ASK</button>
-          </fieldset>
-        </form>
-        <Link to="/Dashboard">
-          <button type="button">go back</button>
-        </Link>
-        <Link to="/answer">
-          <button type="button">go look at all the answers</button>
-        </Link>
+        <div className='Question'>
+          <form className='question-form' onSubmit={(e) => this.handleSubmit(e)}>
+            <fieldset>
+              <legend>Ask a Question</legend>
+              <br />
+              <div className='questBox'>
+                <textarea
+                  className='form-control'
+                  type='text-area'
+                  name='question_body'
+                  value={this.state.question_body}
+                  onChange={this.handleSubmit}
+                  id='question'
+                  placeholder='Type your question here...'
+                  onChange={(e) => this.setState({ questions: e.target.value })}
+                />
+              </div>
+              <br />
+              <div className='departBox'>
+                <label id='depa'>Department: </label>
+                <select id='departSelect' value={this.state.value} onChange={(e) => this.handleChange(e)}>
+                  {departmentItems}
+                </select>
+              </div>
+              <br />
+              <button type='submit'>Ask</button>{' '}
+              <Link to='/Dashboard'>
+                <button type='button'>Go Back</button>
+              </Link>
+            </fieldset>
+          </form>
+        </div>
       </div>
     );
   }

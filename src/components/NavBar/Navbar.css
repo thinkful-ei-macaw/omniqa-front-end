@@ -44,9 +44,11 @@ ul {
 
 button {
   font-size: 14px;
-  padding: 6px 8px 6px 8px;
+  padding: 12px 18px 12px 18px;
   border-radius: 8px;
   margin: 0px 2px 0px 2px;
+  background-color: #785380;
+  border: none;
   color: white;
 }
 
