@@ -64,12 +64,14 @@ select {
     font-weight: 600;
     width: 120px;
     text-align: left;
+    margin-bottom: 1.2em;
   }
 
   .barUl li {
     font-size: 16px;
     font-weight: 400;
     color: rgb(155, 155, 155);
+    margin-bottom: 1.2em;
   }
 
   a#side__tag {

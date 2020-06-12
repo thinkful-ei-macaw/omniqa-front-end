@@ -14,9 +14,6 @@ function QuestionItem(props) {
           <span className='questionHead' key='questionHead'>
             {question.question_body}
           </span>
-          {/* <button id='answerButton' onClick={() => props.handleAnswerQuestion(question.id)}>
-            Answer
-          </button> */}
           <Link to={`/post-answer/${question.id}`}>Answer</Link>
           <br />
           <br />
@@ -24,18 +21,20 @@ function QuestionItem(props) {
             Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
           </span>
           {props.answers.filter((answer) => answer.question == props.question.id).map((answer) => (
-            <div className='answer_body' key='answer'>
-              <div className='question_answer_body'>
-                <p className='answer-title'>Question Answer</p>
-                <div className='answer'>
-                  <p>{answer.answer_body}</p>
+            <section id='accordion__unchecked'>
+              <div className='answer_body' key='answer'>
+                <div className='question_answer_body'>
+                  <p className='answer-title'>Question Answer</p>
+                  <div className='answer'>
+                    <p>{answer.answer_body}</p>
+                  </div>
+                </div>
+                <div className='answer-user'>
+                  <p className='answer-title'>Answered By</p>
+                  {answer.user_name}
                 </div>
               </div>
-              <div className='answer-user'>
-                <p className='answer-title'>Answered By</p>
-                {answer.user_name}
-              </div>
-            </div>
+            </section>
           ))}
           <br />
           <br />
