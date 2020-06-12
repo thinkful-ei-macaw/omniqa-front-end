@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
-import magn from "./search.png";
-import QuestionContext from "../../Context/QuestionContext";
-import TokenService from "../../Services/TokenService";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import magn from './search.png';
+import QuestionContext from '../../Context/QuestionContext';
+import TokenService from '../../Services/TokenService';
 
 export class NavBar extends Component {
   static contextType = QuestionContext;
@@ -11,68 +11,42 @@ export class NavBar extends Component {
   componentDidMount() {}
 
   handleLogoutClick = () => {
+    console.log('clicked');
     this.context.processLogout();
-    window.location = "/login";
+    window.location = '/login';
   };
 
   render() {
     return (
-      <nav className="nav">
-        <ul id="wholeNav">
-          <li id="logoicon">
-            <img
-              className="logoicon"
-              src={require("./logoicon.png")}
-              alt="omni--logo"
-            />
+      <nav className='nav'>
+        <ul id='wholeNav'>
+          <li id='logoicon'>
+            <img className='logoicon' src={require('./logoicon.png')} alt='omni--logo' />
           </li>
-
           <li>
-            <form className="search-bar">
-              <input
-                type="text"
-                placeholder="Search for questions..."
-                id="search-text-input"
-              />
-              <input
-                type="image"
-                name="submit"
-                id="magn"
-                src={magn}
-                alt="magnifying-glass"
-              />
+            <form className='search-bar'>
+              <input type='text' placeholder='Search for questions...' id='search-text-input' />
+              <input type='image' name='submit' id='magn' src={magn} alt='magnifying-glass' />
             </form>
           </li>
-
-          <li className="span1">
-        
-          </li>
-          <li className="span2">
-           
-          </li>
+          <li className='span1' />
+          <li className='span2' />
           <li>
-            <Link id="link" to="/Question">
-              <button id="question-btn">Ask a question</button>
+            <Link id='link' to='/Question'>
+              <button id='question-btn'>Ask a question</button>
             </Link>
           </li>
-
-          <li className="selector">
-            <select type="select" onChange={this.handleLogoutClick}>
-              <option disabled>{TokenService.getInfoFromToken().sub}</option>
-              <option>Logout</option>
-            </select>
-          </li>
         </ul>
-        <li className="selector">
+        <li className='selector'>
           <span>
-            Hello, {TokenService.getInfoFromToken().sub}!{"   "}
+            Hello, {TokenService.getInfoFromToken().sub}!{'   '}
           </span>
-          <Link to="/login" id="logoutlink">
+          <Link onClick={this.handleLogoutClick} id='logoutlink'>
             Logout
           </Link>
         </li>
         <ul />
-        <div className="line" />
+        <div className='line' />
       </nav>
     );
   }

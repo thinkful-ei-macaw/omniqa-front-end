@@ -21,13 +21,14 @@ export class Dashboard extends Component {
     filterLiked: false,
     filterUnansweredQs: false,
     btnColors: {},
-    questionsLiked: null
+    questionsLiked: null,
+    currentPageTitle: 'Latest Questions'
   };
 
   static contextType = QuestionContext;
 
   componentDidMount() {
-    QuestionsApiService.getQuestions.then(this.context.setQuestionList).catch(this.context.setError);
+    QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
     console.log('28', this.context);
     this.context.clearError();
   }
@@ -146,6 +147,7 @@ export class Dashboard extends Component {
             filterLiked={this.filterLiked}
           />
           <QuestionList
+            currentPageTitle={this.handlePageTitle}
             handleQuestionLike={this.handleQuestionLike}
             handleDeleteQuestion={this.handleDeleteQuestion}
             answers={answers}
