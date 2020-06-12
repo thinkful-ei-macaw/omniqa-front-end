@@ -44,6 +44,7 @@ export class Sidebar extends Component {
     // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
+        <div className='Sidebar1'>
          <section className="departments">
           <label>Discover</label>
           <ul className="barUl">
@@ -62,21 +63,13 @@ export class Sidebar extends Component {
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
-              <span onClick={() => this.props.filterAsked()} id="side__tag">
+              <span style={{color: this.props.askedStatus ? '#785380' : 'grey', fontWeight: this.props.askedStatus ? '600' : '400'}} onClick={() => this.props.filterAsked()} id="side__tag">
                 Asked
               </span>
-              {/* match to user_id answerwed: false/true */}
-              {/* <Link id="side__tag" to="/asked">
-                Asked
-              </Link> */}
+
             </li>
             <li>
-              <Link id="side__tag" to="/answered">
-                Answered
-              </Link>
-            </li>
-            <li>
-              <span onClick={() => this.props.filterLiked()} id="side__tag">
+              <span style={{color: this.props.likedStatus ? '#785380' : 'grey', fontWeight: this.props.likedStatus ? '600' : '400'}} onClick={() => this.props.filterLiked()} id="side__tag">
                 Liked
               </span>
             </li>
@@ -107,6 +100,7 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
+        </div>
         <div className="Sidebar2">
           <select>
             <option>All Q&As</option>

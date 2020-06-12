@@ -11,6 +11,7 @@ export class NavBar extends Component {
   componentDidMount() { }
 
   handleLogoutClick = () => {
+    console.log("clicked");
     this.context.processLogout();
     window.location = "/login";
   };
@@ -29,7 +30,14 @@ export class NavBar extends Component {
               alt="omni--logo"
             />
           </li>
-
+          <li className="selector">
+            <span>
+              Hello, {TokenService.getInfoFromToken().sub}!{"   "}
+            </span>
+            <span onClick={this.handleLogoutClick} id="logoutlink">
+              Logout
+            </span>
+          </li>
           <li>
             <form className="search-bar">
               <input
@@ -47,6 +55,7 @@ export class NavBar extends Component {
             </form>
           </li>
 
+<<<<<<< HEAD
           <li className="span1">
 
           </li>
@@ -54,29 +63,15 @@ export class NavBar extends Component {
 
           </li>
 
+=======
+>>>>>>> d38e3dfaa50f4516378c867ecd849910d9e8a8aa
           <li>
             <Link id="link" to="/Question">
               <button id="question-btn">Ask a question</button>
             </Link>
           </li>
-
-          <li className="selector">
-            <select type="select" onChange={this.handleLogoutClick}>
-              <option disabled>{TokenService.getInfoFromToken().sub}</option>
-              <option>Logout</option>
-            </select>
-          </li>
         </ul>
-        <li className="selector">
-          <span>
-            Hello, {TokenService.getInfoFromToken().sub}!{"   "}
-          </span>
-          <Link to="/login" id="logoutlink">
-            Logout
-          </Link>
-        </li>
         <ul />
-        <div className="line" />
       </nav>
     );
   }
