@@ -62,6 +62,20 @@ export class Sidebar extends Component {
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
+              <span className={this.props.filterUnansweredQs && "active"}
+                onClick={() => this.props.filterUnansweredQs()}
+                id="side__tag"
+              >
+                Unanswered Q's
+              </span>
+            </li>
+          </ul>
+        </section>
+        <section className="myQs">
+   
+          <label>Q's that I...</label>
+          <ul className="barUl">
+            <li>
               <span onClick={() => this.props.filterAsked()} id="side__tag">
                 Asked
               </span>
