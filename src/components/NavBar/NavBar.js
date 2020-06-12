@@ -55,16 +55,6 @@ export class NavBar extends Component {
             </form>
           </li>
 
-<<<<<<< HEAD
-          <li className="span1">
-
-          </li>
-          <li className="span2">
-
-          </li>
-
-=======
->>>>>>> d38e3dfaa50f4516378c867ecd849910d9e8a8aa
           <li>
             <Link id="link" to="/Question">
               <button id="question-btn">Ask a question</button>

@@ -47,16 +47,11 @@ export class Question extends Component {
     console.log(newQuestion);
 
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
-<<<<<<< HEAD
       .then(() => this.props.history.push("/Dashboard"))
       .catch(this.context.setError);
     console.log(this.props.history)
 
 
-=======
-      .then(() => this.props.history.push('/Dashboard'))
-      .catch(this.context.setError);
->>>>>>> d38e3dfaa50f4516378c867ecd849910d9e8a8aa
   };
 
   handleChange(event) {
@@ -76,42 +71,6 @@ export class Question extends Component {
     return (
       <div className='askPage'>
         <NavBar />
-<<<<<<< HEAD
-        <form className="question form" onSubmit={e => this.handleSubmit(e)}>
-          <fieldset>
-
-            <br />
-            <label htmlFor="input-one">question</label>
-            <input
-              className="form-control"
-              type="text"
-              name="question_body"
-              value={this.state.question_body}
-              onChange={this.handleSubmit}
-              id="question"
-              placeholder="ask...."
-              onChange={e => this.setState({ questions: e.target.value })}
-            />
-            <br />
-            <label htmlFor="input-one">department</label>
-            <select value={this.state.value} onChange={e => this.handleChange(e)}>
-              {departmentItems}
-            </select>
-            <br />
-            <button
-              type="submit"
-            >
-              ASK
-            </button>
-          </fieldset>
-        </form>
-        <Link to="/Dashboard">
-          <button type="button">go back</button>
-        </Link>
-        <Link to="/answer">
-          <button type="button">go look at all the answers</button>
-        </Link>
-=======
         <div className='Question'>
           <form className='question-form' onSubmit={(e) => this.handleSubmit(e)}>
             <fieldset>
@@ -144,7 +103,6 @@ export class Question extends Component {
             </fieldset>
           </form>
         </div>
->>>>>>> d38e3dfaa50f4516378c867ecd849910d9e8a8aa
       </div>
     );
   }

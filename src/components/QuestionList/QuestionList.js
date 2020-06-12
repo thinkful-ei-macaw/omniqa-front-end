@@ -3,13 +3,9 @@ import Moment from 'react-moment';
 import QuestionItem from '../QuestionItem/QuestionItem';
 import TokenService from '../../Services/TokenService';
 
-<<<<<<< HEAD
 
 export default function QuestionList(props) {
   console.log(props.questions)
-=======
-export default function QuestionList(props) {
->>>>>>> d38e3dfaa50f4516378c867ecd849910d9e8a8aa
   return (
     <div className='questionList'>
       <h1>Latest Questions</h1>
