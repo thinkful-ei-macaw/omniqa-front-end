@@ -49,9 +49,9 @@ export class Question extends Component {
     console.log(newQuestion)
 
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
-      .then(() => this.props.history.push("/unanswered-questions"))
+      .then(() => this.props.history.push("/Dashboard"))
       .catch(this.context.setError);
-      console.log(this.props.history)
+    console.log(this.props.history)
 
 
   };
@@ -76,8 +76,8 @@ export class Question extends Component {
         <NavBar />
         <form className="question form" onSubmit={e => this.handleSubmit(e)}>
           <fieldset>
-    
-            <br/>
+
+            <br />
             <label htmlFor="input-one">question</label>
             <input
               className="form-control"

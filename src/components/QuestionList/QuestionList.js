@@ -3,8 +3,9 @@ import Moment from "react-moment";
 import QuestionItem from '../QuestionItem/QuestionItem';
 
 
-export default function QuestionList(props) {
 
+export default function QuestionList(props) {
+  console.log(props.questions)
   return (
 
     <div className="questionList">
