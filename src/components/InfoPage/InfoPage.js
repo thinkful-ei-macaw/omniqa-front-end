@@ -25,23 +25,19 @@ export class InfoPage extends Component {
           </p>
           <p>Users can 'like' questions to indicate their importance;</p>
           <p>
-            Once signed up, users can also view the questions they asked.. even
-            compulsively checking for the answers
-          </p>
-          <p>But questions aint shit without answers! </p>
-          <p>
-            Users can answer questions they know the answer to, and all answers
-            will be displayed so everyone can easily judge them
+            Once signed up, users can also view the questions they asked,
+            providing quick and easy access to what they need to know
           </p>
           <p>
-            Once you realise how dumb your question was, you can delete it! But
-            only if you are the one who asked it in the first place... we don't
-            want to appear rude
+            Users can also answer questions they know the answer to, and all
+            answers will be displayed so everyone can get the most up-to-date
+            information
           </p>
           <p>
-            Don't forget, every time you're getting ready to commit changes,
-            stand up and yell out 'I'M PUSHING TO MASTER'
+            Users can delete questions they posted. This will help to ensure the
+            dashboard is not full of duplicates
           </p>
+          <p>Use the demo login below to try it out!</p>
           <p>
             Demo username: dasha
             <br />
