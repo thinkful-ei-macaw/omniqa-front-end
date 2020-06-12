@@ -1,0 +1,11 @@
+.Answer {
+  text-align: center;
+  display: flex;
+  padding: 2em;
+  align-items: center;
+  flex-direction: column;
+}
+
+.answer-input {
+  margin-bottom: 2em;
+}
