@@ -16,7 +16,6 @@ export class Dashboard extends Component {
   state = {
     /**filterID is for filtering departmentID */
     filterID: null,
-
     filterAsked: false,
     filterLiked: false,
     filterUnansweredQs: false,
