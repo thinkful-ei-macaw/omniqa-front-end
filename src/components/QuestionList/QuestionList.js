@@ -15,6 +15,7 @@ export default function QuestionList(props) {
             user_id={props.userID}
             answers={props.answers}
             handleQuestionLike={props.handleQuestionLike}
+            handleDeleteQuestion={props.handleDeleteQuestion}
             btnColors={props.btnColors}
           />
         ))}
