@@ -12,7 +12,7 @@ img {
 
 nav {
   box-shadow: 1px 1px 6px 1px;
-  height: 10em;
+  height: 9em;
 }
 
 ul {
@@ -39,7 +39,7 @@ ul {
   border: thin solid grey;
   border-radius: 12px;
   width: 16em;
-  margin-bottom: 5px;
+  margin-bottom: 40px;
 }
 
 button {
@@ -53,7 +53,7 @@ button {
 }
 
 #magn {
-  margin-top: .22em;
+  margin-top: .5em;
   position: absolute;
   height: 13px;
   width: 13px;
@@ -72,6 +72,10 @@ button {
 .selector {
   font-size: 14px;
   margin-bottom: 8px;
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
 }
 
 button:hover {

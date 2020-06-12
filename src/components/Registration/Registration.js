@@ -61,7 +61,7 @@ export class Registration extends Component {
       <div className='Registration'>
         <div role='alert'>{error && <p>{error}</p>}</div>
         <form id='signup' onSubmit={this.handleSubmit}>
-          <img className='logo' src={img} alt='omni--logo' />
+          <img className='logoReg' src={img} alt='omni--logo' />
           <fieldset>
             <legend>Sign Up</legend>
             <label htmlFor='username'>Username: </label>
@@ -91,7 +91,7 @@ export class Registration extends Component {
             />
             <br />
             <br />
-            <label htmlFor='password'>Re-enter password:</label>
+            <label htmlFor='password'>Confirm:</label>
 
             <input
               className='form-control'
@@ -112,7 +112,6 @@ export class Registration extends Component {
             </button>
 
             <Link to='/dashboard'>
-              {' '}
               <button type='button' id='login'>
                 Log in
               </button>

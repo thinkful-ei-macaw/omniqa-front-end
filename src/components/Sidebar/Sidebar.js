@@ -44,6 +44,7 @@ export class Sidebar extends Component {
     // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
+        <div className='Sidebar1'>
          <section className="departments">
           <label>Discover</label>
           <ul className="barUl">
@@ -107,6 +108,7 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
+        </div>
         <div className="Sidebar2">
           <select>
             <option>All Q&As</option>
