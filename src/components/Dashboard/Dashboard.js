@@ -78,6 +78,10 @@ export class Dashboard extends Component {
     this.context.setQuestionList(newQuestionList);
   };
 
+  handleAnswerQuestion = (id) => {
+    this.props.history.push(`/post-answer/${id}`);
+  };
+
   likeBtnColor = (id) => {
     /**btnColors[id] = .... <- assignment for btnColors.whateverWasPassedIntoTheFunction
 
@@ -152,6 +156,7 @@ export class Dashboard extends Component {
             currentPageTitle={this.handlePageTitle}
             handleQuestionLike={this.handleQuestionLike}
             handleDeleteQuestion={this.handleDeleteQuestion}
+            handleAnswerQuestion={this.handleAnswerQuestion}
             answers={answers}
             btnColors={this.state.btnColors}
             userID={user_id}

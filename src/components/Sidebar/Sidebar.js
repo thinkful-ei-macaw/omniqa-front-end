@@ -44,7 +44,6 @@ export class Sidebar extends Component {
     // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
-<<<<<<< HEAD
         <div className='Sidebar1'>
          <section className="departments">
           <label>Discover</label>
@@ -101,72 +100,6 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
-=======
-        <div className="Sidebar1">
-          <section className="departments">
-            <label>Discover</label>
-            <ul className="barUl">
-              <li>
-                <span
-                  className={this.props.filterUnansweredQs && "active"}
-                  onClick={() => this.props.filterUnansweredQs()}
-                  id="side__tag"
-                >
-                  Unanswered Q's
-                </span>
-              </li>
-            </ul>
-          </section>
-          <section className="myQs">
-            <label>Q's that I...</label>
-            <ul className="barUl">
-              <li key="asked">
-                <span onClick={() => this.props.filterAsked()} id="side__tag">
-                  Asked
-                </span>
-                {/* match to user_id answerwed: false/true */}
-                {/* <Link id="side__tag" to="/asked">
-                Asked
-              </Link> */}
-              </li>
-              <li key="answered">
-                <Link id="side__tag" to="/answered">
-                  Answered
-                </Link>
-              </li>
-              <li>
-                <span onClick={() => this.props.filterLiked()} id="side__tag">
-                  Liked
-                </span>
-              </li>
-            </ul>
-          </section>
-          <section className="departments">
-            <label>Departments</label>
-            <ul className="barUl">
-              <li key="all-departments">
-                <span
-                  onClick={() => this.props.filterQuestions(null)}
-                  id="side__tag"
-                >
-                  All Departments
-                </span>
-              </li>
-              {this.state.department.map((department) => (
-                <>
-                  <li key={department.id}>
-                    <span
-                      id="side__tag"
-                      onClick={() => this.props.filterQuestions(department.id)}
-                    >
-                      {department.name}
-                    </span>
-                  </li>
-                </>
-              ))}
-            </ul>
-          </section>
->>>>>>> ea6ffe337280cb5b70c7b411ce0e6432c0180000
         </div>
         <div className="Sidebar2">
           <select>
