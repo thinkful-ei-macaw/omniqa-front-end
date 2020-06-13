@@ -19,11 +19,7 @@ export class Sidebar extends Component {
   //clean up architecture
 
   componentDidMount() {
-    let departmentList = [];
     DepartmentApiService.getDepartments().then((data) => {
-      console.log(data);
-      
-      console.log(departmentList);
       this.setState({
         department: data,
       });
@@ -37,6 +33,16 @@ export class Sidebar extends Component {
   //   );
   //   this.context.setQuestionList(myAskedQuesions);
   // };
+
+determineFilter (type) {
+  if (type === 'Asked') {
+    this.props.filterAsked()
+  } else if (type === 'Liked') {
+    this.props.filterLiked()
+  } else {
+    this.props.clearFilters()
+  }
+}
 
   render() {
     // console.log('these are answers',this.context.answerList)
@@ -79,56 +85,48 @@ export class Sidebar extends Component {
             <li>
               <span
                 onClick={() => this.props.filterQuestions(null)}
-                id="side__tag"
-              >
+                id="side__tag">
                 All Departments
               </span>
             </li>
             {this.state.department.map((department) => (
-              
+           
                 <li key={department.id}>
-                  <span
+                  <span style={{color: this.props.departmentStatus === department.id ? '#785380' : 'grey', fontWeight: this.props.departmentStatus === department.id ? '600' : '400'}}
                     id="side__tag"
                     onClick={() => this.props.filterQuestions(department.id)}
                   >
                     {department.name}
                   </span>
                 </li>
-              
             ))}
           </ul>
         </section>
         </div>
         <div className="Sidebar2">
-          <select>
-            <option>All Q&As</option>
-            <option disabled id="optionDis">
+          <select onChange={( {target: {value}}) => this.determineFilter(value)}>
+            <option value="">
               Qs that I...
             </option>
-            <option>Asked</option>
-            <option>Answered</option>
-            <option>Voted</option>
-            <option>Liked</option>
-            <option disabled id="optionDis">
+            <option value="Asked">Asked</option>
+            <option value="Liked">Liked</option>
+            </select >
+            <select onChange={( {target: {value}}) => value ? this.props.filterQuestions(+value) : this.props.clearFilters()}>
+            
+            <option value="">
               Departments
             </option>
-            
+            {this.state.department.map((department, i) => (
+              
+                <option key={i} value={department.id} >
+
+                    {department.name}              
+                </option>
+                
+  
+            ))}
           </select>
         </div>
-        <select >
-          <option >Departments</option>
-              {this.state.department.map((department, i) => (
-
-                <option onClick={() => this.props.filterQuestions(department.id)} key={i}>
-               
-                  
-                    {department.name}
-             
-                </option>
-            
-             
-            ))}
-        </select>
       </div>
     );
   }

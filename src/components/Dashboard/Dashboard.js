@@ -36,6 +36,7 @@ export class Dashboard extends Component {
     this.setState({
       filterID: id
     });
+    console.log(id)
   };
 
   filterAsked = () => {
@@ -51,6 +52,15 @@ export class Dashboard extends Component {
       questionsLiked: id
     });
   };
+
+  clearFilters = () => {
+    this.setState({
+      filterID: null,
+      filterAsked: false,
+      filterLiked: false,
+      filterUnansweredQs: false,
+    })
+  }
 
   filterUnansweredQs = () => {
     this.setState({
@@ -96,6 +106,8 @@ export class Dashboard extends Component {
       btnColors
     });
   };
+
+
 
   render() {
     let id = this.context.questionList.map(id => id.id)
@@ -145,13 +157,14 @@ export class Dashboard extends Component {
         <NavBar />
 
         <section className='main'>
-          <Sidebar
+          < Sidebar clearFilters={this.clearFilters}
             filterUnansweredQs={this.filterUnansweredQs}
             filterQuestions={this.filterQuestions}
             filterAsked={this.filterAsked}
             askedStatus={this.state.filterAsked}
             filterLiked={this.filterLiked}
             likedStatus={this.state.filterLiked}
+            departmentStatus={this.state.filterID}
           />
           <QuestionList
             currentPageTitle={this.handlePageTitle}
