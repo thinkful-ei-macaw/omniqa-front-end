@@ -26,6 +26,9 @@ button.delete-btn {
 button.delete-btn {
   background-color: white;
 }
+button.like-btn {
+  background-color: white;
+}
 
 .active,
 .accordion:hover {

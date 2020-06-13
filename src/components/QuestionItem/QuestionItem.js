@@ -30,13 +30,13 @@ function QuestionItem(props) {
                     </span>
 
                    {answers.length ?  <div onClick={() => setToggle(!toggle)}role="button" className={`accordion ${toggle ? 'active' : ""}`}>
-                       <h4>Answers</h4>
+                       <h4>View Answers</h4>
                     {answers.map((answer) => (
                         <div className='answer_body panel' key='answer'>
                     
                             <div className='question_answer_body'>
                                  <span className='datePosted'>
-                        Answered <Moment format='MMMM do'>{answer.created_date}</Moment>
+                        Answered <Moment format='MMMM do'>{answer.created_date}</Moment> by {answer.user_name}
                     </span>
 
                                     <p>{answer.answer_body}</p>
