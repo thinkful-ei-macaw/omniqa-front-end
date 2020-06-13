@@ -1,4 +1,39 @@
 .Sort {
-  margin-top: 4em;
-  margin-left: 2em;
+  margin-top: 1em;
+  font-size: 12px;
+}
+
+.barUlSort {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+#sortLabel {
+  width: 25px;
+  text-align: left;
+  margin-left: 1.5em;
+  margin-right: .5em;
+}
+
+#side__tag {
+  color: grey;
+  font-weight: 400;
+  margin-right: .5em;
+}
+
+@media screen and (min-width: 700px) {
+  .Sort {
+    font-size: 18px;
+  }
+  .barUl {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .Sort {
+    display: none;
+  }
 }

@@ -1,84 +1,21 @@
-.dashboard {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-ul {
-  display: flex;
-  list-style: none;
-  margin-top: 0;
-}
-
-li {
-  font-size: 1.2em;
-}
-
-#question-btn {
-  margin-left: auto;
-  margin-right: 15em;
-}
-
-.datePosted {
-  font-size: 16px;
-  color: grey;
-}
-
-section {
-  display: flex;
-}
-
-.image-info {
-  display: flex;
-  margin-left: auto;
-}
-
-.image-stats {
-  padding-top: 2.5em;
-  padding-left: 1em;
-  padding-right: 1em;
-}
-
-.questions {
-  padding-left: 2em;
-  max-width: 85%;
-  margin-right: 20em;
-}
-
-.questionList {
-  margin-left: 3em;
-  display: flex;
-  flex-direction: column;
-}
-
-.qMap {
-  display: flex;
-  flex-direction: column;
-}
-
 .qLi {
-  border: thin solid #cccccc;
-  border-radius: 6px;
-  margin-bottom: 1.2em;
-  padding-left: 1em;
-  padding-bottom: 0.5em;
+  border: thin solid gray;
+  border-radius: 12px;
+  margin-bottom: 1em;
+  margin-right: 1.5em;
+  margin-left: 1.5em;
   padding-top: 1em;
-  width: 800px;
 }
 
 .questionHead {
-  font-size: 28px;
+  font-size: 20px;
   color: rgb(24, 0, 24);
   font-weight: 600;
 }
 
-#likeButton {
-  padding-top: .35em;
-  padding-bottom: .35em;
-  margin-right: .5em;
-  color: grey;
-  font-weight: 600;
-  border: thin solid lightgray;
-  background-color: white;
+h1 {
+  margin-top: .2em;
+  font-size: 22px;
 }
 
 .hashtag {
@@ -87,4 +24,126 @@ section {
   font-size: 12px;
   padding: .25em .8em .25em .8em;
   border-radius: 9px;
+}
+
+.datePosted {
+  font-size: 14px;
+}
+
+#likeButton {
+  padding-top: .35em;
+  padding-bottom: .35em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: .5em;
+  color: grey;
+  border-radius: 6px;
+  font-weight: 600;
+  border: thin solid lightgray;
+  background-color: white;
+}
+@media only screen and (min-width: 700px) {
+  h1 {
+    font-size: 32px;
+  }
+  .questionHead {
+    font-size: 32px;
+  }
+  .qLi {
+    margin-left: 3em;
+    margin-right: 3em;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .dashboard {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin-top: 0;
+  }
+
+  li {
+    font-size: 1.2em;
+  }
+
+  #question-btn {
+    margin-left: auto;
+    margin-right: 15em;
+  }
+
+  .datePosted {
+    font-size: 16px;
+    color: grey;
+  }
+
+  section {
+    display: flex;
+  }
+
+  .image-info {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .image-stats {
+    padding-top: 2.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .questions {
+    padding-left: 2em;
+    max-width: 85%;
+    margin-right: 20em;
+  }
+
+  .questionList {
+    margin-left: 3em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qMap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qLi {
+    border: thin solid #cccccc;
+    border-radius: 6px;
+    margin-bottom: 1.2em;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    padding-top: 1em;
+    width: 800px;
+  }
+
+  .questionHead {
+    font-size: 28px;
+    color: rgb(24, 0, 24);
+    font-weight: 600;
+  }
+
+  #likeButton {
+    padding-top: .35em;
+    padding-bottom: .35em;
+    margin-right: .5em;
+    color: grey;
+    font-weight: 600;
+    border: thin solid lightgray;
+    background-color: white;
+  }
+
+  .hashtag {
+    background-color: grey;
+    color: white;
+    font-size: 12px;
+    padding: .25em .8em .25em .8em;
+    border-radius: 9px;
+  }
 }

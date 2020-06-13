@@ -8,23 +8,35 @@ import TokenService from "../../Services/TokenService";
 export class NavBar extends Component {
   static contextType = QuestionContext;
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   handleLogoutClick = () => {
+    console.log("clicked");
     this.context.processLogout();
     window.location = "/login";
   };
 
   render() {
+
+
+
     return (
       <nav className="nav">
-        <ul>
+        <ul id="wholeNav">
           <li id="logoicon">
             <img
               className="logoicon"
               src={require("./logoicon.png")}
               alt="omni--logo"
             />
+          </li>
+          <li className="selector">
+            <span>
+              Hello, {TokenService.getInfoFromToken().sub}!{"   "}
+            </span>
+            <span onClick={this.handleLogoutClick} id="logoutlink">
+              Logout
+            </span>
           </li>
           <li>
             <form className="search-bar">
@@ -42,27 +54,14 @@ export class NavBar extends Component {
               />
             </form>
           </li>
-          <li className="span1">
-            <span>Q&A Home</span>
-          </li>
-          <li className="span2">
-            <span>Answer Q's</span>
-          </li>
+
           <li>
             <Link id="link" to="/Question">
               <button id="question-btn">Ask a question</button>
             </Link>
           </li>
-          <li className="selector">
-            <select type="select" onChange={this.handleLogoutClick}>
-              <option disabled>
-                {TokenService.getInfoFromToken().sub}
-              </option>
-              <option>Logout</option>
-            </select>
-          </li>
         </ul>
-        <div className="line"></div>
+        <ul />
       </nav>
     );
   }

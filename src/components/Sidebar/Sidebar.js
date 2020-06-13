@@ -40,49 +40,36 @@ export class Sidebar extends Component {
   //   this.context.setQuestionList(myAskedQuesions);
   // };
 
-  //It loops through question_likes array and find the question in questionList by question_id
-  //for a specific user_id (which you know how to obtained by using TokenService.readJwtToken();
-  // and then set the liked attribute of the question to true.
-
-  // filterMyLikedQuestions = () => {
-  //   const { user_id } = TokenService.readJwtToken();
-  //   let myLikedQuesions = this.context.questionList.filter(
-  //     (question) => question.liked === user_id
-  //   );
-  //   this.context.setQuestionList(myLikedQuesions);
-  // };
-
   render() {
+    // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
+        <div className='Sidebar1'>
+         <section className="departments">
+          <label>Discover</label>
+          <ul className="barUl">
+            <li>
+              <span className={this.props.filterUnansweredQs && "active"}
+                onClick={() => this.props.filterUnansweredQs()}
+                id="side__tag"
+              >
+                Unanswered Q's
+              </span>
+            </li>
+          </ul>
+        </section>
         <section className="myQs">
-          <Link id="side__tag" to="/Dashboard">
-            All Q&As
-          </Link>
+   
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
-              <span
-                onClick={() => this.props.filterAsked()}
-                id="side__tag"
-              >
+              <span style={{color: this.props.askedStatus ? '#785380' : 'grey', fontWeight: this.props.askedStatus ? '600' : '400'}} onClick={() => this.props.filterAsked()} id="side__tag">
                 Asked
               </span>
-              {/* match to user_id answerwed: false/true */}
-              {/* <Link id="side__tag" to="/asked">
-                Asked
-              </Link> */}
+
             </li>
             <li>
-              <Link id="side__tag" to="/answered">
-                Answered
-              </Link>
-            </li>
-            <li>
-              <span
-                onClick={() => this.props.filterLiked()}
-                id="side__tag"
-              >
+              <span style={{color: this.props.likedStatus ? '#785380' : 'grey', fontWeight: this.props.likedStatus ? '600' : '400'}} onClick={() => this.props.filterLiked()} id="side__tag">
                 Liked
               </span>
             </li>
@@ -96,14 +83,13 @@ export class Sidebar extends Component {
                 onClick={() => this.props.filterQuestions(null)}
                 id="side__tag"
               >
-                All tags
+                All Departments
               </span>
             </li>
             {this.state.department.map((department) => (
               <>
                 <li key={department.id}>
-                  <span 
-                  
+                  <span
                     id="side__tag"
                     onClick={() => this.props.filterQuestions(department.id)}
                   >
@@ -114,6 +100,35 @@ export class Sidebar extends Component {
             ))}
           </ul>
         </section>
+        </div>
+        <div className="Sidebar2">
+          <select>
+            <option>All Q&As</option>
+            <option disabled id="optionDis">
+              Qs that I...
+            </option>
+            <option>Asked</option>
+            <option>Answered</option>
+            <option>Voted</option>
+            <option>Liked</option>
+            <option disabled id="optionDis">
+              Departments
+            </option>
+            {this.state.department.map((department) => (
+              <>
+                <option>
+                  <span
+                    id="side__tag"
+                    onClick={() => this.props.filterQuestions(department.id)}
+                  >
+                    {department.name}
+                  </span>
+                </option>
+                <br />
+              </>
+            ))}
+          </select>
+        </div>
       </div>
     );
   }
