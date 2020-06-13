@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import './QuestionItem.css';
-import TokenService from '../../Services/TokenService';
+import { ReactComponent as TrashIcon } from '../../images/trash.svg'
+import { ReactComponent as LikeButton } from '../../images/heart.svg'
+
 
 function QuestionItem(props) {
     let question = props.question;
-    console.log('test')
+
+    const [toggle, setToggle] = useState(false)
+    const answers = props.answers.filter((answer) => answer.question == props.question.id)
 
     return (
         <div className='question-item'>
@@ -15,36 +19,42 @@ function QuestionItem(props) {
                     <span className='questionHead' key='questionHead'>
                         {question.question_body}
                     </span>
+                     <span className='hashtag'>#{question.department_name}</span>
                     {/* <button id='answerButton' onClick={() => props.handleAnswerQuestion(question.id)}>
             Answer
           </button> */}
-                    <Link to={`/post-answer/${question.id}`}>Answer</Link>
                     <br />
                     <br />
                     <span className='datePosted'>
-                        Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
+                        Asked on <Moment format='MMMM do'>{question.created_date}</Moment> by {question.user_name}
                     </span>
-                    {props.answers.filter((answer) => answer.question == props.question.id).map((answer) => (
-                        <div className='answer_body' key='answer'>
+
+                   {answers.length ?  <div onClick={() => setToggle(!toggle)}role="button" className={`accordion ${toggle ? 'active' : ""}`}>
+                       <h4>Answers</h4>
+                    {answers.map((answer) => (
+                        <div className='answer_body panel' key='answer'>
+                    
                             <div className='question_answer_body'>
-                                <p className='answer-title'>Question Answer</p>
-                                <div className='answer'>
+                                 <span className='datePosted'>
+                        Answered <Moment format='MMMM do'>{answer.created_date}</Moment>
+                    </span>
+
                                     <p>{answer.answer_body}</p>
-                                </div>
+                            
+                          
                             </div>
-                            <div className='answer-user'>
-                                <p className='answer-title'>Answered By</p>
-                                {answer.user_name}
                             </div>
-                        </div>
+                        
                     ))}
+                  </div> : ""
+                }
                     <br />
                     <br />
                     {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
                     {console.log(props.user_id)}
-                    {question.author === props.user_id && (
-                        <button onClick={() => props.handleDeleteQuestion(question.id, question.author)}>Delete</button>
-                    )}
+                                         <Link to={`/post-answer/${question.id}`}>Answer</Link>
+
+                    
                     <button
                         style={{
                             backgroundColor: props.btnColors[question.id] ? '#785380' : 'white'
@@ -54,7 +64,10 @@ function QuestionItem(props) {
                     >
                         Like
           </button>{' '}
-                    <span className='hashtag'>#{question.department_name}</span>
+                   
+                    {question.author === props.user_id && (
+                        <button className="delete-btn" onClick={() => props.handleDeleteQuestion(question.id, question.author)}><TrashIcon/></button>
+                    )}
                     <br />
                     <br />
                 </li>

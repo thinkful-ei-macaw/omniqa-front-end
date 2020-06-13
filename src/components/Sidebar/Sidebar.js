@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import DepartmentApiService from "../../Services/department-api-service";
-import TokenService from "../../Services/TokenService";
 import QuestionContext from "../../Context/QuestionContext";
 
 export class Sidebar extends Component {
@@ -63,7 +62,6 @@ determineFilter (type) {
           </ul>
         </section>
         <section className="myQs">
-   
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
