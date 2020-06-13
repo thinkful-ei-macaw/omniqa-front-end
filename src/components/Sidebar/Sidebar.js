@@ -22,12 +22,10 @@ export class Sidebar extends Component {
     let departmentList = [];
     DepartmentApiService.getDepartments().then((data) => {
       console.log(data);
-      departmentList = data.map((department) => {
-        return department;
-      });
+      
       console.log(departmentList);
       this.setState({
-        department: departmentList,
+        department: data,
       });
     });
   }
@@ -87,7 +85,7 @@ export class Sidebar extends Component {
               </span>
             </li>
             {this.state.department.map((department) => (
-              <>
+              
                 <li key={department.id}>
                   <span
                     id="side__tag"
@@ -96,7 +94,7 @@ export class Sidebar extends Component {
                     {department.name}
                   </span>
                 </li>
-              </>
+              
             ))}
           </ul>
         </section>
@@ -114,21 +112,23 @@ export class Sidebar extends Component {
             <option disabled id="optionDis">
               Departments
             </option>
-            {this.state.department.map((department) => (
-              <>
-                <option>
-                  <span
-                    id="side__tag"
-                    onClick={() => this.props.filterQuestions(department.id)}
-                  >
-                    {department.name}
-                  </span>
-                </option>
-                <br />
-              </>
-            ))}
+            
           </select>
         </div>
+        <select >
+          <option >Departments</option>
+              {this.state.department.map((department, i) => (
+
+                <option onClick={() => this.props.filterQuestions(department.id)} key={i}>
+               
+                  
+                    {department.name}
+             
+                </option>
+            
+             
+            ))}
+        </select>
       </div>
     );
   }
