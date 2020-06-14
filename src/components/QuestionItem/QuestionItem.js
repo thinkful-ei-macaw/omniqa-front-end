@@ -2,8 +2,7 @@ import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import './QuestionItem.css';
-import { ReactComponent as TrashIcon } from '../../images/trash.svg'
-import { ReactComponent as LikeButton } from '../../images/heart.svg'
+import { ReactComponent as TrashIcon } from '../../images/bin.svg'
 
 
 function QuestionItem(props) {
@@ -11,11 +10,15 @@ function QuestionItem(props) {
 
     const [toggle, setToggle] = useState(false)
     const answers = props.answers.filter((answer) => answer.question == props.question.id)
-
+    console.log(answers)
     return (
         <div className='question-item'>
+            <p className='datePosted'>
+              Asked on<Moment format='MMMM do YYYY'>{question.created_date}</Moment> by {question.user_name}
+            </p>
             <ul>
                 <li className='qLi' key={question.id}>
+                    
                     <span className='questionHead' key='questionHead'>
                         {question.question_body}
                     </span>
@@ -23,11 +26,8 @@ function QuestionItem(props) {
                     {/* <button id='answerButton' onClick={() => props.handleAnswerQuestion(question.id)}>
             Answer
           </button> */}
-                    <br />
-                    <br />
-                    <span className='datePosted'>
-                        Asked on <Moment format='MMMM do'>{question.created_date}</Moment> by {question.user_name}
-                    </span>
+                   
+                    
 
                    {answers.length ?  <div onClick={() => setToggle(!toggle)}role="button" className={`accordion ${toggle ? 'active' : ""}`}>
                        <h4>View Answers</h4>
@@ -36,11 +36,12 @@ function QuestionItem(props) {
                     
                             <div className='question_answer_body'>
                                  <span className='datePosted'>
-                        Answered <Moment format='MMMM do'>{answer.created_date}</Moment> by {answer.user_name}
+                        Answered{" "}<Moment format='MMMM do'>{answer.created_date}</Moment> 
                     </span>
+                    
 
                                     <p>{answer.answer_body}</p>
-                            
+                            <hr></hr>
                           
                             </div>
                             </div>
@@ -48,11 +49,13 @@ function QuestionItem(props) {
                     ))}
                   </div> : ""
                 }
-                    <br />
-                    <br />
+                    <div className="toggleControlsContainer">
+                        <div className="toggleButtons">
+                            <div className="main-controls">
                     {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                    {console.log(props.user_id)}
-                                         <Link to={`/post-answer/${question.id}`}>Answer</Link>
+                     <button>
+                     <Link to={`/post-answer/${question.id}`}>Answer</Link>
+                     </button>
 
                     
                     <button
@@ -60,16 +63,16 @@ function QuestionItem(props) {
                             backgroundColor: props.btnColors[question.id] ? '#785380' : 'white'
                         }}
                         onClick={() => props.handleQuestionLike(question.id)}
-                        id='likeButton'
-                    >
+                        id='likeButton'>
                         Like
           </button>{' '}
                    
                     {question.author === props.user_id && (
                         <button className="delete-btn" onClick={() => props.handleDeleteQuestion(question.id, question.author)}><TrashIcon/></button>
                     )}
-                    <br />
-                    <br />
+                    </div>
+                    </div>
+                    </div>
                 </li>
             </ul>
         </div>
