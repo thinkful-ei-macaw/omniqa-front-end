@@ -176,8 +176,7 @@ export class Dashboard extends Component {
             userID={user_id}
             questions={questions}
           />
-
-          <Sort />
+          {/* <Sort /> */}
         </section>
       </div>
     );

@@ -7,13 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-svg {
-  height: 2em;
-  margin: 0 .2em;
-  width: 50%;
-
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

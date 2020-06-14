@@ -55,7 +55,7 @@ export class NavBar extends Component {
             </form> */}
           </li>
             <Link id="link" to="/Question">
-              <button id="question-btn">Ask a question</button>
+              <button className="nav-btn " id="question-btn">Ask a question</button>
             </Link>
           
         </ul>

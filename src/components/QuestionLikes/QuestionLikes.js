@@ -7,7 +7,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import QuestionsApiService from '../../Services/questions-service';
 import Moment from 'react-moment';
 import Answer from '../Answer/Answer';
-import Sort from '../Sort/Sort';
+// import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 
 export class QuestionLikes extends Component {
@@ -94,7 +94,7 @@ export class QuestionLikes extends Component {
               ))}
             </ul>
           </div>
-          <Sort />
+          {/* <Sort /> */}
         </section>
       </div>
     );

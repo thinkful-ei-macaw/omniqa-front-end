@@ -46,16 +46,21 @@ span#logoutlink:hover {
   margin-bottom: 40px;
 }
 
-button {
-  font-size: 14px;
-  padding: 12px 18px 12px 18px;
+.nav-btn {
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1;
+  padding: 1.2em 2.8em;
   border-radius: 8px;
-  margin: 0 0.25em;
+  margin: 20px;
   background-color: #785380;
   border: none;
   color: white;
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
+
+
+
 
 #magn {
   margin-top: 0.5em;
@@ -79,6 +84,7 @@ button {
   margin-bottom: 8px;
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
 }
@@ -92,21 +98,26 @@ button:hover {
     width: 32em;
     font-size: 16px;
   }
+
   #magn {
     left: 490px;
   }
+
   .selector {
     font-size: 18px;
   }
+
   nav {
     height: 11em;
   }
+
   button {
     font-size: 16px;
   }
 }
 
 @media only screen and (min-width: 1080px) {
+
   /* form {
     display: flex;
     flex-direction: row;
@@ -197,6 +208,7 @@ button:hover {
     margin-right: 8em;
     margin-left: 4em;
   }
+
   #magn {
     margin-top: 2.2em;
     position: absolute;
@@ -205,12 +217,14 @@ button:hover {
     right: auto;
     left: 275px;
   }
+
   nav {
     background-color: white;
     height: 5em;
     box-shadow: 1px 1px 20px 5px #cecece;
     display: flex;
   }
+
   #question-btn {
     margin-top: 1em;
     margin-left: 1em;
@@ -229,6 +243,7 @@ button:hover {
     border-radius: 6px;
     background-color: #785380;
   }
+
   .span1 {
     margin-top: 1em;
     font-size: 16px;
@@ -260,9 +275,11 @@ button:hover {
   .selector {
     margin-top: 1em;
   }
+
   #wholeNav {
     justify-content: space-evenly;
   }
+
   #question-btn {
     color: white;
   }

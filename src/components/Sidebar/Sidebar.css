@@ -19,6 +19,7 @@ select {
   flex: 1;
   padding: 0 .5em;
   border-color: #785380;
+  background-color: white;
   cursor: pointer;
   height: 40px;
 }
@@ -42,6 +43,8 @@ select {
   }
 
   div.Sidebar {
+    display: flex;
+    justify-content: flex-start;
     place-content: left;
   }
 

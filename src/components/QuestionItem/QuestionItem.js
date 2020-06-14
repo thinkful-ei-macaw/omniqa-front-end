@@ -2,7 +2,6 @@ import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import './QuestionItem.css';
-import { ReactComponent as TrashIcon } from '../../images/bin.svg'
 
 
 function QuestionItem(props) {
@@ -14,7 +13,7 @@ function QuestionItem(props) {
     return (
         <div className='question-item'>
             <p className='datePosted'>
-              Asked on<Moment format='MMMM do YYYY'>{question.created_date}</Moment> by {question.user_name}
+              Asked on&nbsp;<Moment format='MMMM do, YYYY'>{question.created_date}</Moment>&nbsp;by {question.user_name}
             </p>
             <ul>
                 <li className='qLi' key={question.id}>
@@ -53,7 +52,7 @@ function QuestionItem(props) {
                         <div className="toggleButtons">
                             <div className="main-controls">
                     {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
-                     <button>
+                     <button className="answer-btn">
                      <Link to={`/post-answer/${question.id}`}>Answer</Link>
                      </button>
 
@@ -68,7 +67,7 @@ function QuestionItem(props) {
           </button>{' '}
                    
                     {question.author === props.user_id && (
-                        <button className="delete-btn" onClick={() => props.handleDeleteQuestion(question.id, question.author)}><TrashIcon/></button>
+                        <button className="delete-btn" onClick={() => props.handleDeleteQuestion(question.id, question.author)}>Delete</button>
                     )}
                     </div>
                     </div>

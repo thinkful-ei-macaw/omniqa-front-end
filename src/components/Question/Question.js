@@ -74,12 +74,11 @@ export class Question extends Component {
         <div className='Question'>
           <form className='question-form' onSubmit={(e) => this.handleSubmit(e)}>
             <fieldset>
-              <legend>Ask a Question</legend>
-              <br />
+              <h1>Ask a Question</h1>
               <div className='questBox'>
                 <textarea
                   className='form-control'
-                  type='text-area'
+                  type='text'
                   name='question_body'
                   value={this.state.question_body}
                   onChange={this.handleSubmit}
@@ -88,18 +87,18 @@ export class Question extends Component {
                   onChange={(e) => this.setState({ questions: e.target.value })}
                 />
               </div>
-              <br />
+              <div className="controls">
               <div className='departBox'>
-                <label id='depa'>Department: </label>
+                <label id='depa'>Select a Department: </label>
                 <select id='departSelect' value={this.state.value} onChange={(e) => this.handleChange(e)}>
                   {departmentItems}
                 </select>
               </div>
-              <br />
-              <button type='submit'>Ask</button>{' '}
-              <Link to='/Dashboard'>
-                <button type='button'>Go Back</button>
-              </Link>
+              
+             
+              <button className="ask-button"type='submit'>Ask</button>{' '}
+              </div>
+              <Link to='/Dashboard'>Return to Dashboard</Link>
             </fieldset>
           </form>
         </div>
