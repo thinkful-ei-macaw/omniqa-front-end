@@ -61,7 +61,7 @@ export class Question extends Component {
     // let departmentItems = departments.map((department) =>
     //   <option key={department.name}>{department.name}</option>)
     return (
-      <div className='askPage'>
+      <div>
         <NavBar />
         <div className='Question'>
           <form className='question-form' onSubmit={(e) => this.handleSubmit(e)}>
@@ -86,10 +86,8 @@ export class Question extends Component {
                 <select id='departSelect' value={this.state.value} onChange={(e) => this.handleChange(e)}>
                   {departmentItems}
                 </select>
+                <button className="ask-button"type='submit'>Ask</button>{' '}
               </div>
-              
-             
-              <button className="ask-button"type='submit'>Ask</button>{' '}
               </div>
               <Link to='/Dashboard'>Return to Dashboard</Link>
             </fieldset>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import QuestionContext from "../../Context/QuestionContext";
 import TokenService from "../../Services/TokenService";
-
+import Logoicon from "./logoicon.png";
 export class NavBar extends Component {
   static contextType = QuestionContext;
 
@@ -26,7 +26,7 @@ export class NavBar extends Component {
           <li id="logoicon">
             <img
               className="logoicon"
-              src={require("./logoicon.png")}
+              src={Logoicon}
               alt="omni--logo"
             />
           </li>
