@@ -51,6 +51,8 @@ span#logoutlink:hover {
   border: none;
   color: white;
   transition: all 0.3s;
+  position: relative;
+  z-index: 5;
 }
 
 .nav .selector {

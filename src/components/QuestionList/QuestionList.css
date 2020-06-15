@@ -1,8 +1,6 @@
-.questionList {
-  margin-top: 1em;
-}
 
-@media only screen and (min-width: 1080px) {
+
+@media only screen and (min-width: 700px) {
  .questionList {
    display: flex;
    flex-direction: column;
