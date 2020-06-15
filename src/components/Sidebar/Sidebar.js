@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import DepartmentApiService from "../../Services/department-api-service";
-import TokenService from "../../Services/TokenService";
 import QuestionContext from "../../Context/QuestionContext";
 
 export class Sidebar extends Component {
@@ -19,15 +18,9 @@ export class Sidebar extends Component {
   //clean up architecture
 
   componentDidMount() {
-    let departmentList = [];
     DepartmentApiService.getDepartments().then((data) => {
-      console.log(data);
-      departmentList = data.map((department) => {
-        return department;
-      });
-      console.log(departmentList);
       this.setState({
-        department: departmentList,
+        department: data,
       });
     });
   }
@@ -39,6 +32,16 @@ export class Sidebar extends Component {
   //   );
   //   this.context.setQuestionList(myAskedQuesions);
   // };
+
+determineFilter (type) {
+  if (type === 'Asked') {
+    this.props.filterAsked()
+  } else if (type === 'Liked') {
+    this.props.filterLiked()
+  } else {
+    this.props.clearFilters()
+  }
+}
 
   render() {
     // console.log('these are answers',this.context.answerList)
@@ -59,7 +62,6 @@ export class Sidebar extends Component {
           </ul>
         </section>
         <section className="myQs">
-   
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>
@@ -81,51 +83,45 @@ export class Sidebar extends Component {
             <li>
               <span
                 onClick={() => this.props.filterQuestions(null)}
-                id="side__tag"
-              >
+                id="side__tag">
                 All Departments
               </span>
             </li>
             {this.state.department.map((department) => (
-              <>
+           
                 <li key={department.id}>
-                  <span
+                  <span style={{color: this.props.departmentStatus === department.id ? '#785380' : 'grey', fontWeight: this.props.departmentStatus === department.id ? '600' : '400'}}
                     id="side__tag"
                     onClick={() => this.props.filterQuestions(department.id)}
                   >
                     {department.name}
                   </span>
                 </li>
-              </>
             ))}
           </ul>
         </section>
         </div>
         <div className="Sidebar2">
-          <select>
-            <option>All Q&As</option>
-            <option disabled id="optionDis">
+          <select onChange={( {target: {value}}) => this.determineFilter(value)}>
+            <option value="">
               Qs that I...
             </option>
-            <option>Asked</option>
-            <option>Answered</option>
-            <option>Voted</option>
-            <option>Liked</option>
-            <option disabled id="optionDis">
+            <option value="Asked">Asked</option>
+            <option value="Liked">Liked</option>
+            </select >
+            <select onChange={( {target: {value}}) => value ? this.props.filterQuestions(+value) : this.props.clearFilters()}>
+            
+            <option value="">
               Departments
             </option>
-            {this.state.department.map((department) => (
-              <>
-                <option>
-                  <span
-                    id="side__tag"
-                    onClick={() => this.props.filterQuestions(department.id)}
-                  >
-                    {department.name}
-                  </span>
+            {this.state.department.map((department, i) => (
+              
+                <option key={i} value={department.id} >
+
+                    {department.name}              
                 </option>
-                <br />
-              </>
+                
+  
             ))}
           </select>
         </div>

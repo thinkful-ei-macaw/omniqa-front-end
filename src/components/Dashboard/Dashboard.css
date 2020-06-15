@@ -1,3 +1,10 @@
+.main {
+display: flex;
+flex-direction: column;
+height: 100vh;
+}
+
+
 .qLi {
   border: thin solid gray;
   border-radius: 12px;

@@ -39,7 +39,7 @@ export class NavBar extends Component {
             </span>
           </li>
           <li>
-            <form className="search-bar">
+            {/* <form className="search-bar">
               <input
                 type="text"
                 placeholder="Search for questions..."
@@ -52,7 +52,7 @@ export class NavBar extends Component {
                 src={magn}
                 alt="magnifying-glass"
               />
-            </form>
+            </form> */}
           </li>
 
           <li>
