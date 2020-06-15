@@ -39,7 +39,6 @@ export class Registration extends Component {
     }
   };
   onRegistrationSuccess = (username, password) => {
-    console.log('check');
     AuthApiService.postLogin({
       username: username,
       password: password

@@ -1,5 +1,6 @@
 .main {
 display: flex;
+position: relative;
 flex-direction: column;
 height: 100vh;
 }
@@ -12,6 +13,7 @@ height: 100vh;
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-top: 1em;
+
 }
 
 .questionHead {
@@ -53,21 +55,18 @@ h1 {
   h1 {
     font-size: 32px;
   }
+
+  .main {
+    flex-direction: row;
+  }
   .questionHead {
     font-size: 32px;
   }
-  .qLi {
-    margin-left: 3em;
-    margin-right: 3em;
-  }
+ 
 }
 
 @media only screen and (min-width: 1080px) {
-  .dashboard {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
+  
   ul {
     display: flex;
     list-style: none;
@@ -110,7 +109,6 @@ h1 {
   }
 
   .questionList {
-    margin-left: 3em;
     display: flex;
     flex-direction: column;
   }
@@ -124,10 +122,9 @@ h1 {
     border: thin solid #cccccc;
     border-radius: 6px;
     margin-bottom: 1.2em;
-    padding-left: 1em;
     padding-bottom: 0.5em;
     padding-top: 1em;
-    width: 800px;
+    width: 700px;
   }
 
   .questionHead {

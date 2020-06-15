@@ -1,16 +1,15 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import Moment from 'react-moment';
 import QuestionItem from '../QuestionItem/QuestionItem';
 import './QuestionList.css';
 
 
 export default function QuestionList(props) {
-  console.log(props.questions)
   return (
     <div className='questionList'>
       {/* <h1>Latest Questions</h1> Possibly add tags that can be turned off */}
       <ul className='qMap'>
-        {console.log(props.userID)}
         {props.questions.map((question) => (
           <QuestionItem
             question={question}

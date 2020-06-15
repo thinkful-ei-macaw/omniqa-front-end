@@ -27,9 +27,9 @@
   .Sort {
     font-size: 18px;
   }
-  .barUl {
+  /* .barUl {
     margin-bottom: 1.5em;
-  }
+  } */
 }
 
 @media screen and (min-width: 1080px) {

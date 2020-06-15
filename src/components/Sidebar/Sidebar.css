@@ -1,89 +1,78 @@
 .Sidebar {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
-  margin-top: 4em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* width: 100px; */
-  font-size: 16px;
+  margin-top: 2em;
+  justify-content: center;
 }
 
 .Sidebar1 {
   display: none;
-
 }
 
-select {
+.Sidebar select {
   margin: 5px;
-  flex: 1;
   padding: 0 .5em;
   border-color: #785380;
   background-color: white;
   cursor: pointer;
   height: 40px;
+  width: 9em;
 }
 
 .Sidebar2 {
   margin-top: 1em;
 }
 
-select {
+.Sidebar select {
   padding: .5em 1em .5em 1em;
   border-radius: 8px;
 }
 
-#optionDis {
-  font-weight: 550;
-}
-
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 700px) {
   .Sidebar2 {
     display: none;
-  }
-
-  div.Sidebar {
-    display: flex;
-    justify-content: flex-start;
-    place-content: left;
   }
 
   .Sidebar1 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
       "Helvetica Neue", sans-serif;
     margin-top: 4em;
-    margin-left: 5em;
+    margin-left: 4em;
     display: flex;
-    flex-direction: column;
-    width: 100px;
-    font-size: 16px;
+    flex-direction: column;   
   }
 
-  .myQs,
-  .departments {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-  }
+  .Sidebar1 .departments
 
-  .barUl {
+   {
     display: flex;
     flex-direction: column;
     font-size: 16px;
+    list-style-type: none;
+
   }
 
-  label {
+  .Sidebar1 .barUl {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    list-style-type: none;
+  }
+
+  .Sidebar1 label {
     font-weight: 600;
+    display: block;
     width: 120px;
+    margin-bottom: 1em;
     text-align: left;
-    margin-bottom: 1.2em;
   }
 
-  .barUl li {
+  .Sidebar .barUl li {
     font-size: 16px;
     font-weight: 400;
     color: rgb(155, 155, 155);
-    margin-bottom: 1.2em;
+    margin-bottom: 1em;
   }
 
   a#side__tag {

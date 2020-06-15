@@ -32,7 +32,6 @@ const QuestionsApiService = {
   },
 
   likeQuestion(question_id, user_id) {
-    console.log(question_id);
     return fetch(`${config.API_ENDPOINT}/api/likes/${question_id}`, {
       method: "POST",
       headers: {

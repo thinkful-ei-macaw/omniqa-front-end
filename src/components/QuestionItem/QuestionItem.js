@@ -8,13 +8,11 @@ function QuestionItem(props) {
     let question = props.question;
 
     const [toggle, setToggle] = useState(false)
+    // eslint-disable-next-line eqeqeq
     const answers = props.answers.filter((answer) => answer.question == props.question.id)
-    console.log(answers)
     return (
         <div className='question-item'>
-            <p className='datePosted'>
-              Asked on&nbsp;<Moment format='MMMM do, YYYY'>{question.created_date}</Moment>&nbsp;by {question.user_name}
-            </p>
+            
             <ul>
                 <li className='qLi' key={question.id}>
                     
@@ -22,6 +20,7 @@ function QuestionItem(props) {
                         {question.question_body}
                     </span>
                      <span className='hashtag'>#{question.department_name}</span>
+                    
                     {/* <button id='answerButton' onClick={() => props.handleAnswerQuestion(question.id)}>
             Answer
           </button> */}
@@ -34,12 +33,13 @@ function QuestionItem(props) {
                         <div className='answer_body panel' key='answer'>
                     
                             <div className='question_answer_body'>
+                                <p className="answer-body">{answer.answer_body}</p>
                                  <span className='datePosted'>
-                        Answered{" "}<Moment format='MMMM do'>{answer.created_date}</Moment> 
+                        Answered on&nbsp;<Moment format='MMMM do'>{answer.created_date}</Moment> 
                     </span>
                     
 
-                                    <p>{answer.answer_body}</p>
+                                    
                             <hr></hr>
                           
                             </div>
@@ -48,10 +48,12 @@ function QuestionItem(props) {
                     ))}
                   </div> : ""
                 }
+                 <p className='datePosted'>
+              Asked on&nbsp;<Moment format='MMMM do, YYYY'>{question.created_date}</Moment>&nbsp;by {question.user_name}
+            </p>
                     <div className="toggleControlsContainer">
                         <div className="toggleButtons">
                             <div className="main-controls">
-                    {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
                      <button className="answer-btn">
                      <Link to={`/post-answer/${question.id}`}>Answer</Link>
                      </button>

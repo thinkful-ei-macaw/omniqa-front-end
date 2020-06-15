@@ -10,6 +10,10 @@ li.qLi {
   justify-content: space-between;
 }
 
+.answer-body {
+  font-size: 24px;
+}
+
 .accordion_section {
   display: flex;
   flex-direction: column;
@@ -33,7 +37,7 @@ button a {
 color: white;
 }
 
-.active,
+.accordion.active,
 .accordion:hover {
   background-color: #ccc;
 }
@@ -48,8 +52,7 @@ color: white;
   overflow: hidden;
 }
 
-.accordion:hover, 
-.active {
+.accordion.active {
  background-color: #ccc;
 
 }
@@ -125,6 +128,7 @@ margin-right: 20px;
 }
 
 .question-item {
+  
   padding: 0px 4px;
 }
 .question_answer_body {
@@ -154,4 +158,12 @@ margin-right: 20px;
  margin-top: 2em;
  margin-left: 25px;
  font-weight: 600;
+}
+
+@media only screen and (min-width: 1080px) {
+  /* .question-item ul {
+    padding: 
+  } */
+
+  
 }

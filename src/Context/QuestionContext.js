@@ -69,7 +69,6 @@ export class QuestionProvider extends Component {
   };
 
   setQuestions = (question) => {
-    console.log("running");
     this.setState({ questions: [...this.state.questions, question] });
   };
 
@@ -83,7 +82,6 @@ export class QuestionProvider extends Component {
     });
   };
   setAnswers = (answer) => {
-    console.log("running");
     this.setState({ answers: [...this.state.answers, answer] });
   };
 

@@ -41,7 +41,6 @@ export class UserProvider extends Component {
   };
 
   setUser = (user) => {
-    console.log('running');
     this.setState({ user });
   };
 

@@ -20,7 +20,6 @@ const TokenService = {
   getInfoFromToken() {
     const token = TokenService.getAuthToken();
     const decoded = jwtDecode(token);
-    console.log(decoded);
     return decoded;
   },
   parseJwt(jwt) {

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./Answer.css";
 import NavBar from "../NavBar/NavBar";
-import AnswerApiService from "../../Services/answers-service";
-import { Link } from "react-router-dom";
 import QuestionContext from "../../Context/QuestionContext";
 
 export class Answer extends Component {

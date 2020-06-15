@@ -7,8 +7,7 @@ import QuestionsApiService from '../../Services/questions-service';
 import DepartmentApiService from '../../Services/department-api-service';
 
 export class Question extends Component {
-  // Call the API on componentwillmount
-  // Specify the DOM element and element rendering the reuslt
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,11 +21,9 @@ export class Question extends Component {
   componentDidMount() {
     let departmentList = [];
     DepartmentApiService.getDepartments().then((data) => {
-      console.log(data);
       departmentList = data.map((department) => {
         return department;
       });
-      console.log(departmentList);
       this.setState({
         department: departmentList
       });
@@ -37,19 +34,16 @@ export class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('successful submit question');
     const newQuestion = {
       question_body: e.target['question_body'].value,
       department_id: this.state.value
       // author: e.target.user_id,
       // e.target["department"].value,
     };
-    console.log(newQuestion);
 
     QuestionsApiService.postQuestion(newQuestion.question_body, newQuestion.department_id)
       .then(() => this.props.history.push("/Dashboard"))
       .catch(this.context.setError);
-    console.log(this.props.history)
 
 
   };
@@ -61,8 +55,6 @@ export class Question extends Component {
   }
 
   render() {
-    console.log(this.state.department.map((department) => department.id));
-    let departments = this.state.department;
     let departmentItems = this.state.department.map((department) => (
       <option value={department.id}>{department.name}</option>
     ));
@@ -84,6 +76,7 @@ export class Question extends Component {
                   onChange={this.handleSubmit}
                   id='question'
                   placeholder='Type your question here...'
+                  // eslint-disable-next-line react/jsx-no-duplicate-props
                   onChange={(e) => this.setState({ questions: e.target.value })}
                 />
               </div>

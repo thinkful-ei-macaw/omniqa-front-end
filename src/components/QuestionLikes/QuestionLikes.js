@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
-// import './Dashboard.css';
-import config from '../../config';
 import QuestionContext from '../../Context/QuestionContext';
 import Sidebar from '../Sidebar/Sidebar';
 import QuestionsApiService from '../../Services/questions-service';
 import Moment from 'react-moment';
-import Answer from '../Answer/Answer';
-// import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 
 export class QuestionLikes extends Component {
@@ -64,10 +60,6 @@ export class QuestionLikes extends Component {
     const { filterID } = this.state
     const questions = filterID ? this.context.questionList.filter(question => {
       return question.department === filterID}) : this.context.questionList
-    const departments = this.context.departmentList;
-    console.log(departments);
-    console.log(questions);
-    console.log(this.context.questionList);
     return (
       <div className='dashboard'>
         <NavBar />

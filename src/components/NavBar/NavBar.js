@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import magn from "./search.png";
 import QuestionContext from "../../Context/QuestionContext";
 import TokenService from "../../Services/TokenService";
 
@@ -11,18 +10,19 @@ export class NavBar extends Component {
   componentDidMount() { }
 
   handleLogoutClick = () => {
-    console.log("clicked");
     this.context.processLogout();
     window.location = "/login";
   };
 
   render() {
 
-
-
     return (
       <nav className="nav">
-        <ul id="wholeNav">
+        <ul className="nav_navigation">
+          <span className="logout-link" onClick={this.handleLogoutClick}>
+              Logout
+            </span>
+          <Link to="/">
           <li id="logoicon">
             <img
               className="logoicon"
@@ -30,29 +30,14 @@ export class NavBar extends Component {
               alt="omni--logo"
             />
           </li>
+          </Link>
           <li className="selector">
             <span>
               Hello, {TokenService.getInfoFromToken().sub}!{"   "}
             </span>
-            <span onClick={this.handleLogoutClick} id="logoutlink">
-              Logout
-            </span>
+            
           </li>
           <li>
-            {/* <form className="search-bar">
-              <input
-                type="text"
-                placeholder="Search for questions..."
-                id="search-text-input"
-              />
-              <input
-                type="image"
-                name="submit"
-                id="magn"
-                src={magn}
-                alt="magnifying-glass"
-              />
-            </form> */}
           </li>
             <Link id="link" to="/Question">
               <button className="nav-btn " id="question-btn">Ask a question</button>

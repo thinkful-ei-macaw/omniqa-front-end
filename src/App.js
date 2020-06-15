@@ -13,9 +13,6 @@ import UnansweredQuestions from './components/UnansweredQuestions/UnansweredQues
 
 import PostAnswer from './components/PostAnswer/postAnswer';
 import InfoPage from './components/InfoPage/InfoPage';
-import config from './config';
-import QuestionsApiService from './Services/questions-service';
-import AnswersApiService from './Services/answers-service';
 import QuestionContext from './Context/QuestionContext';
 import TokenService from './Services/TokenService';
 
