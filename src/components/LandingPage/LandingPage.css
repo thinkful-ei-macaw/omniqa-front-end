@@ -424,6 +424,7 @@ a {
 /* Start learning */
 .start-learning {
   margin-top: 5rem;
+  flex-direction: column;
   margin-bottom: 5rem;
   text-align: center;
   padding: 0 3rem;
@@ -431,7 +432,9 @@ a {
 }
 
 .start-learning .button {
-  margin: 2rem 0;
+  margin: 0 auto;
+  width: 40%;
+  justify-content: center;
 }
 
 .progress {
