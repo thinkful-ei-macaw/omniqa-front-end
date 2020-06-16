@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import AuthApiService from '../../Services/auth-api-service';
 import QuestionContext from '../../Context/QuestionContext';
 import TokenService from '../../Services/TokenService';
-import img from './logo.png';
-
 export class Registration extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {}
@@ -57,12 +55,13 @@ export class Registration extends Component {
   render() {
     const { error } = this.state;
     return (
-      <div className='Registration'>
+      <div className='login-page'>
+        <div className="form-header">
+          <div className="form">
         <div role='alert'>{error && <p>{error}</p>}</div>
         <form id='signup' onSubmit={this.handleSubmit}>
-          <img className='logoReg' src={img} alt='omni--logo' />
-          <fieldset>
-            <legend>Sign Up</legend>
+          
+            <h1>Sign Up</h1>
             <label htmlFor='username'>Username: </label>
             <input
               className='form-control'
@@ -72,13 +71,10 @@ export class Registration extends Component {
               placeholder='james.bond'
               required
             />
-            <br />
-            <br />
+           
             <label htmlFor='name'>Your Name: </label>
             <input className='form-control' type='text' name='name' id='name' placeholder='James Bond' required />
-            <br />
-            <br />
-            <br />
+          
             <label htmlFor='password'>Password:</label>
             <input
               className='form-control'
@@ -88,9 +84,8 @@ export class Registration extends Component {
               placeholder='Password123!'
               required
             />
-            <br />
-            <br />
-            <label htmlFor='password'>Confirm:</label>
+          
+            <label htmlFor='password'>Confirm Password:</label>
 
             <input
               className='form-control'
@@ -100,23 +95,17 @@ export class Registration extends Component {
               placeholder='Password123!'
               required
             />
-            <br />
-            <br />
-            <br />
-
-            <br />
-
+           
             <button className='submit-form' type='submit'>
               Register
             </button>
 
             <Link to='/dashboard'>
-              <button type='button' id='login'>
-                Log in
-              </button>
+               <p class="message">Already have an account? <span>Login</span></p>
             </Link>
-          </fieldset>
         </form>
+        </div>
+        </div>
       </div>
     );
   }

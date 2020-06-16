@@ -25,7 +25,7 @@ export default class LandingPage extends Component {
              </div>
              <div className="features_section_container">
             <div className="features_section">
-            <h1>Break out of asking questions to humans</h1>
+            <h2>Break out of asking questions to humans</h2>
             <p>Using quick filters gives you easy access to common knowledge across departments.</p>
             <div className="image_container">
               <img src={Woman} alt="woman"></img>

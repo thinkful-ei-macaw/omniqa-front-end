@@ -5,6 +5,17 @@ main {
   width: 100%;
 }
 
+.landing_page .hero {
+  font-size: 1.5rem;
+  height: 80vh;
+  min-height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 10rem;
+  margin-bottom: 2rem;
+}
+
 .landing_page h1 {
   font-size: 44px;
   text-align: center;
@@ -98,4 +109,83 @@ main {
 
 .product_image {
   height: 300px;
+}
+
+@media only screen and (min-width: 680px) {
+  .landing_page .hero {
+    display: block;
+    padding-top: 0;
+    margin-top: 30vh;
+   
+  }
+
+  .landing_page svg {
+    width: 350px;
+    display: inline-block;
+    float: right;
+    margin-top: -40vh;
+    margin-right: 40px;
+  }
+
+  .landing_page h1 {
+    width: 50%;
+    font-size: 64px;
+  }
+
+  .landing_page p {
+    margin-left: 60px;
+    width: 35%;
+
+  }
+
+  .button_container button {
+    height: 70px;
+    width: 250px;
+    margin-right: 50px;
+    text-transform: uppercase;
+    outline: 0;
+    background: #785380;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 5px;
+
+  }
+
+  .features_section_container {
+    flex-direction: row;
+  }
+
+  .landing_page img {
+     width: 350px;
+     display: inline-block;
+     float: left;
+     margin-top: -60vh;
+     margin-left: 50px;
+     margin-right: 500px;
+  }
+
+   .features_section h2 {
+     width: 30%;
+     font-size: 44px;
+     margin-left: 11em;
+   }
+
+   h2 {
+     margin-top: 20px;
+   }
+
+    .features_section p {
+       margin-left: 27em;
+       width: 35%;
+    }
+
+    .image_container {
+      height: 0px;
+    }
+
+
 }
