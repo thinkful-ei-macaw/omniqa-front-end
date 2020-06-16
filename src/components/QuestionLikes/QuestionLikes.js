@@ -30,15 +30,7 @@ export class QuestionLikes extends Component {
   }
 
   handleQuestionLike = (id, like) => {
-  // Calling QuestionAPIService to update a liked question.
-  // QuestionsApiService.likeQuestion(id)
   this.likeBtnColor(id)
-  // .then(() => {
-  //   this.setState({
-  //     liked: true
-  //   })
-  // })
-
   }
 
  likeBtnColor = (id) => {

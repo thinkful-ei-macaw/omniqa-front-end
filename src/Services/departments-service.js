@@ -1,5 +1,4 @@
 import config from "../config";
-import TokenService from "../Services/TokenService";
 
 const DepartmentsApiService = {
     getDepartments() {

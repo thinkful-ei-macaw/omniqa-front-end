@@ -1,7 +1,7 @@
 import React from 'react';
-import App from '../src/App';
+import Question from './Question';
 import {shallow} from 'enzyme'
 
 it('renders without crashing', () => {
-  shallow(<App/>)
+  shallow(<Question/>)
 })

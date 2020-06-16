@@ -8,7 +8,6 @@ import './QuestionList.css';
 export default function QuestionList(props) {
   return (
     <div className='questionList'>
-      {/* <h1>Latest Questions</h1> Possibly add tags that can be turned off */}
       <ul className='qMap'>
         {props.questions.map((question) => (
           <QuestionItem

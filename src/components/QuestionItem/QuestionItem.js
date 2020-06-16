@@ -8,10 +8,9 @@ function QuestionItem(props) {
     let question = props.question;
 
     const [toggle, setToggle] = useState(false)
-    // eslint-disable-next-line eqeqeq
     const answers = props.answers.filter((answer) => answer.question == props.question.id)
     return (
-        <div className='question-item'>
+        <div key={question.id}className='question-item'>
             
             <ul>
                 <li className='qLi' key={question.id}>
