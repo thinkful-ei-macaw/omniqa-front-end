@@ -1,7 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import QuestionItem from './QuestionItem';
-import {shallow} from 'enzyme'
 
 it('renders without crashing', () => {
-  shallow(<QuestionItem/>)
-})
+  const div = document.createElement('div');
+  ReactDOM.render(<QuestionItem />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
