@@ -8,13 +8,13 @@ import {ReactComponent as Funnel} from '../../images/funnel.svg';
 import {ReactComponent as Ios} from '../../images/ios.svg';
 import {ReactComponent as Group} from '../../images/Group.svg';
 import {ReactComponent as Check} from '../../images/check.svg';
-
-
+import  WhiteBoard from '../../images/whiteboard.png';
 
 export default class LandingPage extends Component {
   render() {
     return (
       <>
+      
     <main>
       <section class="intro">
         <h1 className="intro__title">
@@ -66,28 +66,20 @@ export default class LandingPage extends Component {
       <div class="arrow-2"></div>
       <section class="learning">
         <h2 class="section__title learning__title">
-          Start learning immediately
+          Contribute to your team's knowledge
         </h2>
         <p>
-          It takes no time to start learning with us, This means, once you sign up for an account, you can start
-          learning immediately and get access to our community.
+         Answer common questions for new hires to reduce ramp up time.
         </p>
-       
+        <img src={WhiteBoard} className="svg" alt="woman"/>
       </section>
-      <div id="get-started" class="get-started">
-        <ul>
-          <li>
-          
-            <p><strong class="counter community-members">1.2</strong><strong>K+</strong></p>
-            <p>Community Members</p>
-          </li>
-          <li>
-            
-            <p><strong class="counter number-of-pages">1.9</strong><strong>K+</strong></p>
-            <p>Pages with content for you to learn</p>
-          </li>
-        </ul>
-      </div>
+     <section class="start-learning">
+      <h2 class="section__title">
+          Ready to get Omni?
+        </h2>
+        <p>It's FREE and easy to get started. Just pick the plan that works best for your team, or chat with one of our experts to learn more.</p>
+        <Link to="/registration" class="button">Get Started</Link>
+        </section>
     </main>
     </>
     
