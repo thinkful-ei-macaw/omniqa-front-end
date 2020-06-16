@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {ReactComponent as Group} from '../../images/Group.svg'
+import  "../../images/woman.png"
 import './LandingPage.css';
-import img from './logo.png';
+import Woman from '../../images/woman.png';
+import {ReactComponent as Docs} from '../../images/docs.svg';
 
 export default class LandingPage extends Component {
   render() {
     return (
       <>
+     
       <main>
          <section className="landing_page">
            <div className="hero">
-            <h1>Create healthier coding&nbsp;habits</h1>
+            <h1>Easy company knowledge</h1>
+            <p>Omni is a place that connects your team's scattered knowledge so that you can always find what you're looking for.</p>
             <Group/>
             <div className="button_container">
              <Link to={'/registration'}>
@@ -21,34 +25,23 @@ export default class LandingPage extends Component {
              </div>
              <div className="features_section_container">
             <div className="features_section">
-            <h1>Focus on what&nbsp;matters</h1>
-            <p>Regain clarity and calmness by getting all those tasks out of your head and onto your to-do list (no matter where you are or what device you use).
-            </p>
+            <h1>Break out of asking questions to humans</h1>
+            <p>Using quick filters gives you easy access to common knowledge across departments.</p>
             <div className="image_container">
+              <img src={Woman} alt="woman"></img>
               <div>
-                {/* <img src={MobileDevice} alt="mobile devices"></img> */}
               </div>
             </div>
             </div>
             </div>
               <div className="features_section">
-            <h1>Stay motivated with&nbsp;streaks</h1>
-            <p>Reward yourself with motivating streaks and check off tasks to level up your emoji!
+            <h1>Save your favorite questions</h1>
+            <p>Keep the questions that you liked or asked at your fingertips in a private list.
             </p>
             <div className="image_container">
               <div>
+                <Docs/>
                 {/* <img src={HappyFeeling} alt="happy woman walking"></img> */}
-              </div>
-            </div>
-            </div>
-            
-            <div className="features_section">
-            <h1>Keep track of your breaks&nbsp;</h1>
-            <p>Get reminded to take breaks after completing coding sessions. Taking breaks can boost productivity, spark creative ideas, and retain information (coming soon!).
-            </p>
-            <div className="image_container">
-              <div>
-                {/* <img src={TakeBreaks} alt="woman taking a break"></img> */}
               </div>
             </div>
             </div>
