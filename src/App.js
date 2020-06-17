@@ -10,7 +10,6 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import Question from './components/Question/Question';
 import UnansweredQuestions from './components/UnansweredQuestions/UnansweredQuestions';
 import PostAnswer from './components/PostAnswer/postAnswer';
-import InfoPage from './components/InfoPage/InfoPage';
 import QuestionContext from './Context/QuestionContext';
 import TokenService from './Services/TokenService';
 
@@ -28,7 +27,6 @@ class App extends Component {
       <div className='App'>
         <BrowserRouter>
           <PublicOnlyRoute exact path='/' component={LandingPage} />
-          <PublicOnlyRoute exact path='/info' component={InfoPage} />
           <PublicOnlyRoute exact path='/registration' component={Registration} />
           <PublicOnlyRoute exact path='/login' component={Login} />
           <Switch>

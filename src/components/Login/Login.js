@@ -55,7 +55,6 @@ export class Login extends Component {
               placeholder="james.bond"
               required
             />
-            <br />
             <label htmlFor="password">Password: </label>
             <input
               className="form-control"
@@ -65,7 +64,6 @@ export class Login extends Component {
               placeholder="********"
               required
             />
-            <br />
             <button type="submit">Log In</button>
           </fieldset>
           

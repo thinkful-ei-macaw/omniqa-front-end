@@ -9,8 +9,8 @@ export default function QuestionList(props) {
   return (
     <div className='questionList'>
       <ul className='qMap'>
-        {props.questions.map((question) => (
-          <QuestionItem
+        {props.questions.map((question, key) => (
+          <QuestionItem key={key}
             question={question}
             user_id={props.userID}
             answers={props.answers}

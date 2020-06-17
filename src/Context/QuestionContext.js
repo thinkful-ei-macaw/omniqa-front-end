@@ -7,7 +7,6 @@ import QuestionApiService from '../Services/questions-service';
 
 const QuestionContext = React.createContext({
   user: {},
-
   question: [],
   answer: [],
   error: null,

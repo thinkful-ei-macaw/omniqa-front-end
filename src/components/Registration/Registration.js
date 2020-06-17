@@ -101,7 +101,7 @@ export class Registration extends Component {
             </button>
 
             <Link to='/dashboard'>
-               <p class="message">Already have an account? <span>Login</span></p>
+               <p className="message">Already have an account? <span>Login</span></p>
             </Link>
         </form>
         </div>

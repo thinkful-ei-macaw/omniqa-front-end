@@ -23,7 +23,8 @@ export class Dashboard extends Component {
 
   componentDidMount() {
     QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
-    this.context.clearError();
+    // this.context.clearError();
+    
   }
 
   filterQuestions = (id) => {

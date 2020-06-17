@@ -13,10 +13,14 @@ export class QuestionLikes extends Component {
     btnColors:{},
   }
 
+   static defaultProps = {
+     question: []
+   }
+
   static contextType = QuestionContext;
 
   componentDidMount() {
-    this.context.clearError();
+    // this.context.clearError();
 
     QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
 
@@ -48,10 +52,12 @@ export class QuestionLikes extends Component {
    })
  }
 
+
+
   render() {
     const { filterID } = this.state
-    const questions = filterID ? this.context.questionList.filter(question => {
-      return question.department === filterID}) : this.context.questionList
+    const questions = (filterID ? this.context.questionList.filter(question => {
+      return question.department === filterID}) : this.context.questionList) || []
     return (
       <div className='dashboard'>
         <NavBar />
@@ -63,17 +69,11 @@ export class QuestionLikes extends Component {
               {questions.map((question) => (
                 <li className='qLi' key={question.id}>
                   <span className='questionHead'>{question.question_body}</span>
-                  <br />
-                  <br />
                   <span className='datePosted'>
                     Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
                   </span>
-                  <br />
-                  <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
                   <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
-                  <br />
-                  <br />
                 </li>
               ))}
             </ul>
