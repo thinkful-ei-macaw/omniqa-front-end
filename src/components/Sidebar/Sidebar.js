@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Sidebar.css";
-import { Link } from "react-router-dom";
 import DepartmentApiService from "../../Services/department-api-service";
 import QuestionContext from "../../Context/QuestionContext";
 
@@ -44,7 +43,6 @@ determineFilter (type) {
 }
 
   render() {
-    // console.log('these are answers',this.context.answerList)
     return (
       <div className="Sidebar">
         <div className='Sidebar1'>
@@ -52,16 +50,15 @@ determineFilter (type) {
           <label>Discover</label>
           <ul className="barUl">
             <li>
-              <span className={this.props.filterUnansweredQs && "active"}
+              <span  className={this.props.filterUnansweredQs && "active"}
                 onClick={() => this.props.filterUnansweredQs()}
-                id="side__tag"
-              >
+                >
                 Unanswered Q's
               </span>
             </li>
           </ul>
         </section>
-        <section className="myQs">
+        < section className="departments">
           <label>Q's that I...</label>
           <ul className="barUl">
             <li>

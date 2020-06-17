@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
 import './Dashboard.css';
-import config from '../../config';
 import QuestionContext from '../../Context/QuestionContext';
 import QuestionList from '../../components/QuestionList/QuestionList';
 import Sidebar from '../Sidebar/Sidebar';
 import QuestionsApiService from '../../Services/questions-service';
-import Answer from '../Answer/Answer';
-import Sort from '../Sort/Sort';
-import DepartmentService from '../../Services/departments-service';
-import Question from '../Question/Question';
 import TokenService from '../../Services/TokenService';
 
 export class Dashboard extends Component {
@@ -28,15 +23,14 @@ export class Dashboard extends Component {
 
   componentDidMount() {
     QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
-    console.log('28', this.context);
-    this.context.clearError();
+    // this.context.clearError();
+    
   }
 
   filterQuestions = (id) => {
     this.setState({
       filterID: id
     });
-    console.log(id)
   };
 
   filterAsked = () => {
@@ -110,8 +104,6 @@ export class Dashboard extends Component {
 
 
   render() {
-    let id = this.context.questionList.map(id => id.id)
-    console.log(id)
     const { filterID, filterAsked, filterLiked, filterUnansweredQs } = this.state;
     let answers = this.context.answerList;
     const { user_id } = TokenService.readJwtToken();
@@ -131,10 +123,8 @@ export class Dashboard extends Component {
 
     if (filterLiked) {
       questions = questions.filter((question) => {
-        console.log(this.context);
         return this.context.userLikedQuestions.includes(question.id);
       });
-      console.log(questions);
     }
 
     if (filterUnansweredQs) {
@@ -145,18 +135,10 @@ export class Dashboard extends Component {
       questions = questions.filter((question) => !answered.has(question.id));
     }
 
-    // answers.map(answer => answer.question)
-
-    // answered = answers.map...
-
-    // questions.filter(q => answered.includes(q.id))
-    // console.log(answers.filter(answer => answer.question == question.id).map(answer => answer.answer_body))
-    console.log(questions)
     return (
       <div className='dashboard'>
         <NavBar />
-
-        <section className='main'>
+        <section className='main wrapper'>
           < Sidebar clearFilters={this.clearFilters}
             filterUnansweredQs={this.filterUnansweredQs}
             filterQuestions={this.filterQuestions}
@@ -176,8 +158,7 @@ export class Dashboard extends Component {
             userID={user_id}
             questions={questions}
           />
-
-          <Sort />
+          {/* <Sort /> */}
         </section>
       </div>
     );

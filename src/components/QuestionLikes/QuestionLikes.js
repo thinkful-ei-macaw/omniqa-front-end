@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar';
-// import './Dashboard.css';
-import config from '../../config';
 import QuestionContext from '../../Context/QuestionContext';
 import Sidebar from '../Sidebar/Sidebar';
 import QuestionsApiService from '../../Services/questions-service';
 import Moment from 'react-moment';
-import Answer from '../Answer/Answer';
-import Sort from '../Sort/Sort';
 import DepartmentService from '../../Services/departments-service';
 
 export class QuestionLikes extends Component {
@@ -17,10 +13,14 @@ export class QuestionLikes extends Component {
     btnColors:{},
   }
 
+   static defaultProps = {
+     question: []
+   }
+
   static contextType = QuestionContext;
 
   componentDidMount() {
-    this.context.clearError();
+    // this.context.clearError();
 
     QuestionsApiService.getQuestions().then(this.context.setQuestionList).catch(this.context.setError);
 
@@ -34,15 +34,7 @@ export class QuestionLikes extends Component {
   }
 
   handleQuestionLike = (id, like) => {
-  // Calling QuestionAPIService to update a liked question.
-  // QuestionsApiService.likeQuestion(id)
   this.likeBtnColor(id)
-  // .then(() => {
-  //   this.setState({
-  //     liked: true
-  //   })
-  // })
-
   }
 
  likeBtnColor = (id) => {
@@ -60,14 +52,12 @@ export class QuestionLikes extends Component {
    })
  }
 
+
+
   render() {
     const { filterID } = this.state
-    const questions = filterID ? this.context.questionList.filter(question => {
-      return question.department === filterID}) : this.context.questionList
-    const departments = this.context.departmentList;
-    console.log(departments);
-    console.log(questions);
-    console.log(this.context.questionList);
+    const questions = (filterID ? this.context.questionList.filter(question => {
+      return question.department === filterID}) : this.context.questionList) || []
     return (
       <div className='dashboard'>
         <NavBar />
@@ -79,22 +69,16 @@ export class QuestionLikes extends Component {
               {questions.map((question) => (
                 <li className='qLi' key={question.id}>
                   <span className='questionHead'>{question.question_body}</span>
-                  <br />
-                  <br />
                   <span className='datePosted'>
                     Posted on <Moment format='YYYY/MM/DD'>{question.created_date}</Moment> by {question.user_name}
                   </span>
-                  <br />
-                  <br />
                   {/**update the button style color based on the question id. Call this handlequestion when the button is clicked*/}
                   <button style={{backgroundColor: this.state.btnColors[question.id] ? '#785380' :'white'}} onClick={() => this.handleQuestionLike(question.id)} id='likeButton'>Like</button> <span className='hashtag'>#{question.department_name}</span>
-                  <br />
-                  <br />
                 </li>
               ))}
             </ul>
           </div>
-          <Sort />
+          {/* <Sort /> */}
         </section>
       </div>
     );

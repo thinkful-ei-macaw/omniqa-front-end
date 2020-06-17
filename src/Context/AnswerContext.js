@@ -32,7 +32,6 @@ export class AnswerProvider extends Component {
   };
 
   setAnswers = (answer) => {
-    console.log("running");
     this.setState({ answers: [...this.state.answers, answer] });
   };
 

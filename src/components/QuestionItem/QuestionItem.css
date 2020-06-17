@@ -1,5 +1,18 @@
+li.qLi {
+  border: #444 solid 1px;
+}
+
 .qLi {
+  padding: 20px;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.answer-body {
+  font-size: 24px;
 }
 
 .accordion_section {
@@ -9,28 +22,23 @@
 
 .accordion {
   background-color: #eee;
+  border-radius: 8px;
+  margin-top: 15px;
   color: #444;
   cursor: pointer;
   padding: 8px;
-  /* width: 100%; */
-  text-align: left;
+  width: 70%;
+  text-align: center;
   border: none;
   outline: none;
   transition: 0.4s;
 }
 
-button.delete-btn {
-  background-color: white;
+button a {
+color: white;
 }
 
-button.delete-btn {
-  background-color: white;
-}
-button.like-btn {
-  background-color: white;
-}
-
-.active,
+.accordion.active,
 .accordion:hover {
   background-color: #ccc;
 }
@@ -45,8 +53,7 @@ button.like-btn {
   overflow: hidden;
 }
 
-.accordion:hover, 
-.active {
+.accordion.active {
  background-color: #ccc;
 
 }
@@ -56,6 +63,62 @@ button.like-btn {
   transition: max-height 0.6s ease;
 }
 
+.toggleControlsContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.answer-btn {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 1.2em 1em;
+  border-radius: 8px;
+  background-color: #785380;
+  border: none;
+  color: white;
+  transition: all 0.3s;
+  margin-right: 20px;
+}
+
+.answer-btn a {
+  text-decoration: none;
+}
+
+
+.main-controls {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+ .toggleButtons {
+   display: flex;
+   width: 100%;
+   justify-content: space-around;
+   
+ }
+
+button.delete-btn {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 1.2em 1em;
+  border-radius: 8px;
+  border: 1px red solid;
+  color: black;
+  transition: all 0.3s;
+  margin-right: 20px;
+  background-color: white;
+}
+
+#likeButton {
+  margin-right: 20px;
+}
 
 .answer-user {
   margin-left: 3em;
@@ -74,10 +137,45 @@ button.like-btn {
   font-weight: bold;
 }
 
+.question-item ul {
+  padding: 0px;
+  margin: 15px 0px;
+}
+.question-item {
+
+  padding: 0px 4px;
+}
 .question_answer_body {
   padding-top: 2em;
+  text-align: center;
 }
 
 .questionHead {
   word-wrap: break-word;
+  text-align: center;
+  font-size: 28px;
+}
+
+.hashtag {
+
+ margin-top: 2.0em;
+ height: 15%;
+ padding: 8px;
+ font-size: medium;
+text-align: center;
+}
+
+.datePosted {
+  display: flex;
+ justify-content: center;
+ margin: 1em 0;
+ font-weight: 600;
+}
+
+@media only screen and (min-width: 1080px) {
+  /* .question-item ul {
+    padding: 
+  } */
+
+  
 }

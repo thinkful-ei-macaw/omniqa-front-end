@@ -3,8 +3,6 @@ import "./Login.css";
 import AuthApiService from "../../Services/auth-api-service";
 import QuestionContext from "../../Context/QuestionContext";
 import TokenService from "../../Services/TokenService";
-import { Link } from "react-router-dom";
-import omniLogo from "./logo.png";
 
 export class Login extends Component {
   static defaultProps = {
@@ -43,11 +41,11 @@ export class Login extends Component {
     const { error } = this.state;
     return (
       <div className="Login">
+        <div className="form">
         <div role="alert">{error && <p>{error}</p>}</div>
-        <img className="logo" src={omniLogo} alt="omni--logo" />
-        <form className="LoginForm" onSubmit={this.handleSubmitJwtAuth}>
+        <form className="register-form" onSubmit={this.handleSubmitJwtAuth}>
           <fieldset>
-            <legend>Log In</legend>
+            <h1>Log In</h1>
             <label htmlFor="username">Username: </label>
             <input
               className="form-control"
@@ -57,7 +55,6 @@ export class Login extends Component {
               placeholder="james.bond"
               required
             />
-            <br />
             <label htmlFor="password">Password: </label>
             <input
               className="form-control"
@@ -67,10 +64,11 @@ export class Login extends Component {
               placeholder="********"
               required
             />
-            <br />
             <button type="submit">Log In</button>
           </fieldset>
+          
         </form>
+        </div>
       </div>
     );
   }
