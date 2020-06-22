@@ -10,8 +10,9 @@ export default class postAnswer extends Component {
   static contextType = QuestionContext;
   handleSubmit = (e) => {
     e.preventDefault();
-    AnswerApiService.postAnswer(e.target.answer_body.value, this.props.match.params.question_id);
-    this.context.loadData();
+    AnswerApiService.postAnswer(e.target.answer_body.value, this.props.match.params.question_id)
+      .then(() => this.context.loadData())
+    // this.context.loadData()
     this.props.history.push('/Dashboard');
   };
 

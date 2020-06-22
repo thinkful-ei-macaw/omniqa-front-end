@@ -30,7 +30,8 @@ const AnswersApiService = {
       .catch((error) => {
         console.error({ error });
       });
-  },
+    
+  }
 };
 
 export default AnswersApiService;
